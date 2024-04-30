@@ -44,6 +44,11 @@
         background: rgba($color: #fff, $alpha: 0.1);
       }
     }
+
+    .active a {
+      border: 1px solid white;
+      background: rgba($color: #fff, $alpha: 0.1);
+    }
   }
 
   a:first-child {
