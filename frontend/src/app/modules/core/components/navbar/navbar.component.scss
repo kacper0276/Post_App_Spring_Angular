@@ -47,6 +47,11 @@ input[type="checkbox"] {
         border: 1px solid white;
         background: rgba($color: #fff, $alpha: 0.1);
       }
+
+      .active {
+        border: 1px solid white;
+        background: rgba($color: #fff, $alpha: 0.1);
+      }
     }
 
     .login-button {
@@ -71,11 +76,11 @@ input[type="checkbox"] {
         border: 1px solid #ee626b;
         background: rgba($color: #ee626b, $alpha: 0.1);
       }
-    }
 
-    .active a {
-      border: 1px solid white;
-      background: rgba($color: #fff, $alpha: 0.1);
+      .activeLogin {
+        border: 1px solid #ee626b;
+        background: rgba($color: #ee626b, $alpha: 0.1);
+      }
     }
   }
 

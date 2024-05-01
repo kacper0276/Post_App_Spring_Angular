@@ -8,13 +8,18 @@
   /></a>
 
   <ul class="navigation-list">
-    <li class="menu-option active">
-      <a routerLink="" routerLinkActive="active">Strona główna</a>
+    <li class="menu-option">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Strona główna</a
+      >
     </li>
     <li class="menu-option"><a routerLink="posts">Posty</a></li>
     <li class="menu-option"><a routerLink="settings">Ustawienia</a></li>
     <li class="menu-option login-button">
-      <a routerLink="logowanie">Zaloguj się</a>
+      <a routerLink="logowanie" routerLinkActive="activeLogin">Zaloguj się</a>
     </li>
   </ul>
 </div>
