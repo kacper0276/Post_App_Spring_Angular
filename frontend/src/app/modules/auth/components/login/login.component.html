@@ -1,14 +1,22 @@
 <div class="background-div"></div>
 
-<form class="login-form">
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
   <div class="login-form-div-element">
-    <input type="email" placeholder="Email: przyklad@poczta.pl" />
+    <input
+      type="email"
+      placeholder="Email: przyklad@poczta.pl"
+      [formControl]="controls.email"
+    />
   </div>
   <div class="login-form-div-element">
-    <input type="password" placeholder="Hasło" />
+    <input
+      type="password"
+      placeholder="Hasło"
+      [formControl]="controls.password"
+    />
   </div>
   <div class="login-form-div-element">
-    <button type="submit" class="login-button">Zaloguj się</button>
+    <button class="login-button">Zaloguj się</button>
   </div>
   <p class="login-form-links-to-other-page">
     Zapomniałaś/eś hasła? <a routerLink="/recover-password">Kliknij tutaj</a>
