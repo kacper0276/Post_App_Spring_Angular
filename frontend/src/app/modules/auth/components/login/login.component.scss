@@ -23,7 +23,8 @@
   box-shadow: 5px 20px 50px #000;
 
   .login-form-div-element {
-    padding: 15px;
+    padding: 5px 0px;
+    position: relative;
 
     input {
       width: 100%;
@@ -37,6 +38,23 @@
       outline: none;
       border-radius: 5px;
       color: #000;
+    }
+
+    .show-password-button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      right: 0;
+      height: 40px;
+      background: transparent;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      img {
+        height: 100%;
+      }
     }
   }
 

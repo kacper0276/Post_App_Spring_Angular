@@ -10,10 +10,17 @@
   </div>
   <div class="login-form-div-element">
     <input
+      #passwordInput
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
     />
+    <button (click)="changeVisiblePassword()" class="show-password-button">
+      <img
+        src="../../../../../assets/images/show-password.png"
+        alt="Przycisk do pokazywania hasła"
+      />
+    </button>
   </div>
   <div class="login-form-div-element">
     <button class="login-button">Zaloguj się</button>
