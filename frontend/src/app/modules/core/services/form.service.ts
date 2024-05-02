@@ -1,32 +1,60 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginForm } from '../models/forms.model';
+import { LoginForm, RegisterForm } from '../models/forms.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormService {
-
-  constructor() { }
+  constructor() {}
 
   initLoginForm(): FormGroup<LoginForm> {
     return new FormGroup({
-      email: new FormControl("", {
+      email: new FormControl('', {
         validators: [
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(50)
+          Validators.maxLength(50),
         ],
-        nonNullable: true
+        nonNullable: true,
       }),
-      password: new FormControl("", {
+      password: new FormControl('', {
         validators: [
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(100)
+          Validators.maxLength(100),
         ],
-        nonNullable: true
-      })
-    }) 
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initRegisterForm(): FormGroup<RegisterForm> {
+    return new FormGroup({
+      email: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(50),
+        ],
+        nonNullable: true,
+      }),
+      password: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+        nonNullable: true,
+      }),
+      repeatedPassword: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+        nonNullable: true,
+      }),
+    });
   }
 }

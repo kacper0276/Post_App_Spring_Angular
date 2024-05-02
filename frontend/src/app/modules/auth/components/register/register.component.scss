@@ -7,7 +7,7 @@
   padding: 225px 0px;
 }
 
-.login-form {
+.register-form {
   position: absolute;
   width: 30%;
   height: 60%;
@@ -22,7 +22,7 @@
   border-radius: 10px;
   box-shadow: 5px 20px 50px #000;
 
-  .login-form-div-element {
+  .register-form-div-element {
     padding: 5px;
 
     input {
@@ -40,7 +40,7 @@
     }
   }
 
-  .login-button {
+  .register-button {
     padding: 15px;
     border-radius: 15px;
     outline: none;
@@ -49,7 +49,7 @@
     color: #000;
   }
 
-  .login-form-links-to-other-page {
+  .register-form-links-to-other-page {
     padding: 15px;
     color: #000;
     a {
@@ -59,7 +59,7 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-  .login-form {
+  .register-form {
     width: 100%;
     min-height: 60%;
   }
