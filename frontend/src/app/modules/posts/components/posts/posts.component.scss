@@ -11,14 +11,30 @@
 
   .filter {
     display: flex;
+    flex-direction: column;
     width: 20%;
     min-height: 1000px;
     float: left;
+
+    input[type="text"] {
+      color: #000;
+      height: 30px;
+      border-radius: 5px;
+    }
+
+    option {
+      color: #000;
+    }
+
+    select {
+      color: #000;
+    }
   }
 
   .posts-display {
     display: flex;
     width: 80%;
+    padding: 35px;
     min-height: 1000px;
   }
 }

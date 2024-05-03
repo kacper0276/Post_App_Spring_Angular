@@ -2,7 +2,23 @@
 
 <div class="main-container">
   <h1>Ostatnie Posty:</h1>
-  <div class="filter">Tutaj będzie filtrowanie</div>
+  <div class="filter">
+    <input type="text" [formControl]="searchControl" />
+    <label>Sortuj po</label>
+    <select [formControl]="sortControl">
+      <option value="">-</option>
+      <option value="price">Cenie</option>
+      <option value="category">Kategorii</option>
+      <option value="name">Nazwie</option>
+      <option value="data">Dacie dodania</option>
+    </select>
+    <label>Sortuj</label>
+    <select [formControl]="orderControl">
+      <option value="">-</option>
+      <option value="asc">rosnąco</option>
+      <option value="desc">malejąco</option>
+    </select>
+  </div>
   <div class="posts-display">
     <app-post *ngFor="let post of firstPost" [posts]="post"></app-post>
   </div>

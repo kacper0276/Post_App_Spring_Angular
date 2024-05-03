@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+
+interface test {
+  name: string;
+  img: string;
+  description: string;
+  like: number;
+  comments: string[];
+  author: string;
+}
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
   firstPost = [
     {
       name: 'Nazwa',
@@ -24,4 +35,18 @@ export class PostsComponent {
       author: 'Kacper Renkel',
     },
   ];
+
+  searchControl = new FormControl<string>('');
+  sortControl = new FormControl<string>('');
+  orderControl = new FormControl<string>('');
+
+  ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        console.log(value);
+        console.log(this.sortControl.getRawValue());
+        console.log(this.orderControl.getRawValue());
+      });
+  }
 }
