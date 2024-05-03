@@ -1,1 +1,9 @@
-<p>post works!</p>
+<div>
+  <p>nazwa: {{ posts.name }}</p>
+  <p>opis: {{ posts.description }}</p>
+  <p>polubienia: {{ posts.like }}</p>
+  <p>Autor: {{ posts.author }}</p>
+  <p *ngFor="let comment of posts.comments; let i = index">
+    komentarz {{ i + 1 }}: {{ comment }}
+  </p>
+</div>

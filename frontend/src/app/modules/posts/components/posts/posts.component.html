@@ -1,1 +1,9 @@
 <div class="background-div"></div>
+
+<div class="main-container">
+  <h1>Ostatnie Posty:</h1>
+  <div class="filter">Tutaj będzie filtrowanie</div>
+  <div class="posts-display">
+    <app-post *ngFor="let post of firstPost" [posts]="post"></app-post>
+  </div>
+</div>
