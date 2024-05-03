@@ -2,5 +2,13 @@
   height: 100%;
   width: 300px;
   margin-right: 50px;
-  background: violet;
+  border: 1px solid rgb(124, 124, 124);
+
+  p {
+    color: #000;
+  }
+
+  small {
+    color: #000;
+  }
 }

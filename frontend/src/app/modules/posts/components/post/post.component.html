@@ -1,8 +1,9 @@
 <div class="post-card">
+  <p>Autor: {{ posts.author }}, <small>2 dni temu</small></p>
+  <hr />
   <p>nazwa: {{ posts.name }}</p>
-  <p>opis: {{ posts.description }}</p>
+  <p>opis: {{ posts.description | sliceText : 10 }}</p>
   <p>polubienia: {{ posts.like }}</p>
-  <p>Autor: {{ posts.author }}</p>
   <p *ngFor="let comment of posts.comments; let i = index">
     komentarz {{ i + 1 }}: {{ comment }}
   </p>
