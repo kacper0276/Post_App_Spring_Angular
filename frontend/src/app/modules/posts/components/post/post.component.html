@@ -1,10 +1,33 @@
-<div class="post-card">
+<div class="post-card" (click)="toggleShowMoreDetailsPost()">
   <p>Autor: {{ posts.author }}, <small>2 dni temu</small></p>
   <hr />
-  <p>nazwa: {{ posts.name }}</p>
-  <p>opis: {{ posts.description | sliceText : 10 }}</p>
-  <p>polubienia: {{ posts.like }}</p>
-  <p *ngFor="let comment of posts.comments; let i = index">
-    komentarz {{ i + 1 }}: {{ comment }}
+  <p>
+    opis:
+    {{
+      showMoreText ? posts.description : (posts.description | sliceText : 10)
+    }}
   </p>
+  <button
+    class="show-more-button"
+    (click)="toggleShowMoreText(); $event.stopPropagation()"
+    *ngIf="posts.description.length > 10"
+  >
+    {{ showMoreText ? "Pokaż mniej" : "Pokaż więcej" }}
+  </button>
+  <div class="image-div">
+    <img src="{{ posts.img }}" alt="ALT" />
+  </div>
+  <div class="comments-like-div">
+    <p>polubienia: {{ posts.like }}</p>
+    <p>{{ posts.comments.length }} komentarzy</p>
+  </div>
+  <div class="buttons-section" (click)="$event.stopPropagation()">
+    <button>Lubię to!</button>
+    <button>Komentarz</button>
+    <button>Udostępnij</button>
+  </div>
+  <!-- <p *ngFor="let comment of posts.comments; let i = index">
+    komentarz {{ i + 1 }}: {{ comment }}
+  </p> -->
+  <app-post-details *ngIf="showMoreDetailsPost" />
 </div>

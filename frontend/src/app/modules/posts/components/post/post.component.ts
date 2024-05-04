@@ -8,4 +8,16 @@ import { test } from '../posts/posts.component';
 })
 export class PostComponent {
   @Input() posts!: test;
+
+  showMoreText: boolean = false;
+  showMoreDetailsPost: boolean = false;
+
+  toggleShowMoreText(): void {
+    this.showMoreText = !this.showMoreText;
+  }
+
+  toggleShowMoreDetailsPost(): void {
+    this.showMoreDetailsPost = !this.showMoreDetailsPost;
+    console.log('CLICK');
+  }
 }

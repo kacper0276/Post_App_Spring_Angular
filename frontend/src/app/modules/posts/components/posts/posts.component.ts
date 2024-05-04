@@ -29,7 +29,8 @@ export class PostsComponent implements OnInit {
     {
       name: 'Nazwa #2',
       img: 'zdjecie',
-      description: 'lorem ipsum',
+      description:
+        'Lorem Ipsum to po prostu fikcyjny tekst branży poligraficznej i składu. Lorem Ipsum jest standardowym fikcyjnym tekstem stosowanym w branży od XVI wieku, kiedy nieznany drukarz wziął kuchenkę z czcionkami i przemieszał ją, aby stworzyć wzornik czcionek. Przetrwał nie tylko pięć wieków, ale także skok w stronę składu elektronicznego, pozostając w zasadzie niezmieniony. Został spopularyzowany w latach sześćdziesiątych XX wieku wraz z wydaniem arkuszy Letraset zawierających fragmenty Lorem Ipsum, a ostatnio wraz z oprogramowaniem do publikowania na komputerach stacjonarnych, takim jak Aldus PageMaker, zawierającym wersje Lorem Ipsum.',
       like: 300,
       comments: ['Pierwszwy', 'Drugi', 'ósmy', 'komentarz'],
       author: 'Kacper Renkel',
