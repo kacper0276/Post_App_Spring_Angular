@@ -16,12 +16,14 @@ export class PostComponent {
     this.showMoreText = !this.showMoreText;
   }
 
-  toggleShowMoreDetailsPost(): void {
-    this.showMoreDetailsPost = !this.showMoreDetailsPost;
+  toggleShowMoreDetailsPost(event: Event): void {
+    this.showMoreDetailsPost = true;
+    event.stopPropagation();
     console.log('CLICK');
   }
 
   onOutsideClick() {
     console.log('LOG');
+    this.showMoreDetailsPost = false;
   }
 }
