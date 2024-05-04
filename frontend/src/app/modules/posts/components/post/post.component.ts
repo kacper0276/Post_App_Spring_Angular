@@ -7,7 +7,7 @@ import { test } from '../posts/posts.component';
   styleUrl: './post.component.scss',
 })
 export class PostComponent {
-  @Input() posts!: test;
+  @Input() post!: test;
 
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;

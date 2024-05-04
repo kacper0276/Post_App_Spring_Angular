@@ -7,5 +7,10 @@ import { test } from '../posts/posts.component';
   styleUrl: './post-details.component.scss',
 })
 export class PostDetailsComponent {
-  @Input() postData!: test;
+  @Input() post!: test;
+  showComments: boolean = false;
+
+  showCommentFunction(): void {
+    this.showComments = true;
+  }
 }
