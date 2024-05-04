@@ -20,4 +20,8 @@ export class PostComponent {
     this.showMoreDetailsPost = !this.showMoreDetailsPost;
     console.log('CLICK');
   }
+
+  onOutsideClick() {
+    console.log('LOG');
+  }
 }

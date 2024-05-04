@@ -29,5 +29,9 @@
   <!-- <p *ngFor="let comment of posts.comments; let i = index">
     komentarz {{ i + 1 }}: {{ comment }}
   </p> -->
-  <app-post-details *ngIf="showMoreDetailsPost" />
+  <app-post-details
+    *ngIf="showMoreDetailsPost"
+    appClickOutside
+    (clickOutside)="onOutsideClick()"
+  />
 </div>
