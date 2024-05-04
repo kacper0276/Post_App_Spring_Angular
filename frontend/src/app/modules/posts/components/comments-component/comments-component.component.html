@@ -1,1 +1,9 @@
-<p>comments-component works!</p>
+<div class="main-comments-container">
+  <div class="comment-section">
+    <p *ngFor="let comment of comments">{{ comment }}</p>
+  </div>
+  <div class="comment-send-section">
+    <input type="text" placeholder="Napisz komentarz" />
+    <button>Dodaj</button>
+  </div>
+</div>

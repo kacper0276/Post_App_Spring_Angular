@@ -15,5 +15,5 @@
     <button>Komentarz</button>
     <button>Udostępnij</button>
   </div>
-  <app-comments-component *ngIf="showComments" />
+  <app-comments-component *ngIf="showComments" [comments]="post.comments" />
 </div>
