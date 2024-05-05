@@ -8,3 +8,7 @@ export interface LoginForm {
 export interface RegisterForm extends LoginForm {
   repeatedPassword: FormControl<string>;
 }
+
+export interface RecoverPasswordForm extends LoginForm {
+  repeatedPassword: FormControl<string>;
+}
