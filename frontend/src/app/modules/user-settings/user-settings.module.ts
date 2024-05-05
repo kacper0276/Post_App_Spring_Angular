@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserSettingsRoutingModule } from './user-settings-routing.module';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    UserSettingsComponent
+  ],
   imports: [
     CommonModule,
     UserSettingsRoutingModule

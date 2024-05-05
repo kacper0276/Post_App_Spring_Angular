@@ -12,6 +12,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/posts/posts.module').then((m) => m.PostsModule),
   },
+  {
+    path: 'ustawienia',
+    loadChildren: () =>
+      import('./modules/user-settings/user-settings.module').then(
+        (m) => m.UserSettingsModule
+      ),
+  },
 ];
 
 @NgModule({
