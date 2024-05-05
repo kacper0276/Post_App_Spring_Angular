@@ -10,6 +10,7 @@ import { FormService } from '../../../core/services/form.service';
 })
 export class LoginComponent {
   loginForm: FormGroup<LoginForm> = this.formService.initLoginForm();
+  alertMsg: string | null = 'Niepoprawny login lub hasło';
   @ViewChild('passwordInput') inputPassword!: ElementRef;
 
   get controls() {
