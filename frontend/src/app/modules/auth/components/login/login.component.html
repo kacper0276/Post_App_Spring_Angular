@@ -6,6 +6,10 @@
       type="email"
       placeholder="Email: przyklad@poczta.pl"
       [formControl]="controls.email"
+      (input)="(controls.email.markAsTouched)"
+      [ngClass]="
+        controls.email.invalid && controls.email.touched ? 'error-input' : ''
+      "
     />
   </div>
   <div class="login-form-div-element">
@@ -14,6 +18,12 @@
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
+      (input)="(controls.password.markAsTouched)"
+      [ngClass]="
+        controls.password.invalid && controls.password.touched
+          ? 'error-input'
+          : ''
+      "
     />
     <button (click)="changeVisiblePassword()" class="show-password-button">
       <img
