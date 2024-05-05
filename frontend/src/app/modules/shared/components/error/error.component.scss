@@ -1,6 +1,8 @@
 .error-div {
   position: absolute;
-
-  width: 80%;
-  background: red;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  background: rgb(255, 40, 40);
 }
