@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { LoginForm } from '../../../core/models/forms.model';
 import { FormService } from '../../../core/services/form.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
 
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService, private titleService: Title) {
+    titleService.setTitle('Logowanie');
+  }
 
   onLogin() {
     console.log(this.loginForm.getRawValue());

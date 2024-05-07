@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 export interface test {
@@ -140,6 +141,10 @@ export class PostsComponent implements OnInit {
       author: 'Kacper Renkel',
     },
   ];
+
+  constructor(private titleService: Title) {
+    titleService.setTitle('Lista produktów');
+  }
 
   searchControl = new FormControl<string>('');
   sortControl = new FormControl<string>('');

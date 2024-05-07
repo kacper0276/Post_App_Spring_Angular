@@ -5,24 +5,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    NavbarComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterLinkActive,
-    HttpClientModule
-  ],
-  exports:[
-    HeaderComponent,
-    FooterComponent
-  ]
+  declarations: [HeaderComponent, FooterComponent, NavbarComponent],
+  imports: [SharedModule, RouterLink, RouterLinkActive, HttpClientModule],
+  exports: [HeaderComponent, FooterComponent],
 })
-export class CoreModule { }
+export class CoreModule {}
