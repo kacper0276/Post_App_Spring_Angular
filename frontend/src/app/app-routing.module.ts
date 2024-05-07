@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserSettingsComponent } from './modules/user-settings/user-settings.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'ustawienia',
+    component: UserSettingsComponent,
     loadChildren: () =>
       import('./modules/user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule

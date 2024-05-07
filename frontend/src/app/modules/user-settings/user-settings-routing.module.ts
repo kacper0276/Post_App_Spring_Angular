@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { ChangeUserDataComponent } from './components/change-user-data/change-user-data.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: UserSettingsComponent,
+    path: 'ustawienia-uzytkownika',
+    component: ChangeUserDataComponent,
   },
 ];
 
