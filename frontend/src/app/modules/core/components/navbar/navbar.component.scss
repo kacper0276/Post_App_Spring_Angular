@@ -97,6 +97,40 @@ input[type="checkbox"] {
   }
 }
 
+.scroll {
+  .menu-option {
+    a {
+      border-color: #000 !important;
+      color: #000;
+      background: #fff !important;
+    }
+
+    a:hover {
+      background: rgba($color: #818181, $alpha: 1) !important;
+    }
+
+    .active {
+      background: rgba($color: #818181, $alpha: 1) !important;
+    }
+  }
+
+  .login-button {
+    a {
+      background: #ee626b !important;
+    }
+
+    a:hover {
+      border: 1px solid #ee626b !important;
+      background: #fff !important;
+    }
+
+    .activeLogin {
+      border: 1px solid #ee626b !important;
+      background: #fff !important;
+    }
+  }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 480px) {
   .nav {
     display: flex;

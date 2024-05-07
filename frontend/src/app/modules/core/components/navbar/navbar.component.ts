@@ -20,11 +20,11 @@ export class NavbarComponent {
     if (navbarElement) {
       console.log(scrollTop);
 
-      // if (scrollTop > 500) {
-      //   this.renderer.addClass(navbarElement, 'scrolled');
-      // } else {
-      //   this.renderer.removeClass(navbarElement, 'scrolled');
-      // }
+      if (scrollTop > 400) {
+        navbarElement.classList.add('scroll');
+      } else {
+        navbarElement.classList.remove('scroll');
+      }
     }
   }
 }
