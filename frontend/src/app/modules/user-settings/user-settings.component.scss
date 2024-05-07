@@ -8,4 +8,48 @@
   h1 {
     text-align: center;
   }
+
+  .navigation-settings-menu {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    min-height: 1000px;
+    float: left;
+
+    .menu-element {
+      border: 1px solid black;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s linear;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+    }
+
+    .menu-element:hover {
+      background-color: rgba($color: #000000, $alpha: 0.5);
+    }
+
+    .active-element {
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+    }
+  }
+
+  .settings-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: -15px;
+    width: 80%;
+    padding: 35px;
+    min-height: 700px;
+    row-gap: 30px;
+  }
 }
