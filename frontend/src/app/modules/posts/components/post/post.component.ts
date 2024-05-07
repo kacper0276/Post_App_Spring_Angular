@@ -19,11 +19,9 @@ export class PostComponent {
   toggleShowMoreDetailsPost(event: Event): void {
     this.showMoreDetailsPost = true;
     event.stopPropagation();
-    console.log('CLICK');
   }
 
   onOutsideClick() {
-    console.log('LOG');
     this.showMoreDetailsPost = false;
   }
 }
