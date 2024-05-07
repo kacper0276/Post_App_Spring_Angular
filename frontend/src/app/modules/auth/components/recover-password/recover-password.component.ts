@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class RecoverPasswordComponent {
   @ViewChild('passwordInput') inputPassword!: ElementRef;
-
+  alertMsg: string | null = null;
   constructor(private titleService: Title) {
     titleService.setTitle('Zmień hasło');
   }

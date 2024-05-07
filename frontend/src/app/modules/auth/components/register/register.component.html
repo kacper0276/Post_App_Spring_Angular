@@ -9,21 +9,54 @@
       type="email"
       placeholder="Email: przyklad@poczta.pl"
       [formControl]="controls.email"
+      (input)="(controls.email.markAsTouched)"
+      [ngClass]="
+        controls.email.invalid && controls.email.touched ? 'error-input' : ''
+      "
     />
+    <app-error>{{ alertMsg }}</app-error>
   </div>
   <div class="register-form-div-element">
     <input
+      #passwordInput
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
+      (input)="(controls.password.markAsTouched)"
+      [ngClass]="
+        controls.password.invalid && controls.password.touched
+          ? 'error-input'
+          : ''
+      "
     />
+    <button (click)="changeVisiblePassword()" class="show-password-button">
+      <img
+        src="../../../../../assets/images/show-password.png"
+        alt="Przycisk do pokazywania hasła"
+      />
+    </button>
+    <app-error>{{ alertMsg }}</app-error>
   </div>
   <div class="register-form-div-element">
     <input
+      #passwordInput
       type="password"
       placeholder="Powtórz hasło"
       [formControl]="controls.repeatedPassword"
+      (input)="(controls.repeatedPassword.markAsTouched)"
+      [ngClass]="
+        controls.repeatedPassword.invalid && controls.repeatedPassword.touched
+          ? 'error-input'
+          : ''
+      "
     />
+    <button (click)="changeVisiblePassword()" class="show-password-button">
+      <img
+        src="../../../../../assets/images/show-password.png"
+        alt="Przycisk do pokazywania hasła"
+      />
+    </button>
+    <app-error>{{ alertMsg }}</app-error>
   </div>
   <div class="register-form-div-element">
     <button class="register-button">Zarejestruj się</button>

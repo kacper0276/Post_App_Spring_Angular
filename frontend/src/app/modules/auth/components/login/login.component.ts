@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent {
   loginForm: FormGroup<LoginForm> = this.formService.initLoginForm();
-  alertMsg: string | null = 'Niepoprawny login lub hasło';
+  alertMsg: string | null = null;
   @ViewChild('passwordInput') inputPassword!: ElementRef;
 
   get controls() {

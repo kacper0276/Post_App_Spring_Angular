@@ -14,7 +14,10 @@
   box-shadow: 5px 20px 50px #000;
 
   .register-form-div-element {
-    padding: 5px;
+    padding: 10px 0px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
 
     input {
       width: 100%;
@@ -28,6 +31,27 @@
       outline: none;
       border-radius: 5px;
       color: #000;
+    }
+
+    .error-input {
+      border: 1px solid red;
+    }
+
+    .show-password-button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      right: 0;
+      height: 40px;
+      background: transparent;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      img {
+        height: 100%;
+      }
     }
   }
 

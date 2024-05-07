@@ -10,6 +10,5 @@ export class ErrorComponent {
 
   ngAfterViewInit() {
     const content = this.elementRef.nativeElement.textContent.trim();
-    console.log(content);
   }
 }
