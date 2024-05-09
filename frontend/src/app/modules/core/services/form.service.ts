@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
+  ChangeUserDataForm,
   LoginForm,
   RecoverPasswordForm,
   RegisterForm,
@@ -86,6 +87,31 @@ export class FormService {
           Validators.minLength(5),
           Validators.maxLength(100),
         ],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initChangeUserDataForm(): FormGroup<ChangeUserDataForm> {
+    return new FormGroup({
+      email: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+        nonNullable: true,
+      }),
+      firstname: new FormControl('', {
+        validators: [Validators.maxLength(100)],
+        nonNullable: true,
+      }),
+      lastname: new FormControl('', {
+        validators: [Validators.maxLength(100)],
+        nonNullable: true,
+      }),
+      password: new FormControl('', {
+        validators: [Validators.minLength(5), Validators.maxLength(100)],
         nonNullable: true,
       }),
     });

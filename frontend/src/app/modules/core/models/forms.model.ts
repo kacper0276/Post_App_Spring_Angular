@@ -12,3 +12,10 @@ export interface RegisterForm extends LoginForm {
 export interface RecoverPasswordForm extends LoginForm {
   repeatedPassword: FormControl<string>;
 }
+
+export interface ChangeUserDataForm {
+  firstname: FormControl<string>;
+  lastname: FormControl<string>;
+  email: FormControl<string>;
+  password: FormControl<string>;
+}
