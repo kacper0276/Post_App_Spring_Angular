@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { ChangeUserDataForm } from '../../../core/models/forms.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-change-user-data',
@@ -15,7 +16,9 @@ export class ChangeUserDataComponent {
   selectedFile: File | null = null;
   fileName = '';
 
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService, titleService: Title) {
+    titleService.setTitle('Zmień swoje dane');
+  }
 
   get controls() {
     return this.changeUserDataForm.controls;
