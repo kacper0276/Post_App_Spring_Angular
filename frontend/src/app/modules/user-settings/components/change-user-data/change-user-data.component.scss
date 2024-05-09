@@ -90,4 +90,25 @@
       }
     }
   }
+
+  .button-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .change-usr-data-button {
+      padding: 15px;
+      cursor: pointer;
+      background: radial-gradient(
+        circle,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(148, 187, 233, 1) 100%
+      );
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      color: #000;
+    }
+  }
 }

@@ -1,30 +1,53 @@
-<div class="main-container">
+<form class="main-container" [formGroup]="changeUserDataForm">
   <div class="input-element">
     <input type="file" id="file" class="file" />
     <label for="file" class="label-file">Wgraj awatar</label>
   </div>
   <div class="input-element">
     <label class="input">
-      <input class="input__field" type="text" placeholder=" " />
+      <input
+        class="input__field"
+        type="text"
+        placeholder=" "
+        [formControl]="controls.firstname"
+      />
       <span class="input__label">Imię</span>
     </label>
   </div>
   <div class="input-element">
     <label class="input">
-      <input class="input__field" type="text" placeholder=" " />
+      <input
+        class="input__field"
+        type="text"
+        placeholder=" "
+        [formControl]="controls.lastname"
+      />
       <span class="input__label">Nazwisko</span>
     </label>
   </div>
   <div class="input-element">
     <label class="input">
-      <input class="input__field" type="email" placeholder=" " />
+      <input
+        class="input__field"
+        type="email"
+        placeholder=" "
+        [formControl]="controls.email"
+      />
       <span class="input__label">Email</span>
     </label>
   </div>
   <div class="input-element">
     <label class="input">
-      <input class="input__field" type="password" placeholder=" " />
+      <input
+        class="input__field"
+        type="password"
+        placeholder=" "
+        [formControl]="controls.password"
+      />
       <span class="input__label">Hasło</span>
     </label>
   </div>
-</div>
+  <div class="button-section">
+    <button class="change-usr-data-button">Zmień dane</button>
+  </div>
+</form>
