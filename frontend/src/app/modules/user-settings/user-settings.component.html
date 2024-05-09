@@ -2,8 +2,18 @@
 
 <div class="main-container">
   <h1>Ustawienia</h1>
-  <div class="navigation-settings-menu">
+  <div
+    class="navigation-settings-menu"
+    [ngClass]="menuExtend ? 'show-more-menu' : ''"
+  >
     <ul>
+      <li
+        class="show-more-menu-button-in-nav"
+        (click)="changeMenuVisible()"
+        [ngClass]="menuExtend ? 'button-menu-show' : ''"
+      >
+        <p>{{ menuExtend ? "Schowaj menu" : "Rozsuń menu" }}</p>
+      </li>
       <li class="menu-element" routerLinkActive="active-element">
         <a routerLink="ustawienia-uzytkownika">Ustawienia użytkownika</a>
       </li>

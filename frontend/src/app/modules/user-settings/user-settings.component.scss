@@ -16,6 +16,10 @@
     min-height: 1000px;
     float: left;
 
+    .show-more-menu-button-in-nav {
+      display: none;
+    }
+
     .menu-element {
       border: 1px solid black;
       text-align: center;
@@ -54,6 +58,34 @@
 @media only screen and (min-width: 320px) and (max-width: 480px) {
   .navigation-settings-menu {
     width: 100% !important;
+    height: 40px;
+    overflow-y: hidden;
     min-height: auto !important;
+
+    .show-more-menu-button-in-nav {
+      height: 40px;
+      border: 1px solid black;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s linear;
+      display: block !important;
+
+      p {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  .show-more-menu {
+    height: auto !important;
+  }
+
+  .button-menu-show {
+    background-color: rgba($color: #303030, $alpha: 0.5);
   }
 }
