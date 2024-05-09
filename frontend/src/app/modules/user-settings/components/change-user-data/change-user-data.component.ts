@@ -11,9 +11,38 @@ import { ChangeUserDataForm } from '../../../core/models/forms.model';
 export class ChangeUserDataComponent {
   changeUserDataForm: FormGroup<ChangeUserDataForm> =
     this.formService.initChangeUserDataForm();
+
+  selectedFile: File | null = null;
+  fileName = '';
+
   constructor(private formService: FormService) {}
 
   get controls() {
     return this.changeUserDataForm.controls;
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0] as File;
+
+    if (this.selectedFile) {
+      this.fileName = this.selectedFile.name;
+    }
+  }
+
+  uploadImage() {
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('image', this.selectedFile);
+
+      console.log(this.selectedFile);
+    }
+  }
+
+  onChangeData() {
+    if (this.selectedFile) {
+      this.uploadImage();
+    }
+
+    console.log(this.changeUserDataForm);
   }
 }

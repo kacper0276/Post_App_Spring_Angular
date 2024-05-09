@@ -1,6 +1,15 @@
-<form class="main-container" [formGroup]="changeUserDataForm">
+<form
+  class="main-container"
+  [formGroup]="changeUserDataForm"
+  (ngSubmit)="onChangeData()"
+>
   <div class="input-element">
-    <input type="file" id="file" class="file" />
+    <input
+      type="file"
+      id="file"
+      class="file"
+      (change)="onFileSelected($event)"
+    />
     <label for="file" class="label-file">Wgraj awatar</label>
   </div>
   <div class="input-element">
