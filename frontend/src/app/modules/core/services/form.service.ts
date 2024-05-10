@@ -140,4 +140,20 @@ export class FormService {
       }),
     });
   }
+
+  initAddPostForm(): FormGroup<AddPostForm> {
+    return new FormGroup({
+      description: new FormControl('', {
+        validators: [Validators.minLength(10)],
+        nonNullable: true,
+      }),
+      img: new FormControl('', {
+        nonNullable: true,
+      }),
+      name: new FormControl('', {
+        validators: [Validators.minLength(5)],
+        nonNullable: true,
+      }),
+    });
+  }
 }
