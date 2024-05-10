@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './modules/user-settings/user-settings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './modules/auth/components/login/login.component';
+import { RegisterComponent } from './modules/auth/components/register/register.component';
+import { RecoverPasswordComponent } from './modules/auth/components/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -21,6 +24,18 @@ const routes: Routes = [
       import('./modules/user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule
       ),
+  },
+  {
+    path: 'logowanie',
+    component: LoginComponent,
+  },
+  {
+    path: 'rejestracja',
+    component: RegisterComponent,
+  },
+  {
+    path: 'odzyskaj-haslo',
+    component: RecoverPasswordComponent,
   },
   {
     path: '**',
