@@ -1,3 +1,12 @@
-<div class="main-container">
-  <p>{{ id }}</p>
-</div>
+<div
+  class="main-container"
+  *ngIf="post != undefined; then foundPost; else notFoundPost"
+></div>
+
+<ng-template #foundPost>
+  <form></form>
+</ng-template>
+
+<ng-template #notFoundPost>
+  <h2>Nie znaleziono posta</h2>
+</ng-template>

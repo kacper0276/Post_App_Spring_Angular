@@ -1,4 +1,6 @@
-export let firstPost = [
+import { test } from './posts/components/posts/posts.component';
+
+export let firstPost: test[] = [
   {
     id: 1,
     name: 'Nazwa',
