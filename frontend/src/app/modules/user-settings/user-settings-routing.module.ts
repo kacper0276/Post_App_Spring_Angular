@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChangeUserDataComponent } from './components/change-user-data/change-user-data.component';
 import { EditUserPostsComponent } from './components/edit-user-posts/edit-user-posts.component';
+import { UserPostEditFormComponent } from './components/user-post-edit-form/user-post-edit-form.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'edycja-postow',
     component: EditUserPostsComponent,
+  },
+  {
+    path: 'edycja-postow/:id',
+    component: UserPostEditFormComponent,
   },
 ];
 

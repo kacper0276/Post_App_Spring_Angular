@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { firstPost } from '../../../test.db';
 
 export interface test {
+  id: number;
   name: string;
   img: string;
   description: string;

@@ -1,5 +1,6 @@
 export let firstPost = [
   {
+    id: 1,
     name: 'Nazwa',
     img: 'zdjecie',
     description: 'lorem',
@@ -8,6 +9,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 2,
     name: 'Nazwa #2',
     img: 'zdjecie',
     description:
@@ -17,6 +19,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 3,
     name: 'Nazwa #3',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -25,6 +28,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 4,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -33,6 +37,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 5,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -41,6 +46,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 6,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -49,6 +55,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 7,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -57,6 +64,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 8,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -65,6 +73,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 9,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -73,6 +82,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 10,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -81,6 +91,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 11,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -89,6 +100,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 12,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -97,6 +109,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 13,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -105,6 +118,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 14,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
@@ -113,6 +127,7 @@ export let firstPost = [
     author: 'Kacper Renkel',
   },
   {
+    id: 15,
     name: 'Nazwa #4',
     img: 'zdjecie',
     description: 'lorem ipsum',
