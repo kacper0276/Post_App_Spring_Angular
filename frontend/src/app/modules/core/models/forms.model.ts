@@ -25,3 +25,8 @@ export interface AddPostForm {
   img: FormControl<string>;
   description: FormControl<string>;
 }
+
+export interface EditPostForm extends AddPostForm {
+  id: FormControl<number>;
+  author: FormControl<string>;
+}
