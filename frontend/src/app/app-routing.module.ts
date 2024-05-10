@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './modules/user-settings/user-settings.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       import('./modules/user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule
       ),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
