@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
+  AddPostForm,
   ChangeUserDataForm,
+  EditPostForm,
   LoginForm,
   RecoverPasswordForm,
   RegisterForm,
@@ -112,6 +114,28 @@ export class FormService {
       }),
       password: new FormControl('', {
         validators: [Validators.minLength(5), Validators.maxLength(100)],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initPostEditForm(): FormGroup<EditPostForm> {
+    return new FormGroup({
+      id: new FormControl(0, {
+        nonNullable: true,
+      }),
+      author: new FormControl('', {
+        nonNullable: true,
+      }),
+      description: new FormControl('', {
+        validators: [Validators.minLength(10)],
+        nonNullable: true,
+      }),
+      img: new FormControl('', {
+        nonNullable: true,
+      }),
+      name: new FormControl('', {
+        validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
     });
