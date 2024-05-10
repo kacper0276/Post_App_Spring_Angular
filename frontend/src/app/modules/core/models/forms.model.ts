@@ -19,3 +19,9 @@ export interface ChangeUserDataForm {
   email: FormControl<string>;
   password: FormControl<string>;
 }
+
+export interface AddPostForm {
+  name: FormControl<string>;
+  img: FormControl<string>;
+  description: FormControl<string>;
+}
