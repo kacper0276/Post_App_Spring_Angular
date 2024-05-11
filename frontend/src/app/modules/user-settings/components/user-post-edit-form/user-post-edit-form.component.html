@@ -4,7 +4,35 @@
 ></div>
 
 <ng-template #foundPost>
-  <form></form>
+  <form [formGroup]="editPostForm">
+    <div>
+      <input type="text" [value]="controls.id.value" disabled />
+    </div>
+    <div>
+      <input type="text" [value]="controls.author.value" disabled />
+    </div>
+    <div>
+      <input
+        type="text"
+        [value]="controls.name.value"
+        [formControl]="controls.name"
+      />
+    </div>
+    <div>
+      <textarea
+        [value]="controls.description.value"
+        [formControl]="controls.description"
+      ></textarea>
+    </div>
+    <div>
+      <input
+        type="text"
+        [value]="controls.img.value"
+        [formControl]="controls.img"
+      />
+    </div>
+    <button (click)="onChangePostData()">Zmień dane postu</button>
+  </form>
 </ng-template>
 
 <ng-template #notFoundPost>
