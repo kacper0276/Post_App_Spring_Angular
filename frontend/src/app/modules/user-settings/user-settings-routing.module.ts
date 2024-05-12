@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChangeUserDataComponent } from './components/change-user-data/change-user-data.component';
 import { EditUserPostsComponent } from './components/edit-user-posts/edit-user-posts.component';
 import { UserPostEditFormComponent } from './components/user-post-edit-form/user-post-edit-form.component';
+import { AddUserPostComponent } from './components/add-user-post/add-user-post.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'edycja-postow/:id',
     component: UserPostEditFormComponent,
+  },
+  {
+    path: 'dodaj-post',
+    component: AddUserPostComponent,
   },
 ];
 
