@@ -5,33 +5,58 @@
 
 <ng-template #foundPost>
   <form [formGroup]="editPostForm">
-    <div>
-      <input type="text" [value]="controls.id.value" disabled />
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" [value]="controls.id.value" disabled />
+        <div class="underline"></div>
+        <label for="">ID</label>
+      </div>
+      <div class="input-data">
+        <input type="text" [value]="controls.author.value" disabled />
+        <div class="underline"></div>
+        <label for="">Autor</label>
+      </div>
     </div>
-    <div>
-      <input type="text" [value]="controls.author.value" disabled />
+    <div class="form-row">
+      <div class="input-data">
+        <input
+          type="text"
+          [value]="controls.name.value"
+          [formControl]="controls.name"
+        />
+        <div class="underline"></div>
+        <label for="">Nazwa artykułu</label>
+      </div>
+      <div class="input-data">
+        <input
+          type="text"
+          [value]="controls.img.value"
+          [formControl]="controls.img"
+        />
+        <div class="underline"></div>
+        <label for="">Img</label>
+      </div>
     </div>
-    <div>
-      <input
-        type="text"
-        [value]="controls.name.value"
-        [formControl]="controls.name"
-      />
+    <div class="form-row">
+      <div class="input-data textarea">
+        <textarea
+          [value]="controls.description.value"
+          [formControl]="controls.description"
+          rows="8"
+          cols="80"
+        ></textarea>
+        <br />
+        <div class="underline"></div>
+        <label for="">Opis postu</label>
+        <br />
+        <div class="form-row submit-btn">
+          <div class="input-data">
+            <div class="inner"></div>
+            <button (click)="onChangePostData()">Zmień dane postu</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <textarea
-        [value]="controls.description.value"
-        [formControl]="controls.description"
-      ></textarea>
-    </div>
-    <div>
-      <input
-        type="text"
-        [value]="controls.img.value"
-        [formControl]="controls.img"
-      />
-    </div>
-    <button (click)="onChangePostData()">Zmień dane postu</button>
   </form>
 </ng-template>
 
