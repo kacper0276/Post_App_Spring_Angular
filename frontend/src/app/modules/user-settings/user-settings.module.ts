@@ -7,6 +7,7 @@ import { EditUserPostsComponent } from './components/edit-user-posts/edit-user-p
 import { SharedModule } from '../shared/shared.module';
 import { UserPostComponent } from './components/user-post/user-post.component';
 import { UserPostEditFormComponent } from './components/user-post-edit-form/user-post-edit-form.component';
+import { AddUserPostComponent } from './components/add-user-post/add-user-post.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { UserPostEditFormComponent } from './components/user-post-edit-form/user
     EditUserPostsComponent,
     UserPostComponent,
     UserPostEditFormComponent,
+    AddUserPostComponent,
   ],
   imports: [SharedModule, UserSettingsRoutingModule],
 })
