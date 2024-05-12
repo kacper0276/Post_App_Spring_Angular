@@ -4,7 +4,7 @@
 ></div>
 
 <ng-template #foundPost>
-  <form [formGroup]="editPostForm">
+  <form [formGroup]="editPostForm" (ngSubmit)="onChangePostData()">
     <div>
       <a routerLink="/ustawienia/edycja-postow">powrót</a>
     </div>
@@ -55,7 +55,7 @@
         <div class="form-row submit-btn">
           <div class="input-data">
             <div class="inner"></div>
-            <button (click)="onChangePostData()">Zmień dane postu</button>
+            <button>Zmień dane postu</button>
           </div>
         </div>
       </div>

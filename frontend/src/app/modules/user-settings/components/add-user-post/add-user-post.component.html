@@ -1,1 +1,13 @@
-<p>add-user-post works!</p>
+<form [formGroup]="addPostForm" (ngSubmit)="onAddPost()">
+  <input
+    type="text"
+    placeholder="Podaj tytuł postu"
+    [formControl]="controls.name"
+  />
+  <textarea
+    placeholder="Podaj opis postu"
+    [formControl]="controls.description"
+  ></textarea>
+  <input type="file" />
+  <button (click)="onAddPost()">Dodaj post</button>
+</form>
