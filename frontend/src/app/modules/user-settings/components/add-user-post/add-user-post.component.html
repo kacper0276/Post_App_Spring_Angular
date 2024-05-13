@@ -1,13 +1,22 @@
-<form [formGroup]="addPostForm" (ngSubmit)="onAddPost()">
-  <input
-    type="text"
-    placeholder="Podaj tytuł postu"
-    [formControl]="controls.name"
-  />
-  <textarea
-    placeholder="Podaj opis postu"
-    [formControl]="controls.description"
-  ></textarea>
-  <input type="file" />
-  <button (click)="onAddPost()">Dodaj post</button>
+<form [formGroup]="addPostForm" (ngSubmit)="onAddPost()" class="main-container">
+  <div class="input-element">
+    <label class="input">
+      <input type="text" class="input__field" [formControl]="controls.name" />
+      <span class="input__label">Tytuł</span>
+    </label>
+  </div>
+  <div class="input-element">
+    <label class="input">
+      <textarea
+        class="input__field"
+        [formControl]="controls.description"
+      ></textarea>
+      <span class="input__label">Opis</span>
+    </label>
+  </div>
+  <div class="input-element">
+    <input type="file" class="file" />
+    <label for="file" class="label-file">Dodaj zdjęcia do posta</label>
+  </div>
+  <button class="add-post-button">Dodaj post</button>
 </form>
