@@ -5,6 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './modules/auth/components/login/login.component';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { RecoverPasswordComponent } from './modules/auth/components/recover-password/recover-password.component';
+import { AdminSettingsComponent } from './modules/admin-settings/admin-settings.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule
+      ),
+  },
+  {
+    path: 'admin',
+    component: AdminSettingsComponent,
+    loadChildren: () =>
+      import('./modules/admin-settings/admin-settings.module').then(
+        (m) => m.AdminSettingsModule
       ),
   },
   {
