@@ -1,4 +1,4 @@
-import { test } from './posts/components/posts/posts.component';
+import { test } from './core/models/test.model';
 
 export let firstPost: test[] = [
   {

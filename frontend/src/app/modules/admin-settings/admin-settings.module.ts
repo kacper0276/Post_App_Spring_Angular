@@ -5,13 +5,15 @@ import { AdminSettingsRoutingModule } from './admin-settings-routing.module';
 import { AdminSettingsComponent } from './admin-settings.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { EditPostsAdminComponent } from './components/edit-posts-admin/edit-posts-admin.component';
+import { UserViewComponent } from './components/user-view/user-view.component';
 
 
 @NgModule({
   declarations: [
     AdminSettingsComponent,
     UserSettingsComponent,
-    EditPostsAdminComponent
+    EditPostsAdminComponent,
+    UserViewComponent
   ],
   imports: [
     CommonModule,
