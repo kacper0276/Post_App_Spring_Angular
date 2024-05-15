@@ -4,16 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { firstPost } from '../../../test.db';
 
-export interface test {
-  id: number;
-  name: string;
-  img: string;
-  description: string;
-  like: number;
-  comments: string[];
-  author: string;
-}
-
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',

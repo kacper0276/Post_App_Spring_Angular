@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { test } from '../../../posts/components/posts/posts.component';
 import { firstPost } from '../../../test.db';
 import { FormService } from '../../../core/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { EditPostForm } from '../../../core/models/forms.model';
+import { test } from '../../../core/models/test.model';
 
 @Component({
   selector: 'app-user-post-edit-form',
