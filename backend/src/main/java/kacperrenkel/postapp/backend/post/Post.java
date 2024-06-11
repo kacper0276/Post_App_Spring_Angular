@@ -1,4 +1,4 @@
-package kacperrenkel.postapp.backend.entity;
+package kacperrenkel.postapp.backend.post;
 
 import jakarta.persistence.*;
 import kacperrenkel.postapp.backend.util.StringListConverter;

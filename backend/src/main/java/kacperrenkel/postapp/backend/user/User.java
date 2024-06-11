@@ -1,4 +1,4 @@
-package kacperrenkel.postapp.backend.entity;
+package kacperrenkel.postapp.backend.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
