@@ -1,10 +1,13 @@
 package kacperrenkel.postapp.backend.user;
 
 import jakarta.persistence.*;
+import kacperrenkel.postapp.backend.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "uzytkownicy")
@@ -20,6 +23,10 @@ public class User {
     private String email;
     private String username;
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "pokoj")
+    private List<Post> posts;
 }
