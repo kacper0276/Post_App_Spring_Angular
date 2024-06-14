@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "uzytkownicy")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -27,6 +27,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "pokoj")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
 }

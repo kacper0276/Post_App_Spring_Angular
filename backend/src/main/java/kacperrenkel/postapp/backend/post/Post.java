@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "posty")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
