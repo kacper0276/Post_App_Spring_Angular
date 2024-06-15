@@ -18,7 +18,20 @@
   </div>
   <div class="register-form-div-element">
     <input
-      #passwordInput
+      type="text"
+      placeholder="Login: nazwauzywkonika"
+      [formControl]="controls.username"
+      (input)="(controls.username.markAsTouched)"
+      [ngClass]="
+        controls.username.invalid && controls.username.touched
+          ? 'error-input'
+          : ''
+      "
+    />
+    <app-error>{{ alertMsg }}</app-error>
+  </div>
+  <div class="register-form-div-element">
+    <input
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
@@ -28,8 +41,12 @@
           ? 'error-input'
           : ''
       "
+      #passwordInput
     />
-    <button (click)="changeVisiblePassword()" class="show-password-button">
+    <button
+      (click)="changeVisiblePassword($event, 0)"
+      class="show-password-button"
+    >
       <img
         src="../../../../../assets/images/show-password.png"
         alt="Przycisk do pokazywania hasła"
@@ -39,7 +56,6 @@
   </div>
   <div class="register-form-div-element">
     <input
-      #passwordInput
       type="password"
       placeholder="Powtórz hasło"
       [formControl]="controls.repeatedPassword"
@@ -49,8 +65,12 @@
           ? 'error-input'
           : ''
       "
+      #passwordInput
     />
-    <button (click)="changeVisiblePassword()" class="show-password-button">
+    <button
+      (click)="changeVisiblePassword($event, 1)"
+      class="show-password-button"
+    >
       <img
         src="../../../../../assets/images/show-password.png"
         alt="Przycisk do pokazywania hasła"

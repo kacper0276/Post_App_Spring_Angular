@@ -16,10 +16,7 @@ public class UserService {
         if (user.getRole() == null) {
             user.setRole(Role.User);
         }
-        System.out.printf(user.getPassword());
-        System.out.printf(user.getEmail());
-        System.out.printf(user.getUsername());
-        System.out.printf(user.getRole() + "");
+
         return userRepository.save(user);
     }
 }
