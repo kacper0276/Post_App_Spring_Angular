@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { LoginForm } from '../../../core/models/forms.model';
 import { FormService } from '../../../core/services/form.service';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,15 +19,26 @@ export class LoginComponent {
     return this.loginForm.controls;
   }
 
-  constructor(private formService: FormService, private titleService: Title) {
+  constructor(
+    private formService: FormService,
+    private titleService: Title,
+    private authService: AuthService
+  ) {
     titleService.setTitle('Logowanie');
   }
 
   onLogin() {
-    console.log(this.loginForm.getRawValue());
+    const { username, password } = this.loginForm.getRawValue();
+    this.authService.login({ username, password }).subscribe({
+      next: (next) => {
+        console.log(next);
+      },
+    });
   }
 
-  changeVisiblePassword(): void {
+  changeVisiblePassword(e: Event): void {
+    e.preventDefault();
+
     this.inputPassword.nativeElement.type =
       this.inputPassword.nativeElement.type == 'password' ? 'text' : 'password';
   }

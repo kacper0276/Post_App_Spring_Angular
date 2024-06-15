@@ -28,7 +28,10 @@
           : ''
       "
     />
-    <button (click)="changeVisiblePassword()" class="show-password-button">
+    <button
+      (click)="changeVisiblePassword($event)"
+      class="show-password-button"
+    >
       <img
         src="../../../../../assets/images/show-password.png"
         alt="Przycisk do pokazywania hasła"
