@@ -17,10 +17,10 @@ export class FormService {
 
   initLoginForm(): FormGroup<LoginForm> {
     return new FormGroup({
-      email: new FormControl('', {
+      username: new FormControl('', {
         validators: [
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(5),
           Validators.maxLength(50),
         ],
         nonNullable: true,

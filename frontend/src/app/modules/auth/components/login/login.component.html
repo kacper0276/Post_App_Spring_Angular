@@ -3,12 +3,14 @@
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
   <div class="login-form-div-element">
     <input
-      type="email"
-      placeholder="Email: przyklad@poczta.pl"
-      [formControl]="controls.email"
-      (input)="(controls.email.markAsTouched)"
+      type="text"
+      placeholder="Nazwa użytkownika"
+      [formControl]="controls.username"
+      (input)="(controls.username.markAsTouched)"
       [ngClass]="
-        controls.email.invalid && controls.email.touched ? 'error-input' : ''
+        controls.username.invalid && controls.username.touched
+          ? 'error-input'
+          : ''
       "
     />
     <app-error>{{ alertMsg }}</app-error>
