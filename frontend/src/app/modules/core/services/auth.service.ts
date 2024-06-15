@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environment/environment';
-import { AuthResponse, LoginData, RegisterData } from '../models/auth.model';
+import {
+  AuthResponse,
+  IUser,
+  LoginData,
+  RegisterData,
+} from '../models/auth.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +21,9 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiURL}/users/register`, body);
   }
 
-  login(body: LoginData): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiURL}/users/login`, body);
+  login(body: LoginData): Observable<IUser> {
+    return this.http.post<IUser>(`${this.apiURL}/users/login`, body, {
+      withCredentials: true,
+    });
   }
 }
