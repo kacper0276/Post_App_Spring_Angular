@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper mapper = UserMapper.INSTANCE;
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -20,11 +21,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User loginUser(User user) {
+    public UserDTO loginUser(User user) {
         User loginUser = userRepository.findByUsername(user.getUsername()).orElse(null);
 
         if (loginUser != null && passwordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
-            return loginUser;
+            return mapper.userToUserDTO(loginUser);
         }
 
         return null;
