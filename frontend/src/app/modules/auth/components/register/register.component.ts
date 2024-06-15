@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { RegisterForm } from '../../../core/models/forms.model';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -23,18 +24,18 @@ export class RegisterComponent {
   constructor(
     private formService: FormService,
     private authService: AuthService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
   ) {
     titleService.setTitle('Rejestracja');
   }
 
   onRegister() {
-    console.log(this.registerForm.getRawValue());
     const { email, password, username } = this.registerForm.getRawValue();
 
     this.authService
       .register({ email, username, password })
-      .subscribe((val) => console.log(val));
+      .subscribe((val) => this.router.navigate(['logowanie']));
   }
 
   changeVisiblePassword(e: Event, index: number): void {
