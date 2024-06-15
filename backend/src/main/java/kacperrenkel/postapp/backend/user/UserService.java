@@ -10,7 +10,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User createUser(User user) {
+    public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         if (user.getRole() == null) {
@@ -18,5 +18,15 @@ public class UserService {
         }
 
         return userRepository.save(user);
+    }
+
+    public User loginUser(User user) {
+        User loginUser = userRepository.findByUsername(user.getUsername()).orElse(null);
+
+        if (loginUser != null && passwordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
+            return loginUser;
+        }
+
+        return null;
     }
 }
