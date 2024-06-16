@@ -1,6 +1,10 @@
 package kacperrenkel.postapp.backend.user;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import kacperrenkel.postapp.backend.entity.LoginResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +33,9 @@ public class UserService {
         }
 
         return null;
+    }
+
+    public ResponseEntity<LoginResponse> loggedIn(HttpServletRequest request, HttpServletResponse response) {
+        return  ResponseEntity.ok(new LoginResponse(true));
     }
 }
