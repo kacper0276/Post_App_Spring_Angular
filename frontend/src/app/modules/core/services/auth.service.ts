@@ -4,6 +4,7 @@ import { environment } from '../../../../../environment/environment';
 import {
   AuthResponse,
   IUser,
+  LoggedInResponse,
   LoginData,
   RegisterData,
 } from '../models/auth.model';
@@ -29,6 +30,12 @@ export class AuthService {
 
   logout(): Observable<AuthResponse> {
     return this.http.get<AuthResponse>(`${this.apiURL}/logout`, {
+      withCredentials: true,
+    });
+  }
+
+  isLoggedIn(): Observable<LoggedInResponse> {
+    return this.http.get<LoggedInResponse>(`${this.apiURL}/logged-in`, {
       withCredentials: true,
     });
   }
