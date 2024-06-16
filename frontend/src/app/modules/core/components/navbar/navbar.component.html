@@ -27,8 +27,17 @@
         >Ustawienia Administratora</a
       >
     </li>
-    <li class="menu-option login-button">
-      <a routerLink="logowanie" routerLinkActive="activeLogin">Zaloguj się</a>
-    </li>
+
+    <ng-container *ngIf="user$ | async as user; else notUser">
+      <li class="menu-option login-button">
+        <button routerLinkActive="activeLogin">Wyloguj się</button>
+      </li>
+    </ng-container>
+
+    <ng-template #notUser>
+      <li class="menu-option login-button">
+        <a routerLink="logowanie" routerLinkActive="activeLogin">Zaloguj się</a>
+      </li>
+    </ng-template>
   </ul>
 </div>

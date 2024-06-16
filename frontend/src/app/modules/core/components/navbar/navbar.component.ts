@@ -1,16 +1,24 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
+import { Observable } from 'rxjs';
+import { User } from '../../models/auth.model';
+import { selectAuthUser } from '../../../auth/store/auth.selectors';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  constructor(private renderer: Renderer2) {}
+export class NavbarComponent implements OnInit {
+  user$: Observable<User | null> = this.store.select(selectAuthUser);
 
-  ngOnInit() {
+  constructor(private renderer: Renderer2, private store: Store<AppState>) {}
+
+  ngOnInit(): void {
     window.addEventListener('scroll', this.onScroll, true);
   }
+
   onScroll($event: Event) {
     const scrollTop =
       document.documentElement.scrollTop || document.body.scrollTop || 0;
