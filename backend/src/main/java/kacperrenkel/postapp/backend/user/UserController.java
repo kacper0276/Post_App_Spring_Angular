@@ -18,8 +18,8 @@ public class UserController {
     }
 
     @PostMapping(path = "/login")
-    ResponseEntity<UserDTO> login(@RequestBody User user, HttpServletResponse response) {
-        return ResponseEntity.ok(userService.loginUser(user, response));
+    ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) {
+        return userService.loginUser(user, response);
     }
 
     @GetMapping(path = "/logged-in")
