@@ -10,6 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from './modules/shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { authReducer } from './modules/auth/store/auth.reducer';
+import { AuthEffects } from './modules/auth/store/auth.effects';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -19,9 +21,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CoreModule,
     AuthModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

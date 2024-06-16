@@ -22,6 +22,40 @@ export class AuthEffects {
     )
   );
 
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+      switchMap(() => {
+        return this.authService.logout().pipe(
+          map(() => {
+            this.router.navigate(['/logowanie']);
+            return AuthActions.logoutSuccess();
+          }),
+          catchError((err) => {
+            return of(AuthActions.logoutFailure());
+          })
+        );
+      })
+    )
+  );
+
+  register$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.register),
+      switchMap((action) => {
+        return this.authService.register(action.registerData).pipe(
+          map((user) => {
+            this.router.navigate(['/logowanie']);
+            return AuthActions.registerSuccess();
+          }),
+          catchError((err) => {
+            return of(AuthActions.loginFailure({ error: err }));
+          })
+        );
+      })
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,

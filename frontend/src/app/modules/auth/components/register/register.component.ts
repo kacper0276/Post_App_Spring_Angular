@@ -3,8 +3,9 @@ import { FormService } from '../../../core/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { RegisterForm } from '../../../core/models/forms.model';
 import { Title } from '@angular/platform-browser';
-import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
+import * as AuthActions from '../../store/auth.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
 
 @Component({
   selector: 'app-register',
@@ -23,9 +24,8 @@ export class RegisterComponent {
 
   constructor(
     private formService: FormService,
-    private authService: AuthService,
-    private titleService: Title,
-    private router: Router
+    private store: Store<AppState>,
+    private titleService: Title
   ) {
     titleService.setTitle('Rejestracja');
   }
@@ -33,9 +33,9 @@ export class RegisterComponent {
   onRegister() {
     const { email, password, username } = this.registerForm.getRawValue();
 
-    this.authService
-      .register({ email, username, password })
-      .subscribe((val) => this.router.navigate(['logowanie']));
+    this.store.dispatch(
+      AuthActions.register({ registerData: { username, email, password } })
+    );
   }
 
   changeVisiblePassword(e: Event, index: number): void {

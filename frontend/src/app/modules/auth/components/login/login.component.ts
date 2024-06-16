@@ -3,7 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { LoginForm } from '../../../core/models/forms.model';
 import { FormService } from '../../../core/services/form.service';
 import { Title } from '@angular/platform-browser';
-import { AuthService } from '../../../core/services/auth.service';
+import * as AuthActions from '../../store/auth.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
 
 @Component({
   selector: 'app-login',
@@ -22,18 +24,15 @@ export class LoginComponent {
   constructor(
     private formService: FormService,
     private titleService: Title,
-    private authService: AuthService
+    private store: Store<AppState>
   ) {
     titleService.setTitle('Logowanie');
   }
 
   onLogin() {
-    const { username, password } = this.loginForm.getRawValue();
-    this.authService.login({ username, password }).subscribe({
-      next: (next) => {
-        console.log(next);
-      },
-    });
+    this.store.dispatch(
+      AuthActions.login({ loginData: this.loginForm.getRawValue() })
+    );
   }
 
   changeVisiblePassword(e: Event): void {
