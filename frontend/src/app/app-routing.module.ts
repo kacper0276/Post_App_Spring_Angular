@@ -8,6 +8,7 @@ import { RecoverPasswordComponent } from './modules/auth/components/recover-pass
 import { AdminSettingsComponent } from './modules/admin-settings/admin-settings.component';
 import { adminGuard } from './modules/core/guards/admin.guard';
 import { unauthGuard } from './modules/core/guards/unauth.guard';
+import { authGuard } from './modules/core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
       import('./modules/user-settings/user-settings.module').then(
         (m) => m.UserSettingsModule
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'admin',
