@@ -31,4 +31,9 @@ public class UserController {
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
         return userService.logout(request, response);
     }
+
+    @GetMapping(path = "/logged-in")
+    public ResponseEntity<?> loggedIn(HttpServletRequest request, HttpServletResponse response) {
+        return userService.loggedIn(request, response);
+    }
 }

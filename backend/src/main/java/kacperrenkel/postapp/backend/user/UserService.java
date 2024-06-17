@@ -36,7 +36,7 @@ public class UserService {
     @Value("${security.jwt.expiration-time.refresh}")
     private int expirationTimeRefresh;
 
-    private void validateToken(HttpServletRequest request, HttpServletResponse response) {
+    private void validateToken(HttpServletRequest request, HttpServletResponse response) throws IllegalArgumentException {
         String token = null;
         String refresh = null;
         if (request.getCookies() != null) {
@@ -134,4 +134,12 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(true));
     }
 
+    public ResponseEntity<?> loggedIn(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            validateToken(request, response);
+            return ResponseEntity.ok(new LoginResponse(true));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.ok(new LoginResponse(false));
+        }
+    }
 }
