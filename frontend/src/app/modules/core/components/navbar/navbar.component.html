@@ -28,7 +28,7 @@
       >
     </li>
 
-    <ng-container *ngIf="user$ | async as user; else notUser">
+    <ng-container *ngIf="userLoggedIn; else notUser">
       <li class="menu-option login-button">
         <button (click)="logout()">Wyloguj się</button>
       </li>

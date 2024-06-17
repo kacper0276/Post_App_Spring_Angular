@@ -12,11 +12,17 @@ import * as AuthActions from '../../../auth/store/auth.actions';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
-  user$: Observable<User | null> = this.store.select(selectAuthUser);
+  userLoggedIn!: boolean;
 
   constructor(private renderer: Renderer2, private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.select(selectAuthUser).subscribe({
+      next: (val: any) => {
+        this.userLoggedIn = val && val.username && val.email && val.role;
+      },
+    });
+
     window.addEventListener('scroll', this.onScroll, true);
   }
 
@@ -25,10 +31,7 @@ export class NavbarComponent implements OnInit {
       document.documentElement.scrollTop || document.body.scrollTop || 0;
     const navbarElement = document.querySelector('.navigation-list');
 
-    console.log('scrolling');
     if (navbarElement) {
-      console.log(scrollTop);
-
       if (scrollTop > 400) {
         navbarElement.classList.add('scroll');
       } else {
