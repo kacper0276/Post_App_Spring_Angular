@@ -26,4 +26,9 @@ public class UserController {
     public ResponseEntity<?> autoLogin(HttpServletRequest request, HttpServletResponse response) {
         return userService.loginByToken(request, response);
     }
+
+    @GetMapping(path = "/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+        return userService.logout(request, response);
+    }
 }

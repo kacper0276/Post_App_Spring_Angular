@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kacperrenkel.postapp.backend.auth.CookieService;
 import kacperrenkel.postapp.backend.auth.JwtService;
 import kacperrenkel.postapp.backend.entity.LoginResponse;
+import kacperrenkel.postapp.backend.util.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -119,6 +120,18 @@ public class UserService {
         } catch (IllegalArgumentException e){
             return ResponseEntity.ok(new LoginResponse(false));
         }
+    }
+
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+        Cookie cookie = cookieService.removeCookie(request.getCookies(), "Authorization");
+        if (cookie != null) {
+            response.addCookie(cookie);
+        }
+        cookie = cookieService.removeCookie(request.getCookies(), "refresh");
+        if (cookie != null) {
+            response.addCookie(cookie);
+        }
+        return ResponseEntity.ok(new LoginResponse(true));
     }
 
 }
