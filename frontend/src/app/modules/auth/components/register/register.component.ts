@@ -1,4 +1,10 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { RegisterForm } from '../../../core/models/forms.model';
@@ -16,7 +22,15 @@ export class RegisterComponent {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
   alertMsg: string | null = null;
 
+  strengthStatus: { [key: number]: string } = {
+    1: 'słabe',
+    2: 'średnie',
+    3: 'mocne',
+  };
+
   @ViewChildren('passwordInput') inputPasswords!: QueryList<ElementRef>;
+  @ViewChild('bars') bars!: ElementRef;
+  @ViewChild('strength') strength!: ElementRef;
 
   get controls() {
     return this.registerForm.controls;
@@ -43,5 +57,51 @@ export class RegisterComponent {
     const passwordInput = this.inputPasswords.toArray()[index].nativeElement;
     passwordInput.type =
       passwordInput.type === 'password' ? 'text' : 'password';
+  }
+
+  handleChange(event: Event) {
+    const password = (event?.target as HTMLInputElement).value;
+    this.controls.password.markAsTouched();
+    this.setBar(password);
+  }
+
+  getPasswordStrength(password: string, strengthValue: any) {
+    strengthValue.upper = /[A-Z]/.test(password);
+    strengthValue.lower = /[a-z]/.test(password);
+    strengthValue.numbers = /\d/.test(password);
+
+    let strengthIndicator = 0;
+
+    for (let metric in strengthValue) {
+      if (strengthValue[metric] === true) {
+        strengthIndicator++;
+      }
+    }
+
+    return this.strengthStatus[strengthIndicator] ?? '';
+  }
+
+  getStrength = (password: string) => {
+    let strengthValue = {
+      upper: false,
+      numbers: false,
+      lower: false,
+    };
+
+    return this.getPasswordStrength(password, strengthValue);
+  };
+
+  setBar(password: string) {
+    const strengthText = this.getStrength(password);
+
+    this.bars.nativeElement.className = '';
+
+    if (strengthText) {
+      this.strength.nativeElement.innerText = `${strengthText} hasło`;
+
+      this.bars.nativeElement.classList.add(strengthText);
+    } else {
+      this.strength.nativeElement.innerText = '';
+    }
   }
 }

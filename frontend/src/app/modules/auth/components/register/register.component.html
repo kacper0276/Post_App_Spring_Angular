@@ -35,7 +35,7 @@
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
-      (input)="(controls.password.markAsTouched)"
+      (input)="handleChange($event)"
       [ngClass]="
         controls.password.invalid && controls.password.touched
           ? 'error-input'
@@ -78,6 +78,10 @@
     </button>
     <app-error>{{ alertMsg }}</app-error>
   </div>
+  <div id="bars" #bars>
+    <div></div>
+  </div>
+  <div class="strength" #strength></div>
   <div class="register-form-div-element">
     <button class="register-button">Zarejestruj się</button>
   </div>
