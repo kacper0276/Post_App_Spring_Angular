@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { User } from '../../models/auth.model';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 
