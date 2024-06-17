@@ -55,7 +55,8 @@ input[type="checkbox"] {
     }
 
     .login-button {
-      a {
+      a,
+      button {
         display: block;
         height: 40px;
         background: #ee626b;
@@ -70,9 +71,11 @@ input[type="checkbox"] {
         line-height: 40px;
         text-decoration: none !important;
         transition: all 0.4s ease 0s;
+        cursor: pointer;
       }
 
-      a:hover {
+      a:hover,
+      button:hover {
         border: 1px solid #ee626b;
         background: rgba($color: #ee626b, $alpha: 0.1);
       }
@@ -115,11 +118,13 @@ input[type="checkbox"] {
   }
 
   .login-button {
-    a {
+    a,
+    button {
       background: #ee626b !important;
     }
 
-    a:hover {
+    a:hover,
+    button:hover {
       border: 1px solid #ee626b !important;
       background: #fff !important;
     }
