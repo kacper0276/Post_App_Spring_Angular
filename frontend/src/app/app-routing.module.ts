@@ -7,6 +7,7 @@ import { RegisterComponent } from './modules/auth/components/register/register.c
 import { RecoverPasswordComponent } from './modules/auth/components/recover-password/recover-password.component';
 import { AdminSettingsComponent } from './modules/admin-settings/admin-settings.component';
 import { adminGuard } from './modules/core/guards/admin.guard';
+import { unauthGuard } from './modules/core/guards/unauth.guard';
 
 const routes: Routes = [
   {
@@ -39,10 +40,12 @@ const routes: Routes = [
   {
     path: 'logowanie',
     component: LoginComponent,
+    canActivate: [unauthGuard],
   },
   {
     path: 'rejestracja',
     component: RegisterComponent,
+    canActivate: [unauthGuard],
   },
   {
     path: 'odzyskaj-haslo',
