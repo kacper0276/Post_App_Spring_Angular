@@ -36,16 +36,6 @@ public class JwtService {
                 .compact();
     }
 
-    public String generateRefreshToken(HashMap<String, Object> claims, User user, int expirationTime) {
-        return Jwts.builder()
-                .claims(claims)
-                .subject(user.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expirationTime))
-                .signWith(secretKey)
-                .compact();
-    }
-
     public String extractUsername(String token) {
         return extractClaims(token, Claims::getSubject);
     }
