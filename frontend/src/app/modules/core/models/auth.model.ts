@@ -26,12 +26,6 @@ export interface LoginData {
 export interface AuthResponse {
   timestamp: string;
   message: string;
-  code: string;
-}
-
-export interface AuthResponse {
-  timestamp: string;
-  message: string;
 }
 
 export interface LoggedInResponse extends Omit<AuthResponse, 'message'> {

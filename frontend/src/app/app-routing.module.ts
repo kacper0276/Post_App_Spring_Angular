@@ -6,6 +6,7 @@ import { LoginComponent } from './modules/auth/components/login/login.component'
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { RecoverPasswordComponent } from './modules/auth/components/recover-password/recover-password.component';
 import { AdminSettingsComponent } from './modules/admin-settings/admin-settings.component';
+import { adminGuard } from './modules/core/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
       import('./modules/admin-settings/admin-settings.module').then(
         (m) => m.AdminSettingsModule
       ),
+    canActivate: [adminGuard],
   },
   {
     path: 'logowanie',
