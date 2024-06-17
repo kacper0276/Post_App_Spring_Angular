@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.Cookie;
 
+import java.util.Arrays;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -32,6 +34,27 @@ public class UserService {
 
     @Value("${security.jwt.expiration-time.refresh}")
     private int expirationTimeRefresh;
+
+    private void validateToken(HttpServletRequest request, HttpServletResponse response) {
+        String token = null;
+        String refresh = null;
+        if (request.getCookies() != null) {
+            for (Cookie value: Arrays.stream(request.getCookies()).toList()) {
+                if(value.getName().equals("Authorization")) {
+                    token = value.getValue();
+                } else if (value.getName().equals("refresh")) {
+                    refresh = value.getValue();
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Token can't be null");
+        }
+        try {
+            jwtService.validateToken(token);
+        } catch (IllegalArgumentException e) {
+            jwtService.validateToken(refresh);
+        }
+    }
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -72,7 +95,30 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(false));
     }
 
-    public ResponseEntity<LoginResponse> loggedIn(HttpServletRequest request, HttpServletResponse response) {
-        return  ResponseEntity.ok(new LoginResponse(true));
+    public ResponseEntity<?> loginByToken(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            validateToken(request, response);
+            String refresh = null;
+            for (Cookie value : Arrays.stream(request.getCookies()).toList()) {
+                if (value.getName().equals("refresh")) {
+                    refresh = value.getValue();
+                }
+            }
+            String username = jwtService.extractUsername(refresh);
+            User user = userRepository.findByUsername(username).orElse(null);
+
+            if (user != null){
+                return ResponseEntity.ok(
+                        UserDTO.builder()
+                                .username(user.getUsername())
+                                .email(user.getEmail())
+                                .role(user.getRole())
+                                .build());
+            }
+            return ResponseEntity.ok(new LoginResponse(false));
+        } catch (IllegalArgumentException e){
+            return ResponseEntity.ok(new LoginResponse(false));
+        }
     }
+
 }

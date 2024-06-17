@@ -54,12 +54,15 @@ public class JwtService {
         return claimsTFunction.apply(Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload());
     }
 
-    public boolean validateToken(String token, User user) {
-        final String username = extractUsername(token);
-        return (username.equals(user.getUsername()) && !isTokenExpired(token));
+    public void validateToken(final String token) throws IllegalArgumentException {
+        Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token);
     }
 
     public boolean isTokenExpired(String token) {
         return extractClaims(token, Claims::getExpiration).before(new Date());
     }
+
 }

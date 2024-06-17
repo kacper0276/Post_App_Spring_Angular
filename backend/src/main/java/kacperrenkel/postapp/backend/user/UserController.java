@@ -22,8 +22,8 @@ public class UserController {
         return userService.loginUser(user, response);
     }
 
-    @GetMapping(path = "/logged-in")
-    public ResponseEntity<?> loggedIn(HttpServletRequest request, HttpServletResponse response) {
-        return userService.loggedIn(request, response);
+    @GetMapping(path = "/auto-login")
+    public ResponseEntity<?> autoLogin(HttpServletRequest request, HttpServletResponse response) {
+        return userService.loginByToken(request, response);
     }
 }
