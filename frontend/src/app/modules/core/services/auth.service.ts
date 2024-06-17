@@ -29,13 +29,19 @@ export class AuthService {
   }
 
   logout(): Observable<AuthResponse> {
-    return this.http.get<AuthResponse>(`${this.apiURL}/logout`, {
+    return this.http.get<AuthResponse>(`${this.apiURL}/users/logout`, {
       withCredentials: true,
     });
   }
 
   isLoggedIn(): Observable<LoggedInResponse> {
-    return this.http.get<LoggedInResponse>(`${this.apiURL}/logged-in`, {
+    return this.http.get<LoggedInResponse>(`${this.apiURL}/users/logged-in`, {
+      withCredentials: true,
+    });
+  }
+
+  autoLogin(): Observable<IUser> {
+    return this.http.get<IUser>(`${this.apiURL}/users/auto-login`, {
       withCredentials: true,
     });
   }
