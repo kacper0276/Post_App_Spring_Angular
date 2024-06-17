@@ -19,16 +19,18 @@
     <li class="menu-option">
       <a routerLink="posty" routerLinkActive="active">Posty</a>
     </li>
-    <li class="menu-option">
-      <a routerLink="ustawienia" routerLinkActive="active">Ustawienia</a>
-    </li>
-    <li class="menu-option">
-      <a routerLink="admin" routerLinkActive="active"
-        >Ustawienia Administratora</a
-      >
-    </li>
 
     <ng-container *ngIf="userLoggedIn; else notUser">
+      <li class="menu-option">
+        <a routerLink="ustawienia" routerLinkActive="active">Ustawienia</a>
+      </li>
+      <ng-container *ngIf="adminLoggedIn">
+        <li class="menu-option">
+          <a routerLink="admin" routerLinkActive="active"
+            >Ustawienia Administratora</a
+          >
+        </li>
+      </ng-container>
       <li class="menu-option login-button">
         <button (click)="logout()">Wyloguj się</button>
       </li>

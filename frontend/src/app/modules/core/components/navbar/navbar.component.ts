@@ -1,8 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
-import { Observable, take } from 'rxjs';
-import { User } from '../../models/auth.model';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import * as AuthActions from '../../../auth/store/auth.actions';
 
@@ -13,6 +11,7 @@ import * as AuthActions from '../../../auth/store/auth.actions';
 })
 export class NavbarComponent implements OnInit {
   userLoggedIn!: boolean;
+  adminLoggedIn!: boolean;
 
   constructor(private renderer: Renderer2, private store: Store<AppState>) {}
 
@@ -20,6 +19,8 @@ export class NavbarComponent implements OnInit {
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
         this.userLoggedIn = val && val.username && val.email && val.role;
+        this.adminLoggedIn =
+          val && val.username && val.email && val.role === 'Administrator';
       },
     });
 
