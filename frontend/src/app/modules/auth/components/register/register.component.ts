@@ -12,6 +12,7 @@ import { Title } from '@angular/platform-browser';
 import * as AuthActions from '../../store/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
+import { getStrength } from '../../../core/helpers/progressBar';
 
 @Component({
   selector: 'app-register',
@@ -21,12 +22,6 @@ import { AppState } from '../../../../../store/app.reducer';
 export class RegisterComponent {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
   alertMsg: string | null = null;
-
-  strengthStatus: { [key: number]: string } = {
-    1: 'słabe',
-    2: 'średnie',
-    3: 'mocne',
-  };
 
   @ViewChildren('passwordInput') inputPasswords!: QueryList<ElementRef>;
   @ViewChild('bars') bars!: ElementRef;
@@ -62,37 +57,11 @@ export class RegisterComponent {
   handleChange(event: Event) {
     const password = (event?.target as HTMLInputElement).value;
     this.controls.password.markAsTouched();
-    this.setBar(password);
+    this.setPasswordBar(password);
   }
 
-  getPasswordStrength(password: string, strengthValue: any) {
-    strengthValue.upper = /[A-Z]/.test(password);
-    strengthValue.lower = /[a-z]/.test(password);
-    strengthValue.numbers = /\d/.test(password);
-
-    let strengthIndicator = 0;
-
-    for (let metric in strengthValue) {
-      if (strengthValue[metric] === true) {
-        strengthIndicator++;
-      }
-    }
-
-    return this.strengthStatus[strengthIndicator] ?? '';
-  }
-
-  getStrength = (password: string) => {
-    let strengthValue = {
-      upper: false,
-      numbers: false,
-      lower: false,
-    };
-
-    return this.getPasswordStrength(password, strengthValue);
-  };
-
-  setBar(password: string) {
-    const strengthText = this.getStrength(password);
+  setPasswordBar(password: string) {
+    const strengthText = getStrength(password);
 
     this.bars.nativeElement.className = '';
 
