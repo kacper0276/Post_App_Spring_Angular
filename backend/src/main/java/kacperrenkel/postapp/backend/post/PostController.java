@@ -16,7 +16,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping(path = "/")
-    public ResponseEntity<List<Post>> getAllPosts() {
+    public ResponseEntity<List<PostDTO>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
 
