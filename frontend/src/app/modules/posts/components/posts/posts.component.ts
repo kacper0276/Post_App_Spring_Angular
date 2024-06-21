@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { firstPost } from '../../../test.db';
+import { IPost } from '../../../core/models/post.model';
+import { PostService } from '../../../core/services/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,8 +13,9 @@ import { firstPost } from '../../../test.db';
 })
 export class PostsComponent implements OnInit {
   firstPost = firstPost;
+  posts: IPost[] = [];
 
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private postService: PostService) {
     titleService.setTitle('Lista produktów');
   }
 
@@ -28,5 +31,13 @@ export class PostsComponent implements OnInit {
         console.log(this.sortControl.getRawValue());
         console.log(this.orderControl.getRawValue());
       });
+
+    this.postService.getAllPosts().subscribe({
+      next: (value) => {
+        console.log(value);
+
+        this.posts = [...value];
+      },
+    });
   }
 }
