@@ -32,8 +32,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/users/register", "/users/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/users/auto-login", "/users/logout", "/users/logged-in").permitAll()
+                        .requestMatchers(HttpMethod.POST, "users/register", "users/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logout", "users/logged-in", "posts/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .build();
