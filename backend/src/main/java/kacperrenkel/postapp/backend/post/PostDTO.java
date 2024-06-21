@@ -4,6 +4,7 @@ import jakarta.persistence.Convert;
 import kacperrenkel.postapp.backend.util.StringListConverter;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,7 @@ public class PostDTO {
     private String author;
     private int likes;
     private String image;
+    private Date created;
 
     @Convert(converter = StringListConverter.class)
     private List<String> comments;

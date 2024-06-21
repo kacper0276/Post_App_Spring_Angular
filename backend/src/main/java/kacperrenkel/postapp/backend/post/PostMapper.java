@@ -8,6 +8,6 @@ import org.mapstruct.factory.Mappers;
 public interface PostMapper {
     PostMapper INSTANCE = Mappers.getMapper(PostMapper.class);
 
-    @Mapping(target = "userId", source = "post.user.id")
+    @Mapping(target = "userId", source = "user.id")
     PostDTO postToPostDto(Post post);
 }

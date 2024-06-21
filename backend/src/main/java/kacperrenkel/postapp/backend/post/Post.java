@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,7 @@ public class Post {
     private String author;
     private int likes;
     private String image;
+    private Date created;
 
     @Convert(converter = StringListConverter.class)
     private List<String> comments;
