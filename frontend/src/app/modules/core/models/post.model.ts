@@ -1,9 +1,11 @@
 export interface IPost {
   id: number;
-  name: string;
-  img: string;
-  description: string;
-  like: number;
+  title: string;
+  image: string;
+  content: string;
+  createdAt: Date;
+  likes: number;
   comments: string[];
   author: string;
+  user: number;
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { test } from '../../../core/models/test.model';
+import { IPost } from '../../../core/models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -7,7 +8,7 @@ import { test } from '../../../core/models/test.model';
   styleUrl: './post.component.scss',
 })
 export class PostComponent {
-  @Input() post!: test;
+  @Input() post!: IPost;
 
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;

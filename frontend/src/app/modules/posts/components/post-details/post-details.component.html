@@ -1,13 +1,13 @@
 <div class="main-container">
   <p>Autor: {{ post.author }}, <small>2 dni temu</small></p>
   <p>
-    {{ post.description }}
+    {{ post.content }}
   </p>
   <div class="image-div">
-    <img src="{{ post.img }}" alt="ALT" />
+    <img src="{{ post.image }}" alt="ALT" />
   </div>
   <div class="comments-like-div">
-    <p>polubienia: {{ post.like }}</p>
+    <p>polubienia: {{ post.likes }}</p>
     <p (click)="showCommentFunction()">{{ post.comments.length }} komentarzy</p>
   </div>
   <div class="buttons-section" (click)="$event.stopPropagation()">
