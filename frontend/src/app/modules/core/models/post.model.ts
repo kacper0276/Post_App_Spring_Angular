@@ -3,7 +3,7 @@ export interface IPost {
   title: string;
   image: string;
   content: string;
-  createdAt: Date;
+  created: Date;
   likes: number;
   comments: string[];
   author: string;
