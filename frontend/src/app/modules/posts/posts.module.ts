@@ -6,6 +6,7 @@ import { PostDetailsComponent } from './components/post-details/post-details.com
 import { PostComponent } from './components/post/post.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentsComponentComponent } from './components/comments-component/comments-component.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { CommentsComponentComponent } from './components/comments-component/comm
     PostComponent,
     CommentsComponentComponent,
   ],
-  imports: [SharedModule, PostsRoutingModule],
+  imports: [SharedModule, PostsRoutingModule, CoreModule],
 })
 export class PostsModule {}

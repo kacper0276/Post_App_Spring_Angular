@@ -6,10 +6,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { CountdownTimeSinceCreationPipe } from './pipe/countdown-time-since-creation.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, NavbarComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
+    CountdownTimeSinceCreationPipe,
+  ],
   imports: [SharedModule, RouterLink, RouterLinkActive, HttpClientModule],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, CountdownTimeSinceCreationPipe],
 })
 export class CoreModule {}
