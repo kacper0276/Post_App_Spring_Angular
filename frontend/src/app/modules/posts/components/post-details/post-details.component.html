@@ -1,5 +1,8 @@
 <div class="main-container">
-  <p>Autor: {{ post.author }}, <small>2 dni temu</small></p>
+  <p>
+    Autor: {{ post.author }},
+    <small>{{ post.created | countdownTimeSinceCreation }}</small>
+  </p>
   <p>
     {{ post.content }}
   </p>
