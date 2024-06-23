@@ -2,6 +2,7 @@ package kacperrenkel.postapp.backend.user;
 
 import jakarta.persistence.*;
 import kacperrenkel.postapp.backend.post.Post;
+import kacperrenkel.postapp.backend.util.StringListConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,13 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private boolean activated = false;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Convert(converter = StringListConverter.class)
+    private List<String> likes;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
