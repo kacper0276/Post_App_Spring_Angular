@@ -2,6 +2,7 @@ package kacperrenkel.postapp.backend.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,10 @@ public class UserController {
     @GetMapping(path = "/logged-in")
     public ResponseEntity<?> loggedIn(HttpServletRequest request, HttpServletResponse response) {
         return userService.loggedIn(request, response);
+    }
+
+    @GetMapping(path = "/activate/{id}")
+    public ResponseEntity<Response> activate(@PathVariable("id") int id) {
+        return userService.activeUser(id);
     }
 }

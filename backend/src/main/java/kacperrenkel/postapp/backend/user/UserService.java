@@ -40,8 +40,8 @@ public class UserService {
         String token = null;
         String refresh = null;
         if (request.getCookies() != null) {
-            for (Cookie value: Arrays.stream(request.getCookies()).toList()) {
-                if(value.getName().equals("Authorization")) {
+            for (Cookie value : Arrays.stream(request.getCookies()).toList()) {
+                if (value.getName().equals("Authorization")) {
                     token = value.getValue();
                 } else if (value.getName().equals("refresh")) {
                     refresh = value.getValue();
@@ -108,7 +108,7 @@ public class UserService {
             String username = jwtService.extractUsername(refresh);
             User user = userRepository.findByUsername(username).orElse(null);
 
-            if (user != null){
+            if (user != null) {
                 return ResponseEntity.ok(
                         UserDTO.builder()
                                 .username(user.getUsername())
@@ -117,7 +117,7 @@ public class UserService {
                                 .build());
             }
             return ResponseEntity.ok(new LoginResponse(false));
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.ok(new LoginResponse(false));
         }
     }
@@ -140,6 +140,18 @@ public class UserService {
             return ResponseEntity.ok(new LoginResponse(true));
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.ok(new LoginResponse(false));
+        }
+    }
+
+    public ResponseEntity<Response> activeUser(int id) {
+        User user = userRepository.findByIdAndActivatedIsFalse(id).orElse(null);
+
+        if (user != null) {
+            user.setActivated(true);
+            userRepository.save(user);
+            return ResponseEntity.ok(new Response("Aktywowano konto"));
+        } else {
+            return ResponseEntity.ok(new Response("Nie można aktywować konta użytkownika"));
         }
     }
 }
