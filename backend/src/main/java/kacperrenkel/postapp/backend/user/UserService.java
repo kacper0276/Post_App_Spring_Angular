@@ -73,7 +73,7 @@ public class UserService {
     }
 
     public ResponseEntity<?> loginUser(User user, HttpServletResponse response) {
-        User loginUser = userRepository.findByUsername(user.getUsername()).orElse(null);
+        User loginUser = userRepository.findByUsernameAndActivatedIsTrue(user.getUsername()).orElse(null);
 
         if (loginUser != null && passwordEncoder.matches(user.getPassword(), loginUser.getPassword())) {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
@@ -107,7 +107,7 @@ public class UserService {
                 }
             }
             String username = jwtService.extractUsername(refresh);
-            User user = userRepository.findByUsername(username).orElse(null);
+            User user = userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
 
             if (user != null) {
                 return ResponseEntity.ok(
