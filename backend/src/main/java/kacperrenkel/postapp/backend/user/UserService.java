@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kacperrenkel.postapp.backend.auth.CookieService;
 import kacperrenkel.postapp.backend.auth.JwtService;
 import kacperrenkel.postapp.backend.entity.LoginResponse;
+import kacperrenkel.postapp.backend.exceptions.ObjectNotExistInDBException;
 import kacperrenkel.postapp.backend.util.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -143,15 +144,14 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<Response> activeUser(int id) {
+    public void activeUser(int id) throws ObjectNotExistInDBException {
         User user = userRepository.findByIdAndActivatedIsFalse(id).orElse(null);
 
         if (user != null) {
             user.setActivated(true);
             userRepository.save(user);
-            return ResponseEntity.ok(new Response("Aktywowano konto"));
-        } else {
-            return ResponseEntity.ok(new Response("Nie można aktywować konta użytkownika"));
+            return;
         }
+        throw new ObjectNotExistInDBException("User don't exist");
     }
 }

@@ -2,6 +2,7 @@ package kacperrenkel.postapp.backend.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kacperrenkel.postapp.backend.exceptions.ObjectNotExistInDBException;
 import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,13 @@ public class UserController {
         return userService.loggedIn(request, response);
     }
 
-    @GetMapping(path = "/activate/{id}")
-    public ResponseEntity<Response> activate(@PathVariable("id") int id) {
-        return userService.activeUser(id);
+    @GetMapping(path = "/activate")
+    public ResponseEntity<Response> activate(@RequestParam int id) {
+        try {
+            userService.activeUser(id);
+            return ResponseEntity.ok(new Response("Aktywowano konto"));
+        } catch (ObjectNotExistInDBException ex) {
+            return ResponseEntity.status(400).body(new Response("Nie można aktywować konta użytkownika"));
+        }
     }
 }
