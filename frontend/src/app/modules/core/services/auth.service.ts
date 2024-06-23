@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environment/environment';
 import {
@@ -43,6 +43,14 @@ export class AuthService {
   autoLogin(): Observable<IUser> {
     return this.http.get<IUser>(`${this.apiURL}/users/auto-login`, {
       withCredentials: true,
+    });
+  }
+
+  activateAccount(id: number): Observable<AuthResponse> {
+    const params = new HttpParams().append('id', id);
+
+    return this.http.get<AuthResponse>(`${this.apiURL}/users/activate`, {
+      params,
     });
   }
 }
