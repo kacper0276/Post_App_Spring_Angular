@@ -9,6 +9,7 @@ import { AdminSettingsComponent } from './modules/admin-settings/admin-settings.
 import { adminGuard } from './modules/core/guards/admin.guard';
 import { unauthGuard } from './modules/core/guards/unauth.guard';
 import { authGuard } from './modules/core/guards/auth.guard';
+import { ActivateAccountComponent } from './modules/auth/components/activate-account/activate-account.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
   {
     path: 'rejestracja',
     component: RegisterComponent,
+    canActivate: [unauthGuard],
+  },
+  {
+    path: 'aktywuj-konto/:id',
+    component: ActivateAccountComponent,
     canActivate: [unauthGuard],
   },
   {
