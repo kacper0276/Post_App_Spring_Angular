@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { authReducer } from './modules/auth/store/auth.reducer';
 import { AuthEffects } from './modules/auth/store/auth.effects';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const customNotifier: NotifierOptions = {
   position: {
@@ -29,10 +33,13 @@ const customNotifier: NotifierOptions = {
   theme: 'material',
 };
 
+registerLocaleData(localePl);
+
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     AuthModule,
@@ -42,7 +49,7 @@ const customNotifier: NotifierOptions = {
     EffectsModule.forRoot([AuthEffects]),
     NotifierModule.withConfig(customNotifier),
   ],
-  providers: [],
+  providers: [provideAnimationsAsync(), { provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
