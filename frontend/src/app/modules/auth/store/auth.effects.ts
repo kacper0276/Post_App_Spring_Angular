@@ -4,6 +4,7 @@ import * as AuthActions from './auth.actions';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
+import { IUser } from '../../core/models/auth.model';
 
 @Injectable()
 export class AuthEffects {
@@ -12,11 +13,18 @@ export class AuthEffects {
       ofType(AuthActions.login),
       switchMap((action) => {
         return this.authService.login(action.loginData).pipe(
-          map((user) => {
-            this.router.navigate(['/']);
-            return AuthActions.loginSuccess({ user: { ...user } });
+          map((response) => {
+            if (this.isValidUser(response)) {
+              const user = response as IUser;
+              this.router.navigate(['/']);
+              return AuthActions.loginSuccess({ user: { ...user } });
+            } else {
+              throw new Error('Błąd przy logowaniu!');
+            }
           }),
-          catchError((err) => of(AuthActions.loginFailure({ error: err })))
+          catchError((err) => {
+            return of(AuthActions.loginFailure({ error: err.message }));
+          })
         );
       })
     )
@@ -75,4 +83,12 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  isValidUser(response: any): response is IUser {
+    return (
+      response &&
+      typeof response.email === 'string' &&
+      typeof response.username === 'string'
+    );
+  }
 }
