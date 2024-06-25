@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { firstPost } from '../../../test.db';
 import { IPost } from '../../../core/models/post.model';
 import { PostService } from '../../../core/services/post.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
+import { selectAuthUser } from '../../../auth/store/auth.selectors';
 
 @Component({
   selector: 'app-posts',
@@ -12,10 +14,14 @@ import { PostService } from '../../../core/services/post.service';
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
-  firstPost = firstPost;
   posts: IPost[] = [];
+  userLoggedIn!: boolean;
 
-  constructor(private titleService: Title, private postService: PostService) {
+  constructor(
+    private titleService: Title,
+    private postService: PostService,
+    private store: Store<AppState>
+  ) {
     titleService.setTitle('Lista produktów');
   }
 
@@ -35,6 +41,12 @@ export class PostsComponent implements OnInit {
     this.postService.getAllPosts().subscribe({
       next: (value) => {
         this.posts = [...value];
+      },
+    });
+
+    this.store.select(selectAuthUser).subscribe({
+      next: (val: any) => {
+        this.userLoggedIn = val && val.username && val.email && val.role;
       },
     });
   }

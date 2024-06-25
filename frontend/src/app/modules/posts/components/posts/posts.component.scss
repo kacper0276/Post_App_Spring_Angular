@@ -44,6 +44,29 @@
       height: 300px;
     }
   }
+
+  // Add post button
+  .add-post-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-100%, -300%);
+    width: 70px;
+    height: 70px;
+    border-radius: 150px;
+
+    .add-post-button {
+      width: 100%;
+      height: 100%;
+      border-radius: 150px;
+      color: #000;
+      outline: none;
+      border: none;
+      font-size: xx-large;
+      background: rgb(43, 162, 226);
+      cursor: pointer;
+    }
+  }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
