@@ -16,4 +16,8 @@ export class AddNewPostComponent {
   }
 
   constructor(private formService: FormService) {}
+
+  onAddNewPost(): void {
+    console.log('TEST');
+  }
 }

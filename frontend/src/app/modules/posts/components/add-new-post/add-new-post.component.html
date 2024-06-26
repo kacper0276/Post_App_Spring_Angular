@@ -1,1 +1,34 @@
-<p>add-new-post works!</p>
+<div class="background-div"></div>
+
+<form
+  class="add-post-form"
+  [formGroup]="addPostForm"
+  (ngSubmit)="onAddNewPost()"
+>
+  <div class="add-post-element">
+    <input
+      type="text"
+      [formControl]="controls.author"
+      value="Autor"
+      [disabled]="true"
+    />
+  </div>
+  <div class="add-post-element">
+    <input
+      type="number"
+      [formControl]="controls.userId"
+      value="Autor"
+      [disabled]="true"
+    />
+  </div>
+  <div class="add-post-element">
+    <input type="text" [formControl]="controls.title" />
+  </div>
+  <div class="add-post-element">
+    <input type="text" [formControl]="controls.content" />
+  </div>
+  <div class="add-post-element">
+    <input type="file" [formControl]="controls.img" />
+  </div>
+  <button>Dodaj post</button>
+</form>
