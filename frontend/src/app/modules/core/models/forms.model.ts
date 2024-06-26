@@ -24,9 +24,11 @@ export interface ChangeUserDataForm {
 }
 
 export interface AddPostForm {
-  name: FormControl<string>;
+  title: FormControl<string>;
+  author: FormControl<string>;
   img: FormControl<string>;
-  description: FormControl<string>;
+  content: FormControl<string>;
+  userId: FormControl<number>;
 }
 
 export interface EditPostForm extends AddPostForm {
