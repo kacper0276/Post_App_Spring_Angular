@@ -135,14 +135,18 @@ export class FormService {
       author: new FormControl('', {
         nonNullable: true,
       }),
-      description: new FormControl('', {
+      content: new FormControl('', {
         validators: [Validators.minLength(10)],
         nonNullable: true,
       }),
       img: new FormControl('', {
         nonNullable: true,
       }),
-      name: new FormControl('', {
+      title: new FormControl('', {
+        validators: [Validators.minLength(5)],
+        nonNullable: true,
+      }),
+      userId: new FormControl(0, {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
@@ -151,14 +155,22 @@ export class FormService {
 
   initAddPostForm(): FormGroup<AddPostForm> {
     return new FormGroup({
-      description: new FormControl('', {
-        validators: [Validators.minLength(10)],
+      title: new FormControl('', {
+        validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
       img: new FormControl('', {
         nonNullable: true,
       }),
-      name: new FormControl('', {
+      author: new FormControl('', {
+        validators: [Validators.minLength(5)],
+        nonNullable: true,
+      }),
+      content: new FormControl('', {
+        validators: [Validators.minLength(5)],
+        nonNullable: true,
+      }),
+      userId: new FormControl(0, {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),

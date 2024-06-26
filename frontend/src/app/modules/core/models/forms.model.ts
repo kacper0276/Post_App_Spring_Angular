@@ -33,5 +33,4 @@ export interface AddPostForm {
 
 export interface EditPostForm extends AddPostForm {
   id: FormControl<number>;
-  author: FormControl<string>;
 }
