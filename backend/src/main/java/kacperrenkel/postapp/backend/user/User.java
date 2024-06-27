@@ -24,6 +24,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private String image = "default_profile.png";
     private boolean activated = false;
 
     @Enumerated(EnumType.STRING)
