@@ -7,6 +7,7 @@ import { PostService } from '../../../core/services/post.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -20,7 +21,8 @@ export class PostsComponent implements OnInit {
   constructor(
     private titleService: Title,
     private postService: PostService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {
     titleService.setTitle('Lista produktów');
   }
@@ -49,5 +51,9 @@ export class PostsComponent implements OnInit {
         this.userLoggedIn = val && val.username && val.email && val.role;
       },
     });
+  }
+
+  onRedirectToAddPost(): void {
+    this.router.navigate(['posty/dodaj-post']);
   }
 }
