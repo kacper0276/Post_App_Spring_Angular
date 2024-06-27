@@ -17,8 +17,7 @@ export interface RecoverPasswordForm {
 }
 
 export interface ChangeUserDataForm {
-  firstname: FormControl<string>;
-  lastname: FormControl<string>;
+  username: FormControl<string>;
   email: FormControl<string>;
   password: FormControl<string>;
 }

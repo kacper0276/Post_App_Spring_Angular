@@ -112,12 +112,8 @@ export class FormService {
         ],
         nonNullable: true,
       }),
-      firstname: new FormControl('', {
-        validators: [Validators.maxLength(100)],
-        nonNullable: true,
-      }),
-      lastname: new FormControl('', {
-        validators: [Validators.maxLength(100)],
+      username: new FormControl('', {
+        validators: [Validators.maxLength(100), Validators.required],
         nonNullable: true,
       }),
       password: new FormControl('', {
