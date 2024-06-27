@@ -24,4 +24,9 @@ public class PostController {
     public ResponseEntity<Post> getPostById(@PathVariable Integer id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
+
+    @GetMapping(path = "/users/{userID}")
+    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Integer userID) {
+        return ResponseEntity.ok(postService.getPostsByUser(userID));
+    }
 }

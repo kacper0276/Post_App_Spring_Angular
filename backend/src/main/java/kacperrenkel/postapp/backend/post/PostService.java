@@ -27,6 +27,15 @@ public class PostService {
         Optional<Post> post = postRepository.findById(id);
 
         return post.orElse(null);
+    }
 
+    public List<PostDTO> getPostsByUser(int userId){
+        List<PostDTO> posts = new ArrayList<>();
+
+        postRepository.findByUserId(userId).forEach(post -> {
+            posts.add(mapper.postToPostDto(post));
+        });
+
+        return posts;
     }
 }
