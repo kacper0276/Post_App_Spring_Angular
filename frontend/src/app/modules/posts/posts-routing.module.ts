@@ -15,7 +15,7 @@ const routes: Routes = [
     component: PostDetailsComponent,
   },
   {
-    path: '/dodaj-post',
+    path: 'dodaj-post',
     component: AddNewPostComponent,
     canActivate: [authGuard],
   },
