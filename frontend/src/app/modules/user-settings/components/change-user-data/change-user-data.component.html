@@ -18,20 +18,9 @@
         class="input__field"
         type="text"
         placeholder=" "
-        [formControl]="controls.firstname"
+        [formControl]="controls.username"
       />
-      <span class="input__label">Imię</span>
-    </label>
-  </div>
-  <div class="input-element">
-    <label class="input">
-      <input
-        class="input__field"
-        type="text"
-        placeholder=" "
-        [formControl]="controls.lastname"
-      />
-      <span class="input__label">Nazwisko</span>
+      <span class="input__label">Nazwa użytkownika</span>
     </label>
   </div>
   <div class="input-element">
@@ -51,6 +40,7 @@
         class="input__field"
         type="password"
         placeholder=" "
+        autocomplete="new-password"
         [formControl]="controls.password"
       />
       <span class="input__label">Hasło</span>
