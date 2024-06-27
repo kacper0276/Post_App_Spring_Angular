@@ -23,7 +23,12 @@ const _authReducer = createReducer(
   on(AuthActions.loginSuccess, (state, action) => ({
     ...state,
     loading: false,
-    user: new User(action.user.username, action.user.email, action.user.role),
+    user: new User(
+      action.user.username,
+      action.user.email,
+      action.user.role,
+      action.user.image
+    ),
     error: null,
   })),
   on(
@@ -46,7 +51,12 @@ const _authReducer = createReducer(
   ),
   on(AuthActions.autoLoginSuccess, (state, action) => ({
     ...state,
-    user: new User(action.user.username, action.user.email, action.user.role),
+    user: new User(
+      action.user.username,
+      action.user.email,
+      action.user.role,
+      action.user.image
+    ),
   })),
   on(AuthActions.logoutSuccess, (state, action) => ({
     ...state,

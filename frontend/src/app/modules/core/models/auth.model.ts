@@ -2,13 +2,15 @@ export interface IUser {
   username: string;
   email: string;
   role: string;
+  image: string;
 }
 
 export class User implements IUser {
   constructor(
     public username: string,
     public email: string,
-    public role: string
+    public role: string,
+    public image: string
   ) {}
 }
 
