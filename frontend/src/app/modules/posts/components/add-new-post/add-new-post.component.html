@@ -10,22 +10,14 @@
       type="text"
       [formControl]="controls.author"
       value="Autor"
-      [disabled]="true"
+      [readOnly]="true"
     />
   </div>
   <div class="add-post-element">
-    <input
-      type="number"
-      [formControl]="controls.userId"
-      value="Autor"
-      [disabled]="true"
-    />
+    <input type="text" [formControl]="controls.title" placeholder="Tytuł" />
   </div>
   <div class="add-post-element">
-    <input type="text" [formControl]="controls.title" />
-  </div>
-  <div class="add-post-element">
-    <input type="text" [formControl]="controls.content" />
+    <input type="text" [formControl]="controls.content" placeholder="Opis" />
   </div>
   <div class="add-post-element">
     <input type="file" [formControl]="controls.img" />
