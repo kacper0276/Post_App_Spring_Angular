@@ -1,7 +1,7 @@
 <form [formGroup]="addPostForm" (ngSubmit)="onAddPost()" class="main-container">
   <div class="input-element">
     <label class="input">
-      <input type="text" class="input__field" [formControl]="controls.name" />
+      <input type="text" class="input__field" [formControl]="controls.title" />
       <span class="input__label">Tytuł</span>
     </label>
   </div>
@@ -9,7 +9,7 @@
     <label class="input">
       <textarea
         class="input__field"
-        [formControl]="controls.description"
+        [formControl]="controls.content"
       ></textarea>
       <span class="input__label">Opis</span>
     </label>
