@@ -15,4 +15,8 @@ export class PostService {
   public getAllPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(`${this.apiUrl}/posts/`);
   }
+
+  public getSinglePost(id: number): Observable<IPost> {
+    return this.http.get<IPost>(`${this.apiUrl}/posts/${id}`);
+  }
 }
