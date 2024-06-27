@@ -11,13 +11,13 @@ const routes: Routes = [
     component: PostsComponent,
   },
   {
-    path: ':id',
-    component: PostDetailsComponent,
-  },
-  {
     path: 'dodaj-post',
     component: AddNewPostComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: ':id',
+    component: PostDetailsComponent,
   },
 ];
 
