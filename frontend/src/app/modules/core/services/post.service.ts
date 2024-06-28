@@ -34,6 +34,7 @@ export class PostService {
       `${this.apiUrl}/posts/add-like`,
       {},
       {
+        params,
         withCredentials: true,
       }
     );

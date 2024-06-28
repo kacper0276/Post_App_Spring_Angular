@@ -3,7 +3,6 @@ package kacperrenkel.postapp.backend.post;
 import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class PostController {
     }
 
     @PatchMapping(path = "/add-like")
-    public ResponseEntity<Response> addLike(@AuthenticationPrincipal @RequestParam String username, @RequestParam int postId) {
+    public ResponseEntity<Response> addLike(@RequestParam String username, @RequestParam int postId) {
         postService.addLike(username, postId);
         return ResponseEntity.ok(new Response("Dodano like"));
     }

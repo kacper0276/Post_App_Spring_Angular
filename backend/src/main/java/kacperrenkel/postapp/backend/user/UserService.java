@@ -160,6 +160,10 @@ public class UserService {
     }
 
     public void saveUser(User user) {
-        userRepository.save(user);
+        System.out.println(user.getLikes());
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getEmail());
+//        userRepository.save(user);
     }
 }

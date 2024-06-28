@@ -1,5 +1,6 @@
 package kacperrenkel.postapp.backend.configuration;
 
+import kacperrenkel.postapp.backend.auth.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,9 +21,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class SecurityConfiguration {
     private final UserDetailsService userDetailsService;
+    private final JwtService jwtService;
 
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
+
+    public SecurityConfiguration(UserDetailsService userDetailsService, JwtService jwtService) {
         this.userDetailsService = userDetailsService;
+        this.jwtService = jwtService;
     }
 
 
@@ -30,12 +34,13 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "users/register", "users/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logout", "users/logged-in", "users/activate", "posts/").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "posts/add-like").permitAll()
+                        .anyRequest().permitAll()
                 )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
 
@@ -46,6 +51,7 @@ public class SecurityConfiguration {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:4200")
+                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         .allowCredentials(true)
                         .allowedHeaders("*");
             }
@@ -67,3 +73,4 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 }
+

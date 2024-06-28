@@ -43,9 +43,6 @@ public class PostService {
     }
 
     public void addLike(final String username, final int postId){
-        System.out.println(username);
-        System.out.println(postId);
-
         Post post = postRepository.findById(postId).orElse(null);
         if (post != null){
            post.setLikes(post.getLikes() + 1);
@@ -55,9 +52,15 @@ public class PostService {
         User user = userService.getByUsername(username);
 
         if (user != null){
-            user.getLikes().add(String.valueOf(postId));
-            user.setLikes(user.getLikes());
-            userService.saveUser(user);
+            System.out.println(user.getLikes());
+            List<String> likes = new ArrayList<>(user.getLikes());
+
+            if (!likes.contains(String.valueOf(postId))) {
+                likes.add(String.valueOf(postId));
+                user.setLikes(likes);
+                userService.saveUser(user);
+            }
+            System.out.println(user.getLikes());
         }
     }
 }
