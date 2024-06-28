@@ -27,7 +27,8 @@ const _authReducer = createReducer(
       action.user.username,
       action.user.email,
       action.user.role,
-      action.user.image
+      action.user.image,
+      action.user.likes
     ),
     error: null,
   })),
@@ -55,7 +56,8 @@ const _authReducer = createReducer(
       action.user.username,
       action.user.email,
       action.user.role,
-      action.user.image
+      action.user.image,
+      action.user.likes
     ),
   })),
   on(AuthActions.logoutSuccess, (state, action) => ({

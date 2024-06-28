@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPost } from '../models/post.model';
+import { ServerResponse } from '../models/server-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +23,19 @@ export class PostService {
 
   public getUserPosts(userID: number): Observable<IPost[]> {
     return this.http.get<IPost[]>(`${this.apiUrl}/posts/users/${userID}`);
+  }
+
+  public addLike(username: string, postId: number): Observable<ServerResponse> {
+    const params = new HttpParams()
+      .append('username', username)
+      .append('postId', postId);
+
+    return this.http.patch<ServerResponse>(
+      `${this.apiUrl}/posts/add-like`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
   }
 }
