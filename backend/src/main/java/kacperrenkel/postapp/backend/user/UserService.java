@@ -154,4 +154,12 @@ public class UserService {
         }
         throw new ObjectNotExistInDBException("User don't exist");
     }
+
+    public User getByUsername(String username) {
+        return userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
 }
