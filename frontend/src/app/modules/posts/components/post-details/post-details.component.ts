@@ -14,4 +14,8 @@ export class PostDetailsComponent {
   showCommentFunction(): void {
     this.showComments = true;
   }
+
+  onAddLike(): void {
+    console.log('LIKE TEST');
+  }
 }

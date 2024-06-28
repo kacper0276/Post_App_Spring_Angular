@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { test } from '../../../core/models/test.model';
 import { IPost } from '../../../core/models/post.model';
+import { PostService } from '../../../core/services/post.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
+import { selectAuthUser } from '../../../auth/store/auth.selectors';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +17,11 @@ export class PostComponent {
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;
 
+  constructor(
+    private postService: PostService,
+    private store: Store<AppState>
+  ) {}
+
   toggleShowMoreText(): void {
     this.showMoreText = !this.showMoreText;
   }
@@ -24,5 +33,20 @@ export class PostComponent {
 
   onOutsideClick() {
     this.showMoreDetailsPost = false;
+  }
+
+  onAddLike(): void {
+    console.log('LIKE TEST');
+    let username = '';
+
+    this.store.select(selectAuthUser).subscribe({
+      next: (val: any) => {
+        username = val.username;
+      },
+    });
+
+    this.postService.addLike(username, this.post.id).subscribe({
+      next: (val) => console.log(val),
+    });
   }
 }
