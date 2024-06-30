@@ -1,8 +1,15 @@
 <div class="post-card" (click)="toggleShowMoreDetailsPost($event)">
-  <p>
-    Autor: {{ post.author }},
-    <small>{{ post.created | countdownTimeSinceCreation }}</small>
-  </p>
+  <div class="user-details">
+    <div class="profile-image">
+      <img
+        src="../../../../../assets/profiles-image/{{ post.userProfileImage }}"
+      />
+    </div>
+    <p>
+      Autor: {{ post.author }},
+      <small>{{ post.created | countdownTimeSinceCreation }}</small>
+    </p>
+  </div>
   <hr />
   <p>
     opis:

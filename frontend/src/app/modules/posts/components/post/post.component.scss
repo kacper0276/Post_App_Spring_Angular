@@ -5,6 +5,23 @@
   overflow: auto;
   border: 1px solid rgb(124, 124, 124);
 
+  // Image
+  .user-details {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+
+    .profile-image {
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 360px;
+      }
+    }
+  }
+
   p {
     color: #000;
   }
