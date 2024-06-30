@@ -41,6 +41,13 @@ const routes: Routes = [
     canActivate: [adminGuard],
   },
   {
+    path: 'profil-uzytkownika',
+    loadChildren: () =>
+      import('./modules/user-profile/user-profile.module').then(
+        (m) => m.UserProfileModule
+      ),
+  },
+  {
     path: 'logowanie',
     component: LoginComponent,
     canActivate: [unauthGuard],
