@@ -8,4 +8,5 @@ export interface IPost {
   comments: string[];
   author: string;
   user: number;
+  userProfileImage: string;
 }
