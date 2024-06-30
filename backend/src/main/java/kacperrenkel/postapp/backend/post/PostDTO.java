@@ -26,4 +26,5 @@ public class PostDTO {
     private List<String> comments;
 
     private int userId;
+    private String userProfileImage;
 }
