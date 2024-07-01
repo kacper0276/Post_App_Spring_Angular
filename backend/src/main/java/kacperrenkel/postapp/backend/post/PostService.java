@@ -52,7 +52,6 @@ public class PostService {
         User user = userService.getByUsername(username);
 
         if (user != null){
-            System.out.println(user.getLikes());
             List<String> likes = new ArrayList<>(user.getLikes());
 
             if (!likes.contains(String.valueOf(postId))) {
@@ -60,7 +59,6 @@ public class PostService {
                 user.setLikes(likes);
                 userService.saveUser(user);
             }
-            System.out.println(user.getLikes());
         }
     }
 }
