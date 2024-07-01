@@ -40,11 +40,14 @@ export class RegisterComponent {
   }
 
   onRegister() {
-    const { email, password, username } = this.registerForm.getRawValue();
+    const { email, password, username, repeatedPassword } =
+      this.registerForm.getRawValue();
 
-    this.store.dispatch(
-      AuthActions.register({ registerData: { username, email, password } })
-    );
+    if (password === repeatedPassword) {
+      this.store.dispatch(
+        AuthActions.register({ registerData: { username, email, password } })
+      );
+    }
   }
 
   changeVisiblePassword(e: Event, index: number): void {
