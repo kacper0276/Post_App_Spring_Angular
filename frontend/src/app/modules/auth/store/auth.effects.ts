@@ -17,6 +17,7 @@ export class AuthEffects {
           map((response) => {
             if (this.isValidUser(response)) {
               const user = response as IUser;
+
               this.router.navigate(['/']);
               this.notifierService.notify(
                 'success',
