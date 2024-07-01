@@ -87,6 +87,8 @@ public class UserService {
                                 .email(loginUser.getEmail())
                                 .username(loginUser.getUsername())
                                 .role(loginUser.getRole())
+                                .image(loginUser.getImage())
+                                .likes(loginUser.getLikes())
                                 .build()
                 );
             } else {
