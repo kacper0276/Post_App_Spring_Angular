@@ -5,6 +5,7 @@ import { PostService } from '../../../core/services/post.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,8 @@ export class PostComponent {
 
   constructor(
     private postService: PostService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private notifierService: NotifierService
   ) {}
 
   toggleShowMoreText(): void {
@@ -36,17 +38,25 @@ export class PostComponent {
   }
 
   onAddLike(): void {
-    console.log('LIKE TEST');
     let username = '';
 
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
-        username = val.username;
+        console.log(val);
+
+        val != null ? (username = val.username) : (username = '');
       },
     });
 
-    this.postService.addLike(username, this.post.id).subscribe({
-      next: (val) => console.log(val),
-    });
+    if (username != '') {
+      this.postService.addLike(username, this.post.id).subscribe({
+        next: (val) => console.log(val),
+      });
+    } else {
+      this.notifierService.notify(
+        'warning',
+        'By polubić post musisz być zalogowany'
+      );
+    }
   }
 }
