@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { test } from '../../../core/models/test.model';
 import { IPost } from '../../../core/models/post.model';
 import { PostService } from '../../../core/services/post.service';
@@ -6,23 +6,38 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { NotifierService } from 'angular-notifier';
+import { IUser } from '../../../core/models/auth.model';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   @Input() post!: IPost;
 
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;
+  userGiveLike: boolean = false;
+  username = '';
 
   constructor(
     private postService: PostService,
     private store: Store<AppState>,
     private notifierService: NotifierService
   ) {}
+
+  ngOnInit(): void {
+    this.store.select(selectAuthUser).subscribe({
+      next: (val: IUser | null) => {
+        val != null ? (this.username = val.username) : (this.username = '');
+
+        if (val?.likes.includes(String(this.post.id))) {
+          this.userGiveLike = true;
+        }
+      },
+    });
+  }
 
   toggleShowMoreText(): void {
     this.showMoreText = !this.showMoreText;
@@ -38,18 +53,8 @@ export class PostComponent {
   }
 
   onAddLike(): void {
-    let username = '';
-
-    this.store.select(selectAuthUser).subscribe({
-      next: (val: any) => {
-        console.log(val);
-
-        val != null ? (username = val.username) : (username = '');
-      },
-    });
-
-    if (username != '') {
-      this.postService.addLike(username, this.post.id).subscribe({
+    if (this.username != '') {
+      this.postService.addLike(this.username, this.post.id).subscribe({
         next: (val) => console.log(val),
       });
     } else {
