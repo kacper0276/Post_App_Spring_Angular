@@ -117,6 +117,7 @@ public class UserService {
                                 .username(user.getUsername())
                                 .email(user.getEmail())
                                 .role(user.getRole())
+                                .likes(user.getLikes())
                                 .build());
             }
             return ResponseEntity.ok(new LoginResponse(false));
