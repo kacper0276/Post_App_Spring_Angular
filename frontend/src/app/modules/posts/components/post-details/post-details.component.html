@@ -15,7 +15,7 @@
   </div>
   <div class="buttons-section" (click)="$event.stopPropagation()">
     <button (click)="onAddLike()">Lubię to!</button>
-    <button>Komentarz</button>
+    <button (click)="showCommentFunction()">Komentarz</button>
     <button>Udostępnij</button>
   </div>
   <app-comments-component *ngIf="showComments" [comments]="post.comments" />
