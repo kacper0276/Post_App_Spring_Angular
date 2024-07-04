@@ -44,19 +44,19 @@ public class PostService {
 
     public void addLike(final String username, final int postId){
         Post post = postRepository.findById(postId).orElse(null);
-        if (post != null){
-           post.setLikes(post.getLikes() + 1);
-           postRepository.save(post);
-        }
 
         User user = userService.getByUsername(username);
 
-        if (user != null){
+        if (user != null && post != null){
             List<String> likes = new ArrayList<>(user.getLikes());
 
             if (!likes.contains(String.valueOf(postId))) {
+                post.setLikes(post.getLikes() + 1);
+                postRepository.save(post);
                 likes.add(String.valueOf(postId));
             } else {
+                post.setLikes(post.getLikes() - 1);
+                postRepository.save(post);
                 likes.remove(String.valueOf(postId));
             }
             user.setLikes(likes);
