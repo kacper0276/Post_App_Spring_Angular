@@ -56,9 +56,11 @@ public class PostService {
 
             if (!likes.contains(String.valueOf(postId))) {
                 likes.add(String.valueOf(postId));
-                user.setLikes(likes);
-                userService.saveUser(user);
+            } else {
+                likes.remove(String.valueOf(postId));
             }
+            user.setLikes(likes);
+            userService.saveUser(user);
         }
     }
 }
