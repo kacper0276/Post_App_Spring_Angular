@@ -33,3 +33,7 @@ export interface AddPostForm {
 export interface EditPostForm extends AddPostForm {
   id: FormControl<number>;
 }
+
+export interface AddComment {
+  comment: FormControl<string>;
+}
