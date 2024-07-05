@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
+  AddComment,
   AddPostForm,
   ChangeUserDataForm,
   EditPostForm,
@@ -168,6 +169,15 @@ export class FormService {
       }),
       userId: new FormControl(0, {
         validators: [Validators.minLength(5)],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initAddCommentForm(): FormGroup<AddComment> {
+    return new FormGroup({
+      comment: new FormControl('', {
+        validators: [Validators.minLength(1)],
         nonNullable: true,
       }),
     });
