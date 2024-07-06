@@ -39,4 +39,6 @@ export class PostService {
       }
     );
   }
+
+  public addComment(comment: string, username: string, postId: number): void {}
 }
