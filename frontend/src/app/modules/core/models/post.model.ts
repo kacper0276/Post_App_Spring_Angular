@@ -1,3 +1,5 @@
+import { IComment } from './comment.model';
+
 export interface IPost {
   id: number;
   title: string;
@@ -5,7 +7,7 @@ export interface IPost {
   content: string;
   created: Date;
   likes: number;
-  comments: string[];
+  comments: IComment[];
   author: string;
   user: number;
   userProfileImage: string;
