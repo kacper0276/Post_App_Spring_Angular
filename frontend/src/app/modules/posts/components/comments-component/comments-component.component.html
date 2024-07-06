@@ -2,8 +2,16 @@
   <div class="comment-section">
     <p *ngFor="let comment of comments">{{ comment }}</p>
   </div>
-  <div class="comment-send-section">
-    <input type="text" placeholder="Napisz komentarz" />
+  <form
+    class="comment-send-section"
+    [formGroup]="addCommentForm"
+    (ngSubmit)="onAddComment()"
+  >
+    <input
+      type="text"
+      placeholder="Napisz komentarz"
+      [formControl]="controls.comment"
+    />
     <button>Dodaj</button>
-  </div>
+  </form>
 </div>
