@@ -1,11 +1,12 @@
 <div class="main-comments-container">
   <div class="comment-section">
-    <p *ngFor="let comment of comments">{{ comment }}</p>
+    <p *ngFor="let comment of comments">{{ comment.content }}</p>
   </div>
   <form
     class="comment-send-section"
     [formGroup]="addCommentForm"
     (ngSubmit)="onAddComment()"
+    *ngIf="userLoggedIn; else noUserLogin"
   >
     <input
       type="text"
@@ -14,4 +15,8 @@
     />
     <button>Dodaj</button>
   </form>
+
+  <ng-template #noUserLogin>
+    <p>By dodać komentarz musisz być zalogowany</p>
+  </ng-template>
 </div>

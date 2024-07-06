@@ -18,5 +18,9 @@
     <button (click)="showCommentFunction()">Komentarz</button>
     <button>Udostępnij</button>
   </div>
-  <app-comments-component *ngIf="showComments" [comments]="post.comments" />
+  <app-comments-component
+    *ngIf="showComments"
+    [comments]="post.comments"
+    [postId]="post.id"
+  />
 </div>
