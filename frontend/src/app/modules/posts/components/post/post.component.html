@@ -47,5 +47,6 @@
     *ngIf="showComments"
     [comments]="post.comments"
     [postId]="post.id"
+    (click)="$event.stopPropagation()"
   />
 </div>
