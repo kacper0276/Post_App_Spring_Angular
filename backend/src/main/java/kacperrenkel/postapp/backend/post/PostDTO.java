@@ -1,6 +1,7 @@
 package kacperrenkel.postapp.backend.post;
 
 import jakarta.persistence.Convert;
+import kacperrenkel.postapp.backend.comment.CommentDTO;
 import kacperrenkel.postapp.backend.util.StringListConverter;
 import lombok.*;
 
@@ -22,8 +23,7 @@ public class PostDTO {
     private String image;
     private Date created;
 
-    @Convert(converter = StringListConverter.class)
-    private List<String> comments;
+    private List<CommentDTO> comments;
 
     private int userId;
     private String userProfileImage;

@@ -1,13 +1,14 @@
 package kacperrenkel.postapp.backend.post;
 
 import jakarta.persistence.*;
+import kacperrenkel.postapp.backend.comment.Comment;
 import kacperrenkel.postapp.backend.user.User;
-import kacperrenkel.postapp.backend.util.StringListConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class Post {
     private String image;
     private Date created;
 
-    @Convert(converter = StringListConverter.class)
-    private List<String> comments;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "uzytkownik_id")
