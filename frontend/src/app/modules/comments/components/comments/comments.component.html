@@ -1,6 +1,6 @@
 <div class="main-comments-container">
   <div class="comment-section">
-    <p *ngFor="let comment of comments">{{ comment.content }}</p>
+    <app-comment *ngFor="let comment of comments" [comment]="comment" />
   </div>
   <form
     class="comment-send-section"
