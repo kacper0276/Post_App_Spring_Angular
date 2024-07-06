@@ -70,9 +70,6 @@ public class PostService {
     public void addComment(final String username, final int postId, final String commentContent){
         Post post = postRepository.findById(postId).orElse(null);
         User user = userService.getByUsername(username);
-        System.out.println(username);
-        System.out.println(postId);
-        System.out.println(commentContent);
 
         Comment comment = new Comment();
         comment.setUser(user);
