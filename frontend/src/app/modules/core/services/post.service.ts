@@ -40,5 +40,22 @@ export class PostService {
     );
   }
 
-  public addComment(comment: string, username: string, postId: number): void {}
+  public addComment(
+    comment: string,
+    username: string,
+    postId: number
+  ): Observable<ServerResponse> {
+    const params = new HttpParams()
+      .append('username', username)
+      .append('postId', postId);
+
+    return this.http.patch<ServerResponse>(
+      `${this.apiUrl}/posts/add-comment`,
+      comment,
+      {
+        params,
+        withCredentials: true,
+      }
+    );
+  }
 }
