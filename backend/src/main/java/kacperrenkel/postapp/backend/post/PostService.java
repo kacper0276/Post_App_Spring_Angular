@@ -1,5 +1,7 @@
 package kacperrenkel.postapp.backend.post;
 
+import kacperrenkel.postapp.backend.comment.Comment;
+import kacperrenkel.postapp.backend.comment.CommentRepository;
 import kacperrenkel.postapp.backend.user.User;
 import kacperrenkel.postapp.backend.user.UserService;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserService userService;
     private final PostMapper mapper = PostMapper.INSTANCE;
+    private final CommentRepository commentRepository;
 
     public List<PostDTO> getAllPosts(){
         List<PostDTO> posts = new ArrayList<>();
@@ -62,5 +65,22 @@ public class PostService {
             user.setLikes(likes);
             userService.saveUser(user);
         }
+    }
+
+    public void addComment(final String username, final int postId, final String commentContent){
+        Post post = postRepository.findById(postId).orElse(null);
+        User user = userService.getByUsername(username);
+        System.out.println(username);
+        System.out.println(postId);
+        System.out.println(commentContent);
+
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setContent(commentContent);
+        comment.setPost(post);
+
+        post.getComments().add(comment);
+        commentRepository.save(comment);
+        postRepository.save(post);
     }
 }

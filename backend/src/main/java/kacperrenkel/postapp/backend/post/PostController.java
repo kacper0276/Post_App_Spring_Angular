@@ -33,4 +33,10 @@ public class PostController {
         postService.addLike(username, postId);
         return ResponseEntity.ok(new Response("Dodano like"));
     }
+
+    @PatchMapping(path = "/add-comment")
+    public ResponseEntity<Response> addComment(@RequestParam String username, @RequestParam int postId, @RequestBody String comment) {
+        postService.addComment(username, postId, comment);
+        return ResponseEntity.ok(new Response("Dodano komentarz"));
+    }
 }
