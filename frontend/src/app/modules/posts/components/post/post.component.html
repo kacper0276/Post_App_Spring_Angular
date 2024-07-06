@@ -34,7 +34,7 @@
     <button (click)="onAddLike()" [classList]="userGiveLike ? 'like' : null">
       Lubię to!
     </button>
-    <button>Komentarz</button>
+    <button (click)="showCommentFunction()">Komentarz</button>
     <button>Udostępnij</button>
   </div>
   <app-post-details
@@ -42,5 +42,10 @@
     appClickOutside
     (clickOutside)="onOutsideClick()"
     [post]="post"
+  />
+  <app-comments
+    *ngIf="showComments"
+    [comments]="post.comments"
+    [postId]="post.id"
   />
 </div>

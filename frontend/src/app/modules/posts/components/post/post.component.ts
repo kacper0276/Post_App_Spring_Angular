@@ -15,7 +15,7 @@ import { IUser } from '../../../core/models/auth.model';
 })
 export class PostComponent implements OnInit {
   @Input() post!: IPost;
-
+  showComments: boolean = false;
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;
   userGiveLike: boolean = false;
@@ -63,5 +63,9 @@ export class PostComponent implements OnInit {
         'By polubić post musisz być zalogowany'
       );
     }
+  }
+
+  showCommentFunction(): void {
+    this.showComments = !this.showComments;
   }
 }
