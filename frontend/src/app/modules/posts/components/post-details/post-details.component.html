@@ -14,7 +14,9 @@
     <p (click)="showCommentFunction()">{{ post.comments.length }} komentarzy</p>
   </div>
   <div class="buttons-section" (click)="$event.stopPropagation()">
-    <button (click)="onAddLike()">Lubię to!</button>
+    <button (click)="onAddLike()" [classList]="userGiveLike ? 'like' : null">
+      Lubię to!
+    </button>
     <button (click)="showCommentFunction()">Komentarz</button>
     <button>Udostępnij</button>
   </div>
