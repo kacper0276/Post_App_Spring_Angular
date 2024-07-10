@@ -11,6 +11,7 @@ import java.util.Date;
 @ToString
 @Builder
 public class MessageDTO {
+    private int id;
     private String text;
     private Date time;
     private String messageFromUsername;
