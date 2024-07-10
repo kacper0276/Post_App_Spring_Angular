@@ -1,10 +1,7 @@
 package kacperrenkel.postapp.backend.message;
 
 import kacperrenkel.postapp.backend.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
@@ -12,9 +9,10 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @ToString
-public class Message {
+@Builder
+public class MessageDTO {
     private String text;
     private Date time;
-    private User messageFrom;
-    private User messageTo;
+    private String messageFromUsername;
+    private String messageToUsername;
 }
