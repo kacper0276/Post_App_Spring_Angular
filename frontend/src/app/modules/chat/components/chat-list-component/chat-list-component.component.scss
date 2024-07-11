@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #cbcbcb;
+  }
+
+  img {
+    width: 20%;
+    border-radius: 50%;
+  }
+
+  p {
+    color: #000;
+  }
+}

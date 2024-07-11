@@ -48,6 +48,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'wiadomosci',
+    loadChildren: () =>
+      import('./modules/chat/chat.module').then((m) => m.ChatModule),
+  },
+  {
     path: 'logowanie',
     component: LoginComponent,
     canActivate: [unauthGuard],
