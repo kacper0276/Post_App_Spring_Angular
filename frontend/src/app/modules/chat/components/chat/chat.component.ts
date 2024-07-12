@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IMessage } from '../../../core/models/message.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../../store/app.reducer';
+import { selectAuthUser } from '../../../auth/store/auth.selectors';
+import { IUser } from '../../../core/models/auth.model';
 
 @Component({
   selector: 'app-chat',
@@ -159,8 +163,17 @@ export class ChatComponent {
       messageToUsername: 'test2',
     },
   ];
+  username!: string;
 
-  constructor() {
-    this.messages.sort((a, b) => b.date.getTime() - a.date.getTime());
+  constructor(private store: Store<AppState>) {
+    this.messages.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    store.select(selectAuthUser).subscribe({
+      next: (val: IUser | null) => {
+        if (val?.username != undefined) {
+          this.username = val?.username;
+        }
+      },
+    });
   }
 }
