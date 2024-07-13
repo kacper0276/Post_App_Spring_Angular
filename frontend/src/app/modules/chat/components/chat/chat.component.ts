@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IMessage } from '../../../core/models/message.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
@@ -164,6 +164,7 @@ export class ChatComponent {
     },
   ];
   username!: string;
+  @Input() messageWithUser!: string | null;
 
   constructor(private store: Store<AppState>) {
     this.messages.sort((a, b) => a.date.getTime() - b.date.getTime());

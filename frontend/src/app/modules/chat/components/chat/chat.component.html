@@ -1,4 +1,4 @@
-<div class="chat-container">
+<div class="chat-container" *ngIf="messageWithUser != null">
   <div class="messages-container">
     <app-chat-message
       *ngFor="let message of messages"

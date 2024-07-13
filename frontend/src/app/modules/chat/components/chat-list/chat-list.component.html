@@ -1,3 +1,6 @@
 <div class="main-container">
-  <app-chat-list-component *ngFor="let item of arr" />
+  <app-chat-list-component
+    *ngFor="let item of arr"
+    (click)="setActualChat(item)"
+  />
 </div>

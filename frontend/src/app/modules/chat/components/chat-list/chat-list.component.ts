@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chat-list',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ChatListComponent {
   arr: string[] = [
-    'aaa',
+    'test2',
     'bbb',
     'ccc',
     'ddd',
@@ -32,4 +32,10 @@ export class ChatListComponent {
     'ccc',
     'ddd',
   ];
+
+  @Output() actualChat = new EventEmitter<string>();
+
+  setActualChat(actual: string): void {
+    this.actualChat.emit(actual);
+  }
 }
