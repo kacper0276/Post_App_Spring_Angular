@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/users")
 @AllArgsConstructor
@@ -47,5 +49,10 @@ public class UserController {
         } catch (ObjectNotExistInDBException ex) {
             return ResponseEntity.status(400).body(new Response("Nie można aktywować konta użytkownika"));
         }
+    }
+
+    @GetMapping(path = "/search-users")
+    public ResponseEntity<List<UserDTO>> findUsers(@RequestParam String username) {
+        return ResponseEntity.ok(userService.getUsersIncludeName(username));
     }
 }

@@ -18,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.Cookie;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -164,5 +166,17 @@ public class UserService {
 
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    public List<UserDTO> getUsersIncludeName(String name) {
+        List<UserDTO> users = new ArrayList<>();
+
+        userRepository
+                .findByUsernameContainingIgnoreCase(name)
+                .forEach(user -> {
+                    users.add(mapper.userToUserDTO(user));
+                });
+
+        return users;
     }
 }
