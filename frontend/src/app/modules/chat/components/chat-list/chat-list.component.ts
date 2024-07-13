@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -36,6 +37,8 @@ export class ChatListComponent implements OnInit {
   ];
   searchControl = new FormControl<string>('');
   @Output() actualChat = new EventEmitter<string>();
+
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges
