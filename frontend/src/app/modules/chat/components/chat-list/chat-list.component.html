@@ -1,4 +1,9 @@
 <div class="main-container">
+  <input
+    placeholder="Szukaj użytkownika..."
+    class="input-search-user"
+    [formControl]="searchControl"
+  />
   <app-chat-list-component
     *ngFor="let item of arr"
     (click)="setActualChat(item)"
