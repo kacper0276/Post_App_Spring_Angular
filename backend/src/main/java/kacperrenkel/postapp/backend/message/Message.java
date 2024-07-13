@@ -1,7 +1,6 @@
 package kacperrenkel.postapp.backend.message;
 
 import jakarta.persistence.*;
-import kacperrenkel.postapp.backend.user.User;
 import lombok.*;
 
 import java.util.Date;
