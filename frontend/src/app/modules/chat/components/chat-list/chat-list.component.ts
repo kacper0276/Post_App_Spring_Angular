@@ -44,11 +44,26 @@ export class ChatListComponent implements OnInit {
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => {
-        console.log(value);
+        if (value !== null && value.length > 1) {
+          console.log(value);
+          this.userService.getUsersIncludeName(value).subscribe({
+            next: (val) => {
+              console.log(val);
+            },
+          });
+        }
       });
   }
 
   setActualChat(actual: string): void {
     this.actualChat.emit(actual);
+  }
+
+  getFilteredArray(): string[] {
+    const value = this.searchControl.value;
+    if (value && value !== '') {
+      return [value];
+    }
+    return this.arr;
   }
 }
