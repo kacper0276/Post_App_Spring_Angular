@@ -5,7 +5,7 @@
     [formControl]="searchControl"
   />
   <app-chat-list-component
-    *ngFor="let item of arr"
+    *ngFor="let item of getFilteredArray()"
     (click)="setActualChat(item)"
   />
 </div>
