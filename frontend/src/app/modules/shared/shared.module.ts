@@ -6,6 +6,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NotificationComponent } from './components/notification/notification.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ErrorComponent } from './components/error/error.component';
+import { CountdownTimeSinceCreationPipe } from './pipes/countdown-time-since-creation.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ErrorComponent } from './components/error/error.component';
     NotificationComponent,
     AlertComponent,
     ErrorComponent,
+    CountdownTimeSinceCreationPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
@@ -24,6 +26,7 @@ import { ErrorComponent } from './components/error/error.component';
     AlertComponent,
     NotificationComponent,
     ErrorComponent,
+    CountdownTimeSinceCreationPipe,
   ],
 })
 export class SharedModule {}

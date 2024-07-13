@@ -1,15 +1,17 @@
 .main-container {
   width: 100%;
   min-height: 5%;
-  flex-direction: row;
+  display: flex;
+  gap: 20px;
 
   .message {
     max-width: 50%;
-    background-color: rebeccapurple;
+    color: #000;
   }
 
   .image-container {
-    width: 10%;
+    width: 5%;
+    height: 5%;
 
     img {
       width: 100%;

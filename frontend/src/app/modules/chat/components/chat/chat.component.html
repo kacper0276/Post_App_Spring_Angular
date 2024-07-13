@@ -1,6 +1,10 @@
-<div class="chat-container">
+<div class="chat-container" *ngIf="messageWithUser != null">
   <div class="messages-container">
-    <app-chat-message [message]="messages[0]" />
+    <app-chat-message
+      *ngFor="let message of messages"
+      [message]="message"
+      [username]="username"
+    />
   </div>
   <div class="send-message-container">
     <input type="text" class="input-text" />

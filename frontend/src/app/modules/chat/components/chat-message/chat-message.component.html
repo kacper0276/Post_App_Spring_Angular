@@ -1,11 +1,22 @@
-<div class="main-container">
-  <div class="message">
-    {{ message.message }}
-  </div>
+<div
+  class="main-container"
+  [ngStyle]="
+    message.messageFromUsername === username
+      ? {
+          'flex-direction': 'row-reverse'
+        }
+      : {
+          'flex-direction': 'row'
+        }
+  "
+>
   <div class="image-container">
     <img
       src="../../../../../assets/profiles-image/default_profile.png"
       alt="Zdjęcie użytkownika"
     />
+  </div>
+  <div class="message">
+    {{ message.text }}
   </div>
 </div>

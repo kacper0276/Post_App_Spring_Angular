@@ -2,10 +2,10 @@
 
 <div class="container">
   <div class="chat-list-container">
-    <app-chat-list />
+    <app-chat-list (actualChat)="setActualChat($event)" />
   </div>
 
   <div class="chat-container">
-    <app-chat />
+    <app-chat [messageWithUser]="actualChat" />
   </div>
 </div>
