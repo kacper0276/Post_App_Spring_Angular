@@ -13,7 +13,6 @@ import * as AuthActions from '../../store/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { getStrength } from '../../../core/helpers/progressBar';
-import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-register',
@@ -35,8 +34,7 @@ export class RegisterComponent {
   constructor(
     private formService: FormService,
     private store: Store<AppState>,
-    private titleService: Title,
-    private notifierService: NotifierService
+    private titleService: Title
   ) {
     titleService.setTitle('Rejestracja');
   }
@@ -49,8 +47,6 @@ export class RegisterComponent {
       this.store.dispatch(
         AuthActions.register({ registerData: { username, email, password } })
       );
-    } else {
-      this.notifierService.notify('error', 'Nastąpił błąd podczas rejestracji');
     }
   }
 

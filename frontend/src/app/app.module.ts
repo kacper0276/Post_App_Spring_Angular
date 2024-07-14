@@ -12,26 +12,10 @@ import { SharedModule } from './modules/shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { authReducer } from './modules/auth/store/auth.reducer';
 import { AuthEffects } from './modules/auth/store/auth.effects';
-import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
-const customNotifier: NotifierOptions = {
-  position: {
-    horizontal: {
-      position: 'right',
-      distance: 12,
-    },
-    vertical: {
-      position: 'top',
-      distance: 12,
-      gap: 10,
-    },
-  },
-  theme: 'material',
-};
 
 registerLocaleData(localePl);
 
@@ -47,7 +31,6 @@ registerLocaleData(localePl);
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([AuthEffects]),
-    NotifierModule.withConfig(customNotifier),
   ],
   providers: [provideAnimationsAsync(), { provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent],

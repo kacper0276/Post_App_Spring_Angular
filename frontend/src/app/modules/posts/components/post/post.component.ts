@@ -5,7 +5,6 @@ import { PostService } from '../../../core/services/post.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
-import { NotifierService } from 'angular-notifier';
 import { IUser } from '../../../core/models/auth.model';
 
 @Component({
@@ -23,8 +22,7 @@ export class PostComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private store: Store<AppState>,
-    private notifierService: NotifierService
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -57,11 +55,6 @@ export class PostComponent implements OnInit {
       this.postService.addLike(this.username, this.post.id).subscribe({
         next: (val) => console.log(val),
       });
-    } else {
-      this.notifierService.notify(
-        'warning',
-        'By polubić post musisz być zalogowany'
-      );
     }
   }
 
