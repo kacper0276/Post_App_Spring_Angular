@@ -6,7 +6,7 @@
       type="text"
       placeholder="Nazwa użytkownika"
       [formControl]="controls.username"
-      (input)="(controls.username.markAsTouched)"
+      (input)="controls.username.markAsTouched()"
       [ngClass]="
         controls.username.invalid && controls.username.touched
           ? 'error-input'
@@ -21,7 +21,7 @@
       type="password"
       placeholder="Hasło"
       [formControl]="controls.password"
-      (input)="(controls.password.markAsTouched)"
+      (input)="controls.password.markAsTouched()"
       [ngClass]="
         controls.password.invalid && controls.password.touched
           ? 'error-input'

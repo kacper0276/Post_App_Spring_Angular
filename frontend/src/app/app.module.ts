@@ -16,6 +16,7 @@ import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localePl);
 
@@ -28,6 +29,7 @@ registerLocaleData(localePl);
     CoreModule,
     AuthModule,
     SharedModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([AuthEffects]),
