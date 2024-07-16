@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { IUser } from '../../core/models/auth.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthEffects {
@@ -16,11 +17,18 @@ export class AuthEffects {
           map((response) => {
             if (this.isValidUser(response)) {
               const user = response as IUser;
+              this.toastr.success('', 'Pomyślnie zalogowano', {
+                timeOut: 2000,
+              });
 
               this.router.navigate(['/']);
 
               return AuthActions.loginSuccess({ user: { ...user } });
             } else {
+              this.toastr.error('', 'Wystąpił błąd!', {
+                timeOut: 2000,
+              });
+
               throw new Error('Błąd przy logowaniu!');
             }
           }),
@@ -52,6 +60,10 @@ export class AuthEffects {
       switchMap(() => {
         return this.authService.logout().pipe(
           map(() => {
+            this.toastr.success('', 'Wylogowano', {
+              timeOut: 2000,
+            });
+
             this.router.navigate(['/logowanie']);
             return AuthActions.logoutSuccess();
           }),
@@ -69,6 +81,10 @@ export class AuthEffects {
       switchMap((action) => {
         return this.authService.register(action.registerData).pipe(
           map((user) => {
+            this.toastr.success('', 'Pomyślnie zarejestrowano!', {
+              timeOut: 2000,
+            });
+
             this.router.navigate(['/logowanie']);
 
             return AuthActions.registerSuccess();
@@ -84,7 +100,8 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   isValidUser(response: any): response is IUser {
