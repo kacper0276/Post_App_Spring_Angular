@@ -9,7 +9,7 @@
       type="email"
       placeholder="Email: przyklad@poczta.pl"
       [formControl]="controls.email"
-      (input)="(controls.email.markAsTouched)"
+      (input)="controls.email.markAsTouched()"
       [ngClass]="
         controls.email.invalid && controls.email.touched ? 'error-input' : ''
       "
@@ -21,7 +21,7 @@
       type="text"
       placeholder="Login: nazwauzywkonika"
       [formControl]="controls.username"
-      (input)="(controls.username.markAsTouched)"
+      (input)="controls.username.markAsTouched()"
       [ngClass]="
         controls.username.invalid && controls.username.touched
           ? 'error-input'
@@ -59,7 +59,7 @@
       type="password"
       placeholder="Powtórz hasło"
       [formControl]="controls.repeatedPassword"
-      (input)="(controls.repeatedPassword.markAsTouched)"
+      (input)="controls.repeatedPassword.markAsTouched()"
       [ngClass]="
         controls.repeatedPassword.invalid && controls.repeatedPassword.touched
           ? 'error-input'
