@@ -1,0 +1,23 @@
+{
+  "hello-on-main-page": "Witaj na stronie głównej",
+  "please-select-language": "Proszę wybierz język",
+
+  "main-page": "Strona główna",
+  "posts": "Posty",
+  "log-in": "Zaloguj się",
+  "settings": "Ustawienia",
+  "messages": "Wiadomości",
+  "admin-settings": "Ustawienia administratora",
+  "log-out": "Wyloguj się",
+
+  "recent-posts": "Ostatnie posty",
+  "sort-by": "Sortuj według",
+  "sort": "Sortuj",
+  "description": "Opis",
+  "author": "Autor",
+  "likes": "Lajki",
+  "comments": "Komentarze",
+  "like": "Lubię to",
+  "comment": "Skomentuj",
+  "share": "Udostępnij"
+}
