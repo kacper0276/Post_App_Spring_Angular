@@ -1,0 +1,23 @@
+{
+  "hello-on-main-page": "Welcome to the home page",
+  "please-select-language": "Please select language",
+
+  "main-page": "Main page",
+  "posts": "Posts",
+  "log-in": "Log in",
+  "settings": "Settings",
+  "messages": "Messages",
+  "admin-settings": "Administrator settings",
+  "log-out": "Log out",
+
+  "recent-posts": "Recent posts",
+  "sort-by": "Sort by",
+  "sort": "Sort",
+  "description": "Description",
+  "author": "Author",
+  "likes": "Likes",
+  "comments": "Comments",
+  "like": "Like",
+  "comment": "Comment",
+  "share": "Share"
+}

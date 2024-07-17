@@ -17,8 +17,16 @@ import localePl from '@angular/common/locales/pl';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from './modules/core/services/auth.service';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 registerLocaleData(localePl);
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -26,15 +34,29 @@ registerLocaleData(localePl);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     CoreModule,
     AuthModule,
     SharedModule,
     ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     StoreModule.forRoot({ auth: authReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([AuthEffects]),
   ],
-  providers: [provideAnimationsAsync(), { provide: LOCALE_ID, useValue: 'pl' }],
+  providers: [
+    provideAnimationsAsync(),
+    { provide: LOCALE_ID, useValue: 'pl' },
+    AuthService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
