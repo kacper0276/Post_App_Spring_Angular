@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import * as AuthActions from '../../../auth/store/auth.actions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,11 @@ export class NavbarComponent implements OnInit {
   userLoggedIn!: boolean;
   adminLoggedIn!: boolean;
 
-  constructor(private renderer: Renderer2, private store: Store<AppState>) {}
+  constructor(
+    private renderer: Renderer2,
+    private store: Store<AppState>,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.store.select(selectAuthUser).subscribe({

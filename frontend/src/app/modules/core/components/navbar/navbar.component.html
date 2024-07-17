@@ -13,35 +13,43 @@
         routerLink="/"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        >Strona główna</a
+        >{{ "main-page" | translate }}</a
       >
     </li>
     <li class="menu-option">
-      <a routerLink="posty" routerLinkActive="active">Posty</a>
+      <a routerLink="posty" routerLinkActive="active">{{
+        "posts" | translate
+      }}</a>
     </li>
 
     <ng-container *ngIf="userLoggedIn; else notUser">
       <li class="menu-option">
-        <a routerLink="ustawienia" routerLinkActive="active">Ustawienia</a>
+        <a routerLink="ustawienia" routerLinkActive="active">{{
+          "settings" | translate
+        }}</a>
       </li>
       <li class="menu-option">
-        <a routerLink="wiadomosci" routerLinkActive="active">Wiadomości</a>
+        <a routerLink="wiadomosci" routerLinkActive="active">{{
+          "messages" | translate
+        }}</a>
       </li>
       <ng-container *ngIf="adminLoggedIn">
         <li class="menu-option">
-          <a routerLink="admin" routerLinkActive="active"
-            >Ustawienia Administratora</a
-          >
+          <a routerLink="admin" routerLinkActive="active">{{
+            "admin-settings" | translate
+          }}</a>
         </li>
       </ng-container>
       <li class="menu-option login-button">
-        <button (click)="logout()">Wyloguj się</button>
+        <button (click)="logout()">{{ "log-out" | translate }}</button>
       </li>
     </ng-container>
 
     <ng-template #notUser>
       <li class="menu-option login-button">
-        <a routerLink="logowanie" routerLinkActive="activeLogin">Zaloguj się</a>
+        <a routerLink="logowanie" routerLinkActive="activeLogin">{{
+          "log-in" | translate
+        }}</a>
       </li>
     </ng-template>
   </ul>
