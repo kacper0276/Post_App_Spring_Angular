@@ -7,6 +7,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { AlertComponent } from './components/alert/alert.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CountdownTimeSinceCreationPipe } from './pipes/countdown-time-since-creation.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CountdownTimeSinceCreationPipe } from './pipes/countdown-time-since-cre
     NotificationComponent,
     ErrorComponent,
     CountdownTimeSinceCreationPipe,
+    TranslateModule,
   ],
 })
 export class SharedModule {}
