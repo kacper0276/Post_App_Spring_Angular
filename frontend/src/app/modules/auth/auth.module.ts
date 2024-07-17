@@ -7,7 +7,12 @@ import { RouterModule } from '@angular/router';
 import { ActivateAccountComponent } from './components/activate-account/activate-account.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, RecoverPasswordComponent, ActivateAccountComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    RecoverPasswordComponent,
+    ActivateAccountComponent,
+  ],
   imports: [SharedModule, RouterModule],
 })
 export class AuthModule {}

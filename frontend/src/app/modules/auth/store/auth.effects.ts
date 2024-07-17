@@ -9,6 +9,13 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthEffects {
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
@@ -96,13 +103,6 @@ export class AuthEffects {
       })
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
 
   isValidUser(response: any): response is IUser {
     return (
