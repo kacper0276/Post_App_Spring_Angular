@@ -1,3 +1,14 @@
-<div class="background-div">
-  <h1>Witaj na stronie głównej</h1>
+<div class="background-div"></div>
+
+<div class="main-container">
+  <h1>{{ "hello-on-main-page" | translate }}</h1>
+  <h2>{{ "please-select-language" | translate }}</h2>
+  <div class="button-section">
+    <button (click)="changeLanguage('pl')">
+      <img src="../../../../../assets/images/polish.png" />
+    </button>
+    <button (click)="changeLanguage('en')">
+      <img src="../../../../../assets/images/english.png" />
+    </button>
+  </div>
 </div>
