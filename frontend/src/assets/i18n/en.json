@@ -19,5 +19,57 @@
   "comments": "Comments",
   "like": "Like",
   "comment": "Comment",
-  "share": "Share"
+  "share": "Share",
+  "name": "Name",
+  "date": "Date",
+  "ascending": "Ascending",
+  "descending": "Descending",
+
+  "successfully-logged-in": "Successfully logged in",
+  "successfully-logged-out": "Successfully logged out",
+  "an-error-occurred": "An error occurred",
+  "successfully-registered": "Successfully registered",
+
+  "forgot-your-password": "Forgot your password",
+  "click-here": "Click here",
+  "dont-have-an-account": "Don't have an account",
+  "sign-up": "Sign up",
+  "username": "Username",
+  "password": "Password",
+  "repeat-password": "Repeat password",
+
+  "404-page-not-found": "404 Page not found",
+
+  "hide-menu": "Hide menu",
+  "expand-menu": "Expand menu",
+  "user-settings": "User settings",
+  "edit-posts": "Edit posts",
+  "add-post": "Add post",
+
+  "title": "Title",
+  "add-photos-to-the-post": "Add photos to the post",
+  "add-a-post": "Add a post",
+
+  "upload-avatar": "Upload avatar",
+  "change-data": "Change data",
+
+  "likes-count": "Likes count",
+  "comments-count": "Comments count",
+
+  "back": "Back",
+  "post-name": "Post name",
+  "photo": "Photo",
+  "post-description": "Post description",
+  "edit-post-data": "Edit post data",
+  "post-not-found": "Post not found",
+  "users-settings": "Users settings",
+
+  "search-for-user": "Search for user",
+  "send": "Send",
+
+  "add": "Add",
+  "to-add-a-comment-you-need-to-be-logged-in": "To add a comment, you need to be logged in",
+
+  "show-less": "Show less",
+  "show-more": "Show more"
 }
