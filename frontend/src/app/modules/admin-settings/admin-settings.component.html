@@ -1,6 +1,6 @@
 <div class="background-div"></div>
 <div class="main-container">
-  <h1>Ustawienia Administratora</h1>
+  <h1>{{ "admin-settings" | translate }}</h1>
   <div
     class="navigation-settings-menu"
     [ngClass]="menuExtend ? 'show-more-menu' : ''"
@@ -11,13 +11,19 @@
         (click)="changeMenuVisible()"
         [ngClass]="menuExtend ? 'button-menu-show' : ''"
       >
-        <p>{{ menuExtend ? "Schowaj menu" : "Rozsuń menu" }}</p>
+        <p>
+          {{
+            menuExtend ? ("hide-menu" | translate) : ("expand-menu" | translate)
+          }}
+        </p>
       </li>
       <li class="menu-element" routerLinkActive="active-element">
-        <a routerLink="ustawienia-uzytkownikow">Ustawienia użytkowników</a>
+        <a routerLink="ustawienia-uzytkownikow">{{
+          "users-settings" | translate
+        }}</a>
       </li>
       <li class="menu-element" routerLinkActive="active-element">
-        <a routerLink="edycja-postow">Edycja postów</a>
+        <a routerLink="edycja-postow">{{ "edit-posts" | translate }}</a>
       </li>
     </ul>
   </div>

@@ -1,21 +1,21 @@
 <div class="background-div"></div>
 
 <div class="main-container">
-  <h1>Ostatnie Posty:</h1>
+  <h1>{{ "recent-posts" | translate }}:</h1>
   <div class="filter">
     <input type="text" [formControl]="searchControl" />
-    <label>Sortuj po</label>
+    <label>{{ "sort-by" | translate }}</label>
     <select [formControl]="sortControl">
       <option value="">-</option>
-      <option value="autor">Autorze</option>
-      <option value="name">Nazwie</option>
-      <option value="data">Dacie dodania</option>
+      <option value="autor">{{ "author" | translate }}</option>
+      <option value="name">{{ "name" }}</option>
+      <option value="data">{{ "date" | translate }}</option>
     </select>
-    <label>Sortuj</label>
+    <label>{{ "sort" | translate }}</label>
     <select [formControl]="orderControl">
       <option value="">-</option>
-      <option value="asc">rosnąco</option>
-      <option value="desc">malejąco</option>
+      <option value="asc">{{ "ascending" | translate }}</option>
+      <option value="desc">{{ "descending" | translate }}</option>
     </select>
   </div>
   <div class="posts-display">

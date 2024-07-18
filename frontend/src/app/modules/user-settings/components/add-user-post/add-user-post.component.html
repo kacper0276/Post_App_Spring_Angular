@@ -7,13 +7,13 @@
         [formControl]="controls.author"
         [readOnly]="true"
       />
-      <span class="input__label">Nazwa użytkownika</span>
+      <span class="input__label">{{ "username" | translate }}</span>
     </label>
   </div>
   <div class="input-element">
     <label class="input">
       <input type="text" class="input__field" [formControl]="controls.title" />
-      <span class="input__label">Tytuł</span>
+      <span class="input__label">{{ "title" | translate }}</span>
     </label>
   </div>
   <div class="input-element">
@@ -22,12 +22,14 @@
         class="input__field"
         [formControl]="controls.content"
       ></textarea>
-      <span class="input__label">Opis</span>
+      <span class="input__label">{{ "description" | translate }}</span>
     </label>
   </div>
   <div class="input-element">
     <input type="file" class="file" />
-    <label for="file" class="label-file">Dodaj zdjęcia do posta</label>
+    <label for="file" class="label-file">{{
+      "add-photos-to-the-post" | translate
+    }}</label>
   </div>
-  <button class="add-post-button">Dodaj post</button>
+  <button class="add-post-button">{{ "add-a-post" | translate }}</button>
 </form>

@@ -7,13 +7,13 @@
       />
     </div>
     <p>
-      Autor: {{ post.author }},
+      {{ "author" | translate }}: {{ post.author }},
       <small>{{ post.created | countdownTimeSinceCreation }}</small>
     </p>
   </div>
   <hr />
   <p>
-    opis:
+    {{ "description" | translate }}:
     {{ showMoreText ? post.content : (post.content | sliceText : 10) }}
   </p>
   <button
@@ -21,21 +21,21 @@
     (click)="toggleShowMoreText(); $event.stopPropagation()"
     *ngIf="post.content.length > 10"
   >
-    {{ showMoreText ? "Pokaż mniej" : "Pokaż więcej" }}
+    {{ showMoreText ? ("show-less" | translate) : ("Show more" | translate) }}
   </button>
   <div class="image-div">
     <img src="{{ post.image }}" alt="ALT" />
   </div>
   <div class="comments-like-div">
-    <p>polubienia: {{ post.likes }}</p>
-    <p>{{ post.comments.length }} komentarzy</p>
+    <p>{{ "likes" | translate }}: {{ post.likes }}</p>
+    <p>{{ post.comments.length }} {{ "comments" | translate }}</p>
   </div>
   <div class="buttons-section" (click)="$event.stopPropagation()">
     <button (click)="onAddLike()" [classList]="userGiveLike ? 'like' : null">
-      Lubię to!
+      {{ "like" | translate }}
     </button>
-    <button (click)="showCommentFunction()">Komentarz</button>
-    <button>Udostępnij</button>
+    <button (click)="showCommentFunction()">{{ "comment" | translate }}</button>
+    <button>{{ "share" | translate }}</button>
   </div>
   <app-post-details
     *ngIf="showMoreDetailsPost"

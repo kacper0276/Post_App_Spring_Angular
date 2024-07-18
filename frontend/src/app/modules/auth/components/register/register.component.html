@@ -7,7 +7,7 @@
   <div class="register-form-div-element">
     <input
       type="email"
-      placeholder="Email: przyklad@poczta.pl"
+      placeholder="Email"
       [formControl]="controls.email"
       (input)="controls.email.markAsTouched()"
       [ngClass]="
@@ -19,7 +19,7 @@
   <div class="register-form-div-element">
     <input
       type="text"
-      placeholder="Login: nazwauzywkonika"
+      placeholder="{{ 'username' | translate }}"
       [formControl]="controls.username"
       (input)="controls.username.markAsTouched()"
       [ngClass]="
@@ -33,7 +33,7 @@
   <div class="register-form-div-element">
     <input
       type="password"
-      placeholder="Hasło"
+      placeholder="{{ 'password' | translate }}"
       [formControl]="controls.password"
       (input)="handleChange($event)"
       [ngClass]="
@@ -57,7 +57,7 @@
   <div class="register-form-div-element">
     <input
       type="password"
-      placeholder="Powtórz hasło"
+      placeholder="{{ 'repeat-password' | translate }}"
       [formControl]="controls.repeatedPassword"
       (input)="controls.repeatedPassword.markAsTouched()"
       [ngClass]="
@@ -83,6 +83,6 @@
   </div>
   <div class="strength" #strength></div>
   <div class="register-form-div-element">
-    <button class="register-button">Zarejestruj się</button>
+    <button class="register-button">{{ "sign-up" | translate }}</button>
   </div>
 </form>

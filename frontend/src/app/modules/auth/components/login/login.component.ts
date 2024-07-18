@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import * as AuthActions from '../../store/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent {
   constructor(
     private formService: FormService,
     private titleService: Title,
+    private translate: TranslateService,
     private store: Store<AppState>
   ) {
     titleService.setTitle('Logowanie');
