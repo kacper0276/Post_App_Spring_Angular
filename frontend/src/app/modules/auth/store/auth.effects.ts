@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { IUser } from '../../core/models/auth.model';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class AuthEffects {
@@ -13,7 +14,8 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {}
 
   login$ = createEffect(() =>
@@ -24,17 +26,25 @@ export class AuthEffects {
           map((response) => {
             if (this.isValidUser(response)) {
               const user = response as IUser;
-              this.toastr.success('', 'Pomyślnie zalogowano', {
-                timeOut: 2000,
-              });
+              this.toastr.success(
+                '',
+                this.translate.instant('successfully-logged-in'),
+                {
+                  timeOut: 2000,
+                }
+              );
 
               this.router.navigate(['/']);
 
               return AuthActions.loginSuccess({ user: { ...user } });
             } else {
-              this.toastr.error('', 'Wystąpił błąd!', {
-                timeOut: 2000,
-              });
+              this.toastr.error(
+                '',
+                this.translate.instant('an-error-occurred'),
+                {
+                  timeOut: 2000,
+                }
+              );
 
               throw new Error('Błąd przy logowaniu!');
             }
@@ -67,9 +77,13 @@ export class AuthEffects {
       switchMap(() => {
         return this.authService.logout().pipe(
           map(() => {
-            this.toastr.success('', 'Wylogowano', {
-              timeOut: 2000,
-            });
+            this.toastr.success(
+              '',
+              this.translate.instant('successfully-logged-out'),
+              {
+                timeOut: 2000,
+              }
+            );
 
             this.router.navigate(['/logowanie']);
             return AuthActions.logoutSuccess();
@@ -88,9 +102,13 @@ export class AuthEffects {
       switchMap((action) => {
         return this.authService.register(action.registerData).pipe(
           map((user) => {
-            this.toastr.success('', 'Pomyślnie zarejestrowano!', {
-              timeOut: 2000,
-            });
+            this.toastr.success(
+              '',
+              this.translate.instant('successfully-registered'),
+              {
+                timeOut: 2000,
+              }
+            );
 
             this.router.navigate(['/logowanie']);
 
