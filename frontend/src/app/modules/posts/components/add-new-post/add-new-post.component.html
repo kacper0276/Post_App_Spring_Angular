@@ -14,13 +14,21 @@
     />
   </div>
   <div class="add-post-element">
-    <input type="text" [formControl]="controls.title" placeholder="Tytuł" />
+    <input
+      type="text"
+      [formControl]="controls.title"
+      placeholder="{{ 'title' | translate }}"
+    />
   </div>
   <div class="add-post-element">
-    <input type="text" [formControl]="controls.content" placeholder="Opis" />
+    <input
+      type="text"
+      [formControl]="controls.content"
+      placeholder="{{ 'description' | translate }}"
+    />
   </div>
   <div class="add-post-element">
     <input type="file" [formControl]="controls.img" />
   </div>
-  <button>Dodaj post</button>
+  <button>{{ "add-a-post" | translate }}</button>
 </form>
