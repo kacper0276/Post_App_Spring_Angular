@@ -4,7 +4,7 @@
   <div class="login-form-div-element">
     <input
       type="text"
-      placeholder="Nazwa użytkownika"
+      placeholder="{{ 'username' | translate }}"
       [formControl]="controls.username"
       (input)="controls.username.markAsTouched()"
       [ngClass]="
@@ -19,7 +19,7 @@
     <input
       #passwordInput
       type="password"
-      placeholder="Hasło"
+      placeholder="{{ 'password' | translate }}"
       [formControl]="controls.password"
       (input)="controls.password.markAsTouched()"
       [ngClass]="
@@ -40,12 +40,14 @@
     <app-error>{{ alertMsg }}</app-error>
   </div>
   <div class="login-form-div-element">
-    <button class="login-button">Zaloguj się</button>
+    <button class="login-button">{{ "log-in" | translate }}</button>
   </div>
   <p class="login-form-links-to-other-page">
-    Zapomniałaś/eś hasła? <a routerLink="/odzyskaj-haslo">Kliknij tutaj</a>
+    {{ "forgot-your-password" | translate }}?
+    <a routerLink="/odzyskaj-haslo">{{ "click-here" | translate }}</a>
   </p>
   <p class="login-form-links-to-other-page">
-    Nie masz konta? <a routerLink="/rejestracja">Zarejestruj się</a>
+    {{ "dont-have-an-account" | translate }}?
+    <a routerLink="/rejestracja">{{ "sign-up" | translate }}</a>
   </p>
 </form>
