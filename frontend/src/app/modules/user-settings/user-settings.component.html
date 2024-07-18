@@ -1,7 +1,7 @@
 <div class="background-div"></div>
 
 <div class="main-container">
-  <h1>Ustawienia</h1>
+  <h1>{{ "settings" | translate }}</h1>
   <div
     class="navigation-settings-menu"
     [ngClass]="menuExtend ? 'show-more-menu' : ''"
@@ -12,16 +12,22 @@
         (click)="changeMenuVisible()"
         [ngClass]="menuExtend ? 'button-menu-show' : ''"
       >
-        <p>{{ menuExtend ? "Schowaj menu" : "Rozsuń menu" }}</p>
+        <p>
+          {{
+            menuExtend ? ("hide-menu" | translate) : ("expand-menu" | translate)
+          }}
+        </p>
       </li>
       <li class="menu-element" routerLinkActive="active-element">
-        <a routerLink="ustawienia-uzytkownika">Ustawienia użytkownika</a>
+        <a routerLink="ustawienia-uzytkownika">{{
+          "user-settings" | translate
+        }}</a>
       </li>
       <li class="menu-element" routerLinkActive="active-element">
-        <a routerLink="edycja-postow">Edycja postów</a>
+        <a routerLink="edycja-postow">{{ "edit-posts" | translate }}</a>
       </li>
       <li class="menu-element" routerLinkActive="active-element">
-        <a routerLink="dodaj-post">Dodaj post</a>
+        <a routerLink="dodaj-post">{{ "add-post" | translate }}</a>
       </li>
     </ul>
   </div>

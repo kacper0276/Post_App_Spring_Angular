@@ -4,7 +4,7 @@
   </div>
   <div class="image-container"></div>
   <div class="stat-container">
-    <p>Liczba polubień: {{ post.like }}</p>
-    <p>Liczba komentarzy: {{ post.comments.length }}</p>
+    <p>{{ "likes-count" | translate }}: {{ post.like }}</p>
+    <p>{{ "comments-count" | translate }}: {{ post.comments.length }}</p>
   </div>
 </div>

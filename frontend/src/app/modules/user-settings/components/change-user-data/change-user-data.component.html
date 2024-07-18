@@ -10,7 +10,9 @@
       class="file"
       (change)="onFileSelected($event)"
     />
-    <label for="file" class="label-file">Wgraj awatar</label>
+    <label for="file" class="label-file">{{
+      "upload-avatar" | translate
+    }}</label>
   </div>
   <div class="input-element">
     <label class="input">
@@ -20,7 +22,7 @@
         placeholder=" "
         [formControl]="controls.username"
       />
-      <span class="input__label">Nazwa użytkownika</span>
+      <span class="input__label">{{ "username" | translate }}</span>
     </label>
   </div>
   <div class="input-element">
@@ -43,10 +45,12 @@
         autocomplete="new-password"
         [formControl]="controls.password"
       />
-      <span class="input__label">Hasło</span>
+      <span class="input__label">{{ "password" | translate }}</span>
     </label>
   </div>
   <div class="button-section">
-    <button class="change-usr-data-button">Zmień dane</button>
+    <button class="change-usr-data-button">
+      {{ "change-data" | translate }}
+    </button>
   </div>
 </form>

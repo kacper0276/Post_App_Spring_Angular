@@ -6,7 +6,7 @@
 <ng-template #foundPost>
   <form [formGroup]="editPostForm" (ngSubmit)="onChangePostData()">
     <div>
-      <a routerLink="/ustawienia/edycja-postow">powrót</a>
+      <a routerLink="/ustawienia/edycja-postow">{{ "back" | translate }}</a>
     </div>
     <div class="form-row">
       <div class="input-data">
@@ -17,7 +17,7 @@
       <div class="input-data">
         <input type="text" [value]="controls.author.value" disabled />
         <div class="underline"></div>
-        <label for="">Autor</label>
+        <label for="">{{ "author" | translate }}</label>
       </div>
     </div>
     <div class="form-row">
@@ -28,7 +28,7 @@
           [formControl]="controls.title"
         />
         <div class="underline"></div>
-        <label for="">Nazwa artykułu</label>
+        <label for="">{{ "post-name" | translate }}</label>
       </div>
       <div class="input-data">
         <input
@@ -37,7 +37,7 @@
           [formControl]="controls.img"
         />
         <div class="underline"></div>
-        <label for="">Img</label>
+        <label for="">{{ "photo" | translate }}</label>
       </div>
     </div>
     <div class="form-row">
@@ -50,12 +50,12 @@
         ></textarea>
         <br />
         <div class="underline"></div>
-        <label for="">Opis postu</label>
+        <label for="">{{ "post-description" | translate }}</label>
         <br />
         <div class="form-row submit-btn">
           <div class="input-data">
             <div class="inner"></div>
-            <button>Zmień dane postu</button>
+            <button>{{ "edit-post-data" | translate }}</button>
           </div>
         </div>
       </div>
@@ -64,5 +64,5 @@
 </ng-template>
 
 <ng-template #notFoundPost>
-  <h2>Nie znaleziono posta</h2>
+  <h2>{{ "post-not-found" | translate }}</h2>
 </ng-template>
