@@ -1,6 +1,6 @@
 {
   "hello-on-main-page": "Witaj na stronie głównej",
-  "please-select-language": "Proszę wybierz język",
+  "please-select-language": "Proszę wybrać język",
 
   "main-page": "Strona główna",
   "posts": "Posty",
@@ -10,14 +10,66 @@
   "admin-settings": "Ustawienia administratora",
   "log-out": "Wyloguj się",
 
-  "recent-posts": "Ostatnie posty",
+  "recent-posts": "Najnowsze posty",
   "sort-by": "Sortuj według",
   "sort": "Sortuj",
   "description": "Opis",
   "author": "Autor",
-  "likes": "Lajki",
+  "likes": "Polubienia",
   "comments": "Komentarze",
-  "like": "Lubię to",
+  "like": "Polub",
   "comment": "Skomentuj",
-  "share": "Udostępnij"
+  "share": "Udostępnij",
+  "name": "Nazwa",
+  "date": "Data",
+  "ascending": "Rosnąco",
+  "descending": "Malejąco",
+
+  "successfully-logged-in": "Pomyślnie zalogowano",
+  "successfully-logged-out": "Pomyślnie wylogowano",
+  "an-error-occurred": "Wystąpił błąd",
+  "successfully-registered": "Pomyślnie zarejestrowano",
+
+  "forgot-your-password": "Zapomniałeś hasła",
+  "click-here": "Kliknij tutaj",
+  "dont-have-an-account": "Nie masz konta",
+  "sign-up": "Zarejestruj się",
+  "username": "Nazwa użytkownika",
+  "password": "Hasło",
+  "repeat-password": "Powtórz hasło",
+
+  "404-page-not-found": "404 Strona nie znaleziona",
+
+  "hide-menu": "Ukryj menu",
+  "expand-menu": "Rozwiń menu",
+  "user-settings": "Ustawienia użytkownika",
+  "edit-posts": "Edytuj posty",
+  "add-post": "Dodaj post",
+
+  "title": "Tytuł",
+  "add-photos-to-the-post": "Dodaj zdjęcia do posta",
+  "add-a-post": "Dodaj post",
+
+  "upload-avatar": "Prześlij awatar",
+  "change-data": "Zmień dane",
+
+  "likes-count": "Liczba polubień",
+  "comments-count": "Liczba komentarzy",
+
+  "back": "Wstecz",
+  "post-name": "Nazwa posta",
+  "photo": "Zdjęcie",
+  "post-description": "Opis posta",
+  "edit-post-data": "Edytuj dane posta",
+  "post-not-found": "Post nie znaleziony",
+  "users-settings": "Ustawienia użytkowników",
+
+  "search-for-user": "Szukaj użytkownika",
+  "send": "Wyślij",
+
+  "add": "Dodaj",
+  "to-add-a-comment-you-need-to-be-logged-in": "Aby dodać komentarz, musisz być zalogowany",
+
+  "show-less": "Pokaż mniej",
+  "show-more": "Pokaż więcej"
 }
