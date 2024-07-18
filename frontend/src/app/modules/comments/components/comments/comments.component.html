@@ -13,10 +13,10 @@
       placeholder="Napisz komentarz"
       [formControl]="controls.comment"
     />
-    <button>Dodaj</button>
+    <button>{{ "add" | translate }}</button>
   </form>
 
   <ng-template #noUserLogin>
-    <p>By dodać komentarz musisz być zalogowany</p>
+    <p>{{ "to-add-a-comment-you-need-to-be-logged-in" }}</p>
   </ng-template>
 </div>
