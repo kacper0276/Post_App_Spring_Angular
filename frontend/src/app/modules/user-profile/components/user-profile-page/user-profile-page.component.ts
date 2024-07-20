@@ -7,9 +7,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user-profile-page.component.scss',
 })
 export class UserProfilePageComponent {
-  id!: string | null;
+  username!: string | null;
 
   constructor(private route: ActivatedRoute) {
-    this.id = route.snapshot.paramMap.get('id');
+    this.username = route.snapshot.paramMap.get('username');
   }
 }
