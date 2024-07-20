@@ -33,6 +33,11 @@
           "messages" | translate
         }}</a>
       </li>
+      <li class="menu-option">
+        <a routerLink="profil-uzytkownika" routerLinkActive="active">{{
+          "user-profile" | translate
+        }}</a>
+      </li>
       <ng-container *ngIf="adminLoggedIn">
         <li class="menu-option">
           <a routerLink="admin" routerLinkActive="active">{{
