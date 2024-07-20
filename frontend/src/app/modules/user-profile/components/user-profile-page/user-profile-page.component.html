@@ -15,5 +15,13 @@
     </div>
     <!-- <button>Send message</button> -->
   </div>
-  <div class="user-posts-container"></div>
+  <div class="user-posts-container">
+    <p>Posty użytkownika</p>
+    <div class="user-posts">
+      <app-post-on-user-profile
+        *ngFor="let post of posts"
+        [post]="post"
+      ></app-post-on-user-profile>
+    </div>
+  </div>
 </div>
