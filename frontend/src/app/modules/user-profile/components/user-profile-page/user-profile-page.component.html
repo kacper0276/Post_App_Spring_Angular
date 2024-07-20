@@ -18,10 +18,16 @@
   <div class="user-posts-container">
     <p>Posty użytkownika</p>
     <div class="user-posts">
-      <app-post-on-user-profile
-        *ngFor="let post of posts"
-        [post]="post"
-      ></app-post-on-user-profile>
+      <ng-container *ngIf="posts !== null; else noPosts">
+        <app-post-on-user-profile
+          *ngFor="let post of posts"
+          [post]="post"
+        ></app-post-on-user-profile>
+      </ng-container>
+
+      <ng-template #noPosts>
+        <p>Użytkownik nie ma postów</p>
+      </ng-template>
     </div>
   </div>
 </div>
