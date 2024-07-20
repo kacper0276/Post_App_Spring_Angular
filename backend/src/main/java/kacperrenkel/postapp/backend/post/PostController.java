@@ -25,7 +25,12 @@ public class PostController {
 
     @GetMapping(path = "/users/{userID}")
     public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Integer userID) {
-        return ResponseEntity.ok(postService.getPostsByUser(userID));
+        return ResponseEntity.ok(postService.getPostsByUserId(userID));
+    }
+
+    @GetMapping(path = "/users/username/{username}")
+    public ResponseEntity<List<PostDTO>> getPostsByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(postService.getPostsByUsername(username));
     }
 
     @PatchMapping(path = "/add-like")

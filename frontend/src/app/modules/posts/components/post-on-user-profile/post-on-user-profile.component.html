@@ -1,0 +1,33 @@
+<div class="post-card">
+  <div class="user-details">
+    <div class="profile-image">
+      <img
+        src="../../../../../assets/profiles-image/{{ post.userProfileImage }}"
+        alt="Zdjęcie profilowe użytkownika"
+      />
+    </div>
+    <p>
+      {{ "author" | translate }}: {{ post.author }},
+      <small>{{ post.created | countdownTimeSinceCreation }}</small>
+    </p>
+  </div>
+  <hr />
+  <p>
+    {{ "description" | translate }}:
+    {{ showMoreText ? post.content : (post.content | sliceText : 10) }}
+  </p>
+  <button
+    class="show-more-button"
+    (click)="toggleShowMoreText(); $event.stopPropagation()"
+    *ngIf="post.content.length > 10"
+  >
+    {{ showMoreText ? ("show-less" | translate) : ("Show more" | translate) }}
+  </button>
+  <div class="image-div">
+    <img src="{{ post.image }}" alt="ALT" />
+  </div>
+  <div class="comments-like-div">
+    <p>{{ "likes" | translate }}: {{ post.likes }}</p>
+    <p>{{ post.comments.length }} {{ "comments" | translate }}</p>
+  </div>
+</div>

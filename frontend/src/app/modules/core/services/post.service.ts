@@ -25,6 +25,12 @@ export class PostService {
     return this.http.get<IPost[]>(`${this.apiUrl}/posts/users/${userID}`);
   }
 
+  public getUserPostsByUsername(username: string): Observable<IPost[]> {
+    return this.http.get<IPost[]>(
+      `${this.apiUrl}/posts/users/username/${username}`
+    );
+  }
+
   public addLike(username: string, postId: number): Observable<ServerResponse> {
     const params = new HttpParams()
       .append('username', username)

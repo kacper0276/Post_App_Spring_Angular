@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
+  linkToUserProfile!: string;
   userLoggedIn!: boolean;
   adminLoggedIn!: boolean;
 
@@ -23,9 +24,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
-        this.userLoggedIn = val && val.username && val.email && val.role;
-        this.adminLoggedIn =
-          val && val.username && val.email && val.role === 'Administrator';
+        if (val) {
+          this.linkToUserProfile = `profil-uzytkownika/${val.username}`;
+          this.userLoggedIn = val && val.username && val.email && val.role;
+          this.adminLoggedIn =
+            val && val.username && val.email && val.role === 'Administrator';
+        }
       },
     });
 
