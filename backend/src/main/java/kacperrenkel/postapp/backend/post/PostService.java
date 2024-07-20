@@ -35,10 +35,20 @@ public class PostService {
         return post.orElse(null);
     }
 
-    public List<PostDTO> getPostsByUser(int userId){
+    public List<PostDTO> getPostsByUserId(int userId){
         List<PostDTO> posts = new ArrayList<>();
 
         postRepository.findByUserId(userId).forEach(post -> {
+            posts.add(mapper.postToPostDto(post));
+        });
+
+        return posts;
+    }
+
+    public List<PostDTO> getPostsByUsername(String username){
+        List<PostDTO> posts = new ArrayList<>();
+
+        postRepository.findByAuthor(username).forEach(post -> {
             posts.add(mapper.postToPostDto(post));
         });
 
