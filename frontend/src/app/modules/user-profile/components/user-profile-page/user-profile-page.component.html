@@ -1,1 +1,19 @@
 <div class="background-div"></div>
+
+<div class="main-container">
+  <div class="userdata">
+    <div class="img-container">
+      <img
+        src="../../../../../assets/profiles-image/{{ userData?.image }}"
+        alt=""
+        class="user-profile-img"
+      />
+    </div>
+    <div class="username-container">
+      <strong>{{ "username" | translate }}: {{ userData?.username }}</strong>
+      <strong>Email: {{ userData?.email }}</strong>
+    </div>
+    <!-- <button>Send message</button> -->
+  </div>
+  <div class="user-posts-container"></div>
+</div>
