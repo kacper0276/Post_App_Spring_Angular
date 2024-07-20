@@ -55,4 +55,9 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> findUsers(@RequestParam String username) {
         return ResponseEntity.ok(userService.getUsersIncludeName(username));
     }
+
+    @GetMapping(path = "/get-user-by-username/{username}")
+    public ResponseEntity<UserDTO> findUserByUsername(@PathVariable("username") String username) {
+        return ResponseEntity.ok(userService.getByUsernameDto(username));
+    }
 }

@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "users/register", "users/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logout", "users/logged-in", "users/activate", "posts/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logout", "users/logged-in", "users/activate", "posts/", "/users/get-user-by-username/*").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "posts/add-like").permitAll()
                         .anyRequest().permitAll()
                 )

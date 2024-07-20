@@ -161,7 +161,23 @@ public class UserService {
     }
 
     public User getByUsername(String username) {
-        return userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
+        User user = userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
+
+        if (user != null) {
+            return user;
+        }
+
+        throw new ObjectNotExistInDBException("User don't exist");
+    }
+
+    public UserDTO getByUsernameDto(String username) {
+        User user = userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
+
+        if (user != null) {
+            return mapper.userToUserDTO(user);
+        }
+
+        throw new ObjectNotExistInDBException("User don't exist");
     }
 
     public void saveUser(User user) {
