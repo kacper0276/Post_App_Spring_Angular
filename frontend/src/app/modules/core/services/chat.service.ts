@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Client, Stomp } from '@stomp/stompjs';
+import { Client, IMessage, Stomp } from '@stomp/stompjs';
+import { Subject } from 'rxjs';
 import SockJS from 'sockjs-client';
 
 @Injectable({
@@ -7,6 +8,7 @@ import SockJS from 'sockjs-client';
 })
 export class ChatService {
   private stompClient: any;
+  private messageSubject: Subject<IMessage> = new Subject<IMessage>();
 
   connect() {
     const socket = new SockJS('http://localhost:8080/api/v1/ws');
@@ -15,5 +17,9 @@ export class ChatService {
     this.stompClient.connect({}, (frame: any) => {
       console.log('Connected: ' + frame);
     });
+  }
+
+  sendMessage(message: IMessage) {
+    this.stompClient.send();
   }
 }

@@ -165,6 +165,12 @@ export class ChatComponent {
   ];
   username!: string;
   @Input() messageWithUser!: string | null;
+  newMessage: IMessage = {
+    text: '',
+    date: new Date(),
+    messageFromUsername: '',
+    messageToUsername: '',
+  };
 
   constructor(private store: Store<AppState>) {
     this.messages.sort((a, b) => a.date.getTime() - b.date.getTime());
