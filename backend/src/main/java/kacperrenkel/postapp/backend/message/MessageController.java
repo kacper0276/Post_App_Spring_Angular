@@ -32,4 +32,9 @@ public class MessageController {
             @RequestParam String user2) {
         return messageService.getMessagesBetweenUsers(user1, user2);
     }
+
+    @GetMapping("/lastMessages")
+    public List<Message> getLastMessagesForUser(@RequestParam String username) {
+        return messageService.getLastMessagesForUser(username);
+    }
 }
