@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import SockJS from 'sockjs-client';
 import { environment } from '../../../../environments/environment';
 import { IMessage } from '../models/message.model';
+import { IUser } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -61,5 +62,13 @@ export class ChatService {
       .subscribe((messages: any) => {
         this.messagesSubject.next(messages);
       });
+  }
+
+  getUsersChatList(username: string): Observable<IMessage[]> {
+    const params = new HttpParams().append('username', username);
+
+    return this.http.get<IMessage[]>(`${this.apiURL}/message/lastMessages`, {
+      params,
+    });
   }
 }
