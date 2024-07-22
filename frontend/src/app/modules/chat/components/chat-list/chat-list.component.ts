@@ -10,8 +10,8 @@ import { UserService } from '../../../core/services/user.service';
 })
 export class ChatListComponent implements OnInit {
   arr: string[] = [
-    'test2',
-    'bbb',
+    'test1',
+    'kacper',
     'ccc',
     'ddd',
     'aaa',
