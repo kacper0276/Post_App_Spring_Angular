@@ -7,7 +7,9 @@
     />
   </div>
   <div class="send-message-container">
-    <input type="text" class="input-text" />
-    <button class="send-button">{{ "send" | translate }}</button>
+    <input type="text" class="input-text" [(ngModel)]="newMessage.text" />
+    <button class="send-button" (click)="sendMessage()">
+      {{ "send" | translate }}
+    </button>
   </div>
 </div>
