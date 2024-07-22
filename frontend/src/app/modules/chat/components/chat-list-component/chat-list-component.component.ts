@@ -10,13 +10,20 @@ import { IMessage } from '../../../core/models/message.model';
 })
 export class ChatListComponentComponent implements OnInit {
   @Input() username!: string;
-  @Input() message!: IMessage;
+  @Input() message?: IMessage | null;
+  @Input() user?: IUser | null;
   otherUser!: IUser;
 
   constructor(private userProfileService: UserProfileService) {}
 
   ngOnInit(): void {
-    this.getUsername();
+    if (this.user) {
+      // If user is provided, use it directly
+      this.otherUser = this.user;
+    } else if (this.message) {
+      // If message is provided, get the user data
+      this.getUsername();
+    }
   }
 
   async getUsername() {
@@ -30,10 +37,11 @@ export class ChatListComponentComponent implements OnInit {
 
   getOtherUsername(): Promise<IUser> {
     let username = '';
-    if (this.message.messageFromUsername !== this.username) {
-      username = this.message.messageFromUsername;
-    } else {
-      username = this.message.messageToUsername;
+    if (this.message) {
+      username =
+        this.message.messageFromUsername !== this.username
+          ? this.message.messageFromUsername
+          : this.message.messageToUsername;
     }
 
     return new Promise((resolve, reject) => {

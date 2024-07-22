@@ -59,12 +59,4 @@ export class ChatListComponent implements OnInit {
       this.actualChat.emit(actual.messageToUsername);
     }
   }
-
-  // getFilteredArray(): string[] {
-  //   const value = this.searchControl.value;
-  //   if (value && value !== '') {
-  //     return [value];
-  //   }
-  //   return this.arr;
-  // }
 }
