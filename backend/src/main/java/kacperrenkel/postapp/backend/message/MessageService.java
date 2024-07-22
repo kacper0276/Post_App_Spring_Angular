@@ -18,4 +18,8 @@ public class MessageService {
     public Message saveMessage(Message message) {
         return messageRepository.save(message);
     }
+
+    public List<Message> getLastMessagesForUser(String username) {
+        return messageRepository.findLastMessagesForUser(username);
+    }
 }
