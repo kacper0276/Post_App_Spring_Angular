@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="otherUser">
   <img
     alt="IMG"
-    src="../../../../../assets/profiles-image/default_profile.png"
+    src="../../../../../assets/profiles-image/{{ otherUser.image }}"
   />
-  <p>{{ otherUsername }}</p>
+  <p>{{ otherUser.username }}</p>
 </div>
