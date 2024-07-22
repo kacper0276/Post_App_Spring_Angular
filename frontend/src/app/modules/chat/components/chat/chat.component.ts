@@ -74,7 +74,7 @@ export class ChatComponent implements OnInit {
   sendMessage(): void {
     const { username, _messageWithUser, newMessage } = this;
 
-    if (_messageWithUser) {
+    if (_messageWithUser && newMessage.text !== '') {
       Object.assign(newMessage, {
         messageFromUsername: username,
         messageToUsername: _messageWithUser,
