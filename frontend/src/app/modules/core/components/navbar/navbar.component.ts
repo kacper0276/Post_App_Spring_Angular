@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
           this.linkToUserProfile = `profil-uzytkownika/${val.username}`;
           this.userLoggedIn = val && val.username && val.email && val.role;
           this.adminLoggedIn =
-            val && val.username && val.email && val.role === 'Administrator';
+            val && val.username && val.email && val.role === 'ADMINISTRATOR';
         }
       },
     });
