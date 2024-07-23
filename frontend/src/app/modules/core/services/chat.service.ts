@@ -58,6 +58,7 @@ export class ChatService {
           user1: user1,
           user2: user2,
         },
+        withCredentials: true,
       })
       .subscribe((messages: any) => {
         this.messagesSubject.next(messages);
