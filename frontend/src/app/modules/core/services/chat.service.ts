@@ -69,6 +69,7 @@ export class ChatService {
 
     return this.http.get<IMessage[]>(`${this.apiURL}/message/lastMessages`, {
       params,
+      withCredentials: true,
     });
   }
 }
