@@ -18,7 +18,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
       if (isLoggedIn) {
         return store.select(selectAuthUser).pipe(
           map((user) => {
-            if (user && user.role === 'Administrator') {
+            if (user && user.role === 'ADMINISTRATOR') {
               return true;
             }
 
