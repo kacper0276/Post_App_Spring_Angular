@@ -23,27 +23,19 @@ export class AuthService {
   }
 
   login(body: LoginData): Observable<IUser> {
-    return this.http.post<IUser>(`${this.apiURL}/users/login`, body, {
-      withCredentials: true,
-    });
+    return this.http.post<IUser>(`${this.apiURL}/users/login`, body);
   }
 
   logout(): Observable<AuthResponse> {
-    return this.http.get<AuthResponse>(`${this.apiURL}/users/logout`, {
-      withCredentials: true,
-    });
+    return this.http.get<AuthResponse>(`${this.apiURL}/users/logout`);
   }
 
   isLoggedIn(): Observable<LoggedInResponse> {
-    return this.http.get<LoggedInResponse>(`${this.apiURL}/users/logged-in`, {
-      withCredentials: true,
-    });
+    return this.http.get<LoggedInResponse>(`${this.apiURL}/users/logged-in`);
   }
 
   autoLogin(): Observable<IUser> {
-    return this.http.get<IUser>(`${this.apiURL}/users/auto-login`, {
-      withCredentials: true,
-    });
+    return this.http.get<IUser>(`${this.apiURL}/users/auto-login`);
   }
 
   activateAccount(id: number): Observable<AuthResponse> {
