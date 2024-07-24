@@ -4,10 +4,21 @@
     class="input-search-user"
     [formControl]="searchControl"
   />
-  <app-chat-list-component
-    *ngFor="let message of userChats"
-    (click)="setActualChat(message)"
-    [message]="message"
-    [username]="username"
-  />
+  <ng-container *ngIf="usersList.length === 0; else usersListTemplate">
+    <app-chat-list-component
+      *ngFor="let message of userChats"
+      (click)="setActualChat(message)"
+      [message]="message"
+      [username]="username"
+    ></app-chat-list-component>
+  </ng-container>
+
+  <ng-template #usersListTemplate>
+    <app-chat-list-component
+      *ngFor="let user of usersList"
+      (click)="setActualChat(user)"
+      [user]="user"
+      [username]="username"
+    ></app-chat-list-component>
+  </ng-template>
 </div>

@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   linkToUserProfile!: string;
   userLoggedIn!: boolean;
   adminLoggedIn!: boolean;
+  isMenuOpen = false;
 
   constructor(
     private renderer: Renderer2,
@@ -48,6 +49,14 @@ export class NavbarComponent implements OnInit {
         navbarElement.classList.remove('scroll');
       }
     }
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 
   logout() {

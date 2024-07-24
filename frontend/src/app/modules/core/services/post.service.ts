@@ -41,7 +41,6 @@ export class PostService {
       {},
       {
         params,
-        withCredentials: true,
       }
     );
   }
@@ -60,7 +59,6 @@ export class PostService {
       comment,
       {
         params,
-        withCredentials: true,
       }
     );
   }

@@ -10,7 +10,7 @@ input[type="checkbox"] {
     border-radius: 0px 0px 25px 25px;
     margin-top: 20px;
     justify-content: right;
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease;
     position: relative;
     z-index: 999;
     display: flex;
@@ -40,17 +40,17 @@ input[type="checkbox"] {
         letter-spacing: 0.25px;
         line-height: 40px;
         text-decoration: none !important;
-        transition: all 0.4s ease 0s;
+        transition: all 0.4s ease;
       }
 
       a:hover {
         border: 1px solid white;
-        background: rgba($color: #fff, $alpha: 0.1);
+        background: rgba(#fff, 0.1);
       }
 
       .active {
         border: 1px solid white;
-        background: rgba($color: #fff, $alpha: 0.1);
+        background: rgba(#fff, 0.1);
       }
     }
 
@@ -70,25 +70,25 @@ input[type="checkbox"] {
         letter-spacing: 0.25px;
         line-height: 40px;
         text-decoration: none !important;
-        transition: all 0.4s ease 0s;
+        transition: all 0.4s ease;
         cursor: pointer;
       }
 
       a:hover,
       button:hover {
         border: 1px solid #ee626b;
-        background: rgba($color: #ee626b, $alpha: 0.1);
+        background: rgba(#ee626b, 0.1);
       }
 
       .activeLogin {
         border: 1px solid #ee626b;
-        background: rgba($color: #ee626b, $alpha: 0.1);
+        background: rgba(#ee626b, 0.1);
       }
     }
   }
 
   a:first-child {
-    transition: all 0.3s ease 0s;
+    transition: all 0.3s ease;
     display: inline-block;
     overflow: hidden;
 
@@ -109,11 +109,11 @@ input[type="checkbox"] {
     }
 
     a:hover {
-      background: rgba($color: #818181, $alpha: 1) !important;
+      background: rgba(#818181, 1) !important;
     }
 
     .active {
-      background: rgba($color: #818181, $alpha: 1) !important;
+      background: rgba(#818181, 1) !important;
     }
   }
 
@@ -157,7 +157,7 @@ input[type="checkbox"] {
     backdrop-filter: blur(10px);
     -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
+    transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     display: flex;
     flex-direction: column;
@@ -174,51 +174,57 @@ input[type="checkbox"] {
     z-index: 1000;
   }
 
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+  }
+
   span {
     display: block;
     width: 30px;
-    height: 2px;
-    margin-top: 7px;
-    margin-left: 2%;
-    position: relative;
+    height: 3px;
     background: #ffffff;
     border-radius: 3px;
-    z-index: 1000;
-    // transform-origin: 5px 0px;
-    transform-origin: center;
+    position: absolute;
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
       background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
   }
 
-  span:first-child {
-    transform-origin: 0% 0%;
+  span:nth-child(1) {
+    top: 8px;
+    transform-origin: center;
   }
 
-  span:nth-last-child(2) {
-    transform-origin: 0% 100%;
+  span:nth-child(2) {
+    top: 16px;
+    transform-origin: center;
   }
 
-  input[type="checkbox"]:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(1.5px, 6.5px);
-    background: #36383f;
+  span:nth-child(3) {
+    top: 24px;
+    transform-origin: center;
   }
 
-  input[type="checkbox"]:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-  }
-
-  input[type="checkbox"]:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
-  }
-
-  .menu-option {
-    transition-delay: 2s;
-  }
-
-  input[type="checkbox"]:checked + span + span + span + .nav .navigation-list {
+  input[type="checkbox"]:checked ~ .nav .navigation-list {
     transform: none;
+  }
+
+  input[type="checkbox"]:checked ~ label > span:nth-child(1) {
+    transform: rotate(45deg) translateY(11px);
+  }
+
+  input[type="checkbox"]:checked ~ label > span:nth-child(2) {
+    opacity: 0;
+  }
+
+  input[type="checkbox"]:checked ~ label > span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-11px);
   }
 
   a {

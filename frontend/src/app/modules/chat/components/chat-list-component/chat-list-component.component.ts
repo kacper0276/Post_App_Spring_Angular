@@ -18,10 +18,8 @@ export class ChatListComponentComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.user) {
-      // If user is provided, use it directly
       this.otherUser = this.user;
     } else if (this.message) {
-      // If message is provided, get the user data
       this.getUsername();
     }
   }

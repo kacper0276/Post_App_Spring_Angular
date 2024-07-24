@@ -16,6 +16,7 @@ import { IMessage } from '../../../core/models/message.model';
 })
 export class ChatListComponent implements OnInit {
   userChats: IMessage[] = [];
+  usersList: IUser[] = [];
   searchControl = new FormControl<string>('');
   username!: string;
   @Output() actualChat = new EventEmitter<string>();
@@ -27,12 +28,12 @@ export class ChatListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.select(selectAuthUser).subscribe((val: IUser | null) => {
-      if (val?.username) {
-        this.username = val.username;
-        this.chatService.getUsersChatList(val.username).subscribe({
-          next: (val) => {
-            this.userChats = val;
+    this.store.select(selectAuthUser).subscribe((res: IUser | null) => {
+      if (res?.username) {
+        this.username = res.username;
+        this.chatService.getUsersChatList(res.username).subscribe({
+          next: (res) => {
+            this.userChats = res;
           },
         });
       }
@@ -40,23 +41,28 @@ export class ChatListComponent implements OnInit {
 
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((value) => {
-        if (value !== null && value.length > 1) {
-          console.log(value);
-          this.userService.getUsersIncludeName(value).subscribe({
-            next: (val) => {
-              console.log(val);
+      .subscribe((response) => {
+        if (response !== null && response !== '' && response.length > 1) {
+          this.userService.getUsersIncludeName(response).subscribe({
+            next: (res) => {
+              this.usersList = res;
             },
           });
+        } else {
+          this.usersList = [];
         }
       });
   }
 
-  setActualChat(actual: IMessage): void {
-    if (actual.messageFromUsername !== this.username) {
-      this.actualChat.emit(actual.messageFromUsername);
+  setActualChat(actual: IMessage | IUser): void {
+    if ('messageFromUsername' in actual) {
+      if (actual.messageFromUsername !== this.username) {
+        this.actualChat.emit(actual.messageFromUsername);
+      } else {
+        this.actualChat.emit(actual.messageToUsername);
+      }
     } else {
-      this.actualChat.emit(actual.messageToUsername);
+      this.actualChat.emit(actual.username);
     }
   }
 }

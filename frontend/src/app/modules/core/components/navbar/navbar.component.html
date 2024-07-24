@@ -1,60 +1,88 @@
-<input type="checkbox" />
-<span></span>
-<span></span>
-<span></span>
-<div class="nav">
-  <a routerLink="/"
-    ><img src="../../../../../assets/images/logo.png" alt="LOGO"
-  /></a>
+<input
+  type="checkbox"
+  id="menu-toggle"
+  (change)="toggleMenu()"
+  [checked]="isMenuOpen"
+/>
+<label for="menu-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</label>
 
-  <ul class="navigation-list">
+<div class="nav">
+  <a routerLink="/" (click)="closeMenu()">
+    <img src="../../../../../assets/images/logo.png" alt="LOGO" />
+  </a>
+
+  <ul class="navigation-list" [ngClass]="{ open: isMenuOpen }">
     <li class="menu-option">
       <a
         routerLink="/"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-        >{{ "main-page" | translate }}</a
+        (click)="closeMenu()"
       >
+        {{ "main-page" | translate }}
+      </a>
     </li>
     <li class="menu-option">
-      <a routerLink="posty" routerLinkActive="active">{{
-        "posts" | translate
-      }}</a>
+      <a routerLink="posty" routerLinkActive="active" (click)="closeMenu()">
+        {{ "posts" | translate }}
+      </a>
     </li>
 
     <ng-container *ngIf="userLoggedIn; else notUser">
       <li class="menu-option">
-        <a routerLink="ustawienia" routerLinkActive="active">{{
-          "settings" | translate
-        }}</a>
+        <a
+          routerLink="ustawienia"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+        >
+          {{ "settings" | translate }}
+        </a>
       </li>
       <li class="menu-option">
-        <a routerLink="wiadomosci" routerLinkActive="active">{{
-          "messages" | translate
-        }}</a>
+        <a
+          routerLink="wiadomosci"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+        >
+          {{ "messages" | translate }}
+        </a>
       </li>
       <li class="menu-option">
-        <a [routerLink]="linkToUserProfile" routerLinkActive="active">{{
-          "user-profile" | translate
-        }}</a>
+        <a
+          [routerLink]="linkToUserProfile"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+        >
+          {{ "user-profile" | translate }}
+        </a>
       </li>
       <ng-container *ngIf="adminLoggedIn">
         <li class="menu-option">
-          <a routerLink="admin" routerLinkActive="active">{{
-            "admin-settings" | translate
-          }}</a>
+          <a routerLink="admin" routerLinkActive="active" (click)="closeMenu()">
+            {{ "admin-settings" | translate }}
+          </a>
         </li>
       </ng-container>
       <li class="menu-option login-button">
-        <button (click)="logout()">{{ "log-out" | translate }}</button>
+        <button (click)="logout(); closeMenu()">
+          {{ "log-out" | translate }}
+        </button>
       </li>
     </ng-container>
 
     <ng-template #notUser>
       <li class="menu-option login-button">
-        <a routerLink="logowanie" routerLinkActive="activeLogin">{{
-          "log-in" | translate
-        }}</a>
+        <a
+          routerLink="logowanie"
+          routerLinkActive="activeLogin"
+          (click)="closeMenu()"
+        >
+          {{ "log-in" | translate }}
+        </a>
       </li>
     </ng-template>
   </ul>
