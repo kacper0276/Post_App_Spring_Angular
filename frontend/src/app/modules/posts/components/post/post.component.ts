@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
       next: (val: IUser | null) => {
         val != null ? (this.username = val.username) : (this.username = '');
 
-        if (val?.likes.includes(String(this.post.id))) {
+        if (val?.likes?.includes(String(this.post.id))) {
           this.userGiveLike = true;
         }
       },
@@ -52,9 +52,7 @@ export class PostComponent implements OnInit {
 
   onAddLike(): void {
     if (this.username != '') {
-      this.postService.addLike(this.username, this.post.id).subscribe({
-        next: (val) => console.log(val),
-      });
+      this.postService.addLike(this.username, this.post.id).subscribe();
     }
   }
 

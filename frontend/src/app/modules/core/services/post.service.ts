@@ -14,7 +14,13 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   public getAllPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(`${this.apiUrl}/posts/`);
+    return this.http.get<IPost[]>(`${this.apiUrl}/posts/all`);
+  }
+
+  public getAllPostsPageable(page: number): Observable<IPost[]> {
+    const params = new HttpParams().append('page', page);
+
+    return this.http.get<IPost[]>(`${this.apiUrl}/posts/`, { params });
   }
 
   public getSinglePost(id: number): Observable<IPost> {
