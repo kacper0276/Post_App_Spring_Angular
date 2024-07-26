@@ -23,6 +23,11 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initialize();
+    window.addEventListener('scroll', this.onScroll, true);
+  }
+
+  initialize(): void {
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
         if (val) {
@@ -30,11 +35,13 @@ export class NavbarComponent implements OnInit {
           this.userLoggedIn = val && val.username && val.email && val.role;
           this.adminLoggedIn =
             val && val.username && val.email && val.role === 'ADMINISTRATOR';
+        } else {
+          this.linkToUserProfile = '';
+          this.userLoggedIn = false;
+          this.adminLoggedIn = false;
         }
       },
     });
-
-    window.addEventListener('scroll', this.onScroll, true);
   }
 
   onScroll($event: Event) {
@@ -61,5 +68,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.store.dispatch(AuthActions.logout());
+    this.initialize();
   }
 }

@@ -33,8 +33,6 @@ export class UserProfilePageComponent implements OnInit {
 
       this.postService.getUserPostsByUsername(this.username).subscribe({
         next: (res: IPost[]) => {
-          console.log(res);
-
           this.posts = res;
         },
       });

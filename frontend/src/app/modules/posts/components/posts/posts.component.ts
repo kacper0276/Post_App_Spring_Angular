@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 export class PostsComponent implements OnInit {
   posts: IPost[] = [];
   userLoggedIn!: boolean;
+  currentPage = 0;
+  pageSize = 10;
 
   constructor(
     private titleService: Title,
@@ -40,19 +42,31 @@ export class PostsComponent implements OnInit {
         console.log(this.orderControl.getRawValue());
       });
 
-    this.postService.getAllPosts().subscribe({
-      next: (value) => {
-        console.log(value);
-
-        this.posts = [...value];
-      },
-    });
+    this.loadPosts();
 
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
         this.userLoggedIn = val && val.username && val.email && val.role;
       },
     });
+  }
+
+  loadPosts(): void {
+    this.postService.getAllPostsPageable(this.currentPage).subscribe((data) => {
+      this.posts = data;
+    });
+  }
+
+  nextPage(): void {
+    this.currentPage++;
+    this.loadPosts();
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadPosts();
+    }
   }
 
   onRedirectToAddPost(): void {
