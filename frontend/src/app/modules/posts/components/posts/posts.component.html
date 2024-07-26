@@ -3,7 +3,11 @@
 <div class="main-container">
   <h1>{{ "recent-posts" | translate }}:</h1>
   <div class="filter">
-    <input type="text" [formControl]="searchControl" />
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="{{ 'find-by-post-name' | translate }}"
+    />
     <label>{{ "sort-by" | translate }}</label>
     <select [formControl]="sortControl">
       <option value="">-</option>
@@ -20,6 +24,12 @@
   </div>
   <div class="posts-display">
     <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    <div class="pagination-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 0">
+        Previous
+      </button>
+      <button (click)="nextPage()">Next</button>
+    </div>
   </div>
   <div class="add-post-container" *ngIf="userLoggedIn">
     <button
