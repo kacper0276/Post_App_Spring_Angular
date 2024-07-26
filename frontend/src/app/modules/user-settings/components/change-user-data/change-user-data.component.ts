@@ -34,7 +34,6 @@ export class ChangeUserDataComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
-        console.log(val);
         this.controls['username'].setValue(val.username);
         this.controls['email'].setValue(val.email);
         this.controls['password'].setValue('');

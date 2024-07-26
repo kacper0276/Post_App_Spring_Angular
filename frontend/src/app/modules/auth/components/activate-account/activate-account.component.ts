@@ -25,12 +25,9 @@ export class ActivateAccountComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          console.log(response);
-
           this.router.navigate(['/logowanie']);
         },
         error: (err) => {
-          console.log(err);
           this.errorMessage = err.error.message;
         },
       });
