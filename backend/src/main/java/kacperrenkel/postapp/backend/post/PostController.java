@@ -13,9 +13,15 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/all")
     public ResponseEntity<List<PostDTO>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
+    }
+
+    @GetMapping(path = "/")
+    public ResponseEntity<List<PostDTO>> getAllPosts(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(postService.getAllPostPageable(page, size));
     }
 
     @GetMapping(path = "/{id}")

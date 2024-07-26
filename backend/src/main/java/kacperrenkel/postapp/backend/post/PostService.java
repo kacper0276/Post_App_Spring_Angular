@@ -6,10 +6,14 @@ import kacperrenkel.postapp.backend.user.User;
 import kacperrenkel.postapp.backend.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -27,6 +31,12 @@ public class PostService {
         });
 
         return posts;
+    }
+
+    public List<PostDTO> getAllPostPageable(int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Post> postPage = postRepository.findAll(pageable);
+        return postPage.stream().map(mapper::postToPostDto).collect(Collectors.toList());
     }
 
     public Post getPostById(int id){
