@@ -25,6 +25,7 @@
   "date": "Date",
   "ascending": "Ascending",
   "descending": "Descending",
+  "find-by-post-name": "Find by post name",
 
   "successfully-logged-in": "Successfully logged in",
   "successfully-logged-out": "Successfully logged out",
