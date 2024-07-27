@@ -1,5 +1,6 @@
 package kacperrenkel.postapp.backend.post;
 
+import kacperrenkel.postapp.backend.entity.PaginatedResponse;
 import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class PostController {
     }
 
     @GetMapping(path = "/")
-    public ResponseEntity<List<PostDTO>> getAllPosts(@RequestParam(defaultValue = "0") int page,
-                                                     @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<PaginatedResponse<PostDTO>> getAllPosts(@RequestParam(defaultValue = "0") int page,
+                                                                  @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(postService.getAllPostPageable(page, size));
     }
 
