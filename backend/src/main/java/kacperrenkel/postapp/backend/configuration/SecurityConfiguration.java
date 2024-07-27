@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "users/register", "users/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logout", "users/logged-in", "users/activate", "posts/", "users/get-user-by-username/*", "posts/users/username/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logged-in", "users/activate", "posts/", "users/get-user-by-username/*", "posts/users/username/*").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "posts/add-like").authenticated()
                         .anyRequest().authenticated()
                 )
