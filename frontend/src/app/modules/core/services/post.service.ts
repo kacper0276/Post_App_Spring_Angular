@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPost } from '../models/post.model';
 import { ServerResponse } from '../models/server-response.model';
+import { PaginatedResponse } from '../models/paginatedResponse.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +18,17 @@ export class PostService {
     return this.http.get<IPost[]>(`${this.apiUrl}/posts/all`);
   }
 
-  public getAllPostsPageable(page: number): Observable<IPost[]> {
-    const params = new HttpParams().append('page', page);
+  public getAllPostsPageable(
+    page: number,
+    size: number = 10
+  ): Observable<PaginatedResponse<IPost>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
 
-    return this.http.get<IPost[]>(`${this.apiUrl}/posts/`, { params });
+    return this.http.get<PaginatedResponse<IPost>>(`${this.apiUrl}/posts/`, {
+      params,
+    });
   }
 
   public getSinglePost(id: number): Observable<IPost> {

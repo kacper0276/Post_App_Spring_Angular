@@ -2,6 +2,15 @@
 
 <div class="main-container">
   <h1>{{ "recent-posts" | translate }}:</h1>
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 0">
+      Poprzednia
+    </button>
+    <span>Strona {{ currentPage + 1 }} z {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">
+      Następna
+    </button>
+  </div>
   <div class="filter">
     <input
       type="text"
@@ -24,20 +33,14 @@
   </div>
   <div class="posts-display">
     <app-post *ngFor="let post of posts" [post]="post"></app-post>
-    <div class="pagination-controls">
-      <button (click)="prevPage()" [disabled]="currentPage === 0">
-        Previous
+    <div class="add-post-container" *ngIf="userLoggedIn">
+      <button
+        class="add-post-button"
+        title="Dodaj post"
+        (click)="onRedirectToAddPost()"
+      >
+        +
       </button>
-      <button (click)="nextPage()">Next</button>
     </div>
-  </div>
-  <div class="add-post-container" *ngIf="userLoggedIn">
-    <button
-      class="add-post-button"
-      title="Dodaj post"
-      (click)="onRedirectToAddPost()"
-    >
-      +
-    </button>
   </div>
 </div>

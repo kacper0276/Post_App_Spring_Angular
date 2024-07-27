@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { Router } from '@angular/router';
+import { PaginatedResponse } from '../../../core/models/paginatedResponse.model';
 
 @Component({
   selector: 'app-posts',
@@ -19,6 +20,7 @@ export class PostsComponent implements OnInit {
   userLoggedIn!: boolean;
   currentPage = 0;
   pageSize = 10;
+  totalPages = 0;
 
   constructor(
     private titleService: Title,
@@ -52,9 +54,13 @@ export class PostsComponent implements OnInit {
   }
 
   loadPosts(): void {
-    this.postService.getAllPostsPageable(this.currentPage).subscribe((data) => {
-      this.posts = data;
-    });
+    this.postService
+      .getAllPostsPageable(this.currentPage, this.pageSize)
+      .subscribe((data: PaginatedResponse<IPost>) => {
+        this.posts = data.content;
+        this.currentPage = data.currentPage;
+        this.totalPages = data.totalPages;
+      });
   }
 
   nextPage(): void {

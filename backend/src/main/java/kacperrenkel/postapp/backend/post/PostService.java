@@ -2,6 +2,7 @@ package kacperrenkel.postapp.backend.post;
 
 import kacperrenkel.postapp.backend.comment.Comment;
 import kacperrenkel.postapp.backend.comment.CommentRepository;
+import kacperrenkel.postapp.backend.entity.PaginatedResponse;
 import kacperrenkel.postapp.backend.user.User;
 import kacperrenkel.postapp.backend.user.UserService;
 import lombok.AllArgsConstructor;
@@ -33,10 +34,10 @@ public class PostService {
         return posts;
     }
 
-    public List<PostDTO> getAllPostPageable(int page, int size){
+    public PaginatedResponse<PostDTO> getAllPostPageable(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Post> postPage = postRepository.findAll(pageable);
-        return postPage.stream().map(mapper::postToPostDto).collect(Collectors.toList());
+        return mapper.pageToPaginatedResponse(postPage);
     }
 
     public Post getPostById(int id){
