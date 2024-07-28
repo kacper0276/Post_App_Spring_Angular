@@ -41,7 +41,11 @@
     </select>
   </div>
   <div class="posts-display">
-    <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    <app-post
+      *ngFor="let post of posts"
+      [post]="post"
+      (fetchPosts)="loadPosts()"
+    ></app-post>
     <div class="add-post-container" *ngIf="userLoggedIn">
       <button
         class="add-post-button"

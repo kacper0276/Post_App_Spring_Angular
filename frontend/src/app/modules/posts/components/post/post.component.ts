@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { test } from '../../../core/models/test.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPost } from '../../../core/models/post.model';
 import { PostService } from '../../../core/services/post.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { IUser } from '../../../core/models/auth.model';
+import * as AuthActions from '../../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-post',
@@ -14,6 +14,7 @@ import { IUser } from '../../../core/models/auth.model';
 })
 export class PostComponent implements OnInit {
   @Input() post!: IPost;
+  @Output() fetchPosts = new EventEmitter<void>();
   showComments: boolean = false;
   showMoreText: boolean = false;
   showMoreDetailsPost: boolean = false;
@@ -26,6 +27,10 @@ export class PostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkUserLike();
+  }
+
+  checkUserLike(): void {
     this.store.select(selectAuthUser).subscribe({
       next: (val: IUser | null) => {
         val != null ? (this.username = val.username) : (this.username = '');
@@ -52,7 +57,11 @@ export class PostComponent implements OnInit {
 
   onAddLike(): void {
     if (this.username != '') {
-      this.postService.addLike(this.username, this.post.id).subscribe();
+      this.postService.addLike(this.username, this.post.id).subscribe(() => {
+        this.fetchPosts.emit();
+        this.store.dispatch(AuthActions.loadUser());
+        this.checkUserLike();
+      });
     }
   }
 
