@@ -26,6 +26,10 @@
   "ascending": "Rosnąco",
   "descending": "Malejąco",
   "find-by-post-name": "Szukaj po nazwie postu",
+  "previous-page": "Poprzednia strona",
+  "next-page": "Następna strona",
+  "page": "Strona",
+  "of": "z",
 
   "successfully-logged-in": "Pomyślnie zalogowano",
   "successfully-logged-out": "Pomyślnie wylogowano",
