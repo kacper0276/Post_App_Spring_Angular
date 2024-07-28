@@ -33,6 +33,12 @@
       <option value="asc">{{ "ascending" | translate }}</option>
       <option value="desc">{{ "descending" | translate }}</option>
     </select>
+    <label>{{ "posts-on-page" | translate }}</label>
+    <select [formControl]="postsOnPage">
+      <option [value]="5">5</option>
+      <option [value]="10">10</option>
+      <option [value]="20">20</option>
+    </select>
   </div>
   <div class="posts-display">
     <app-post *ngFor="let post of posts" [post]="post"></app-post>
