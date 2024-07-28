@@ -28,7 +28,7 @@
     />
   </div>
   <div class="add-post-element">
-    <input type="file" [formControl]="controls.img" />
+    <input type="file" (change)="onFileSelected($event)" />
   </div>
   <button>{{ "add-a-post" | translate }}</button>
 </form>

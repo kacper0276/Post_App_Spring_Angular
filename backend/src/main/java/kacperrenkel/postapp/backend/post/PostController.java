@@ -5,7 +5,9 @@ import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,6 +40,23 @@ public class PostController {
     @GetMapping(path = "/users/username/{username}")
     public ResponseEntity<List<PostDTO>> getPostsByUsername(@PathVariable String username) {
         return ResponseEntity.ok(postService.getPostsByUsername(username));
+    }
+
+    @PostMapping(path = "/add", consumes = { "multipart/form-data" })
+    public ResponseEntity<Post> addPostWithImage(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("author") String author,
+            @RequestParam(value = "image", required = false) MultipartFile image) {
+
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setAuthor(author);
+        post.setCreated(new Date());
+
+        Post savedPost = postService.savePostWithImage(post, image);
+        return ResponseEntity.ok(savedPost);
     }
 
     @PatchMapping(path = "/add-like")

@@ -67,8 +67,7 @@ public class SecurityConfiguration {
                         .allowedOrigins("http://localhost:4200", "http://localhost:4200/*")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         .allowCredentials(true)
-                        .allowedHeaders("*")
-                        .exposedHeaders("Authorization");
+                        .allowedHeaders("*");
             }
         };
     }

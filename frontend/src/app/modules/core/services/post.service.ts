@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPost } from '../models/post.model';
 import { ServerResponse } from '../models/server-response.model';
@@ -43,6 +43,25 @@ export class PostService {
     return this.http.get<IPost[]>(
       `${this.apiUrl}/posts/users/username/${username}`
     );
+  }
+
+  public uploadPostWithImage(
+    title: string,
+    content: string,
+    author: string,
+    image: File
+  ): Observable<IPost> {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('author', author);
+    formData.append('image', image, image.name);
+
+    return this.http.post<IPost>(`${this.apiUrl}/posts/add`, formData, {
+      headers: new HttpHeaders({
+        enctype: 'multipart/form-data',
+      }),
+    });
   }
 
   public addLike(username: string, postId: number): Observable<ServerResponse> {
