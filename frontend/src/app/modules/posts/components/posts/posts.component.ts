@@ -34,6 +34,7 @@ export class PostsComponent implements OnInit {
   searchControl = new FormControl<string>('');
   sortControl = new FormControl<string>('');
   orderControl = new FormControl<string>('');
+  postsOnPage = new FormControl<number>(10);
 
   ngOnInit(): void {
     this.searchControl.valueChanges
@@ -42,6 +43,13 @@ export class PostsComponent implements OnInit {
         console.log(value);
         console.log(this.sortControl.getRawValue());
         console.log(this.orderControl.getRawValue());
+      });
+
+    this.postsOnPage.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.pageSize = value ?? 10;
+        this.loadPosts();
       });
 
     this.loadPosts();
