@@ -14,18 +14,43 @@
     width: 20%;
     min-height: 1000px;
     float: left;
+    padding: 20px;
+    border-radius: 10px;
 
     input[type="text"] {
       color: #000;
       height: 30px;
       border-radius: 5px;
+      margin-bottom: 15px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
     }
 
-    option {
+    label {
+      margin-bottom: 5px;
+      font-size: 16px;
       color: #000;
+      font-weight: bold;
     }
 
     select {
+      margin-bottom: 15px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      font-size: 14px;
+      color: #333;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+
+      &:focus {
+        border-color: #2ba2e2;
+        box-shadow: 0 0 5px rgba(43, 162, 226, 0.5);
+      }
+    }
+
+    option {
       color: #000;
     }
   }
@@ -34,7 +59,7 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    gap: -15px;
+    gap: 15px;
     width: 80%;
     padding: 35px;
     min-height: 500px;
@@ -45,12 +70,10 @@
     }
   }
 
-  // Add post button
   .add-post-container {
     position: absolute;
     bottom: 0;
     right: 0;
-    // transform: translate(-100%, -300%);
     width: 70px;
     height: 70px;
     border-radius: 150px;
@@ -68,7 +91,6 @@
     }
   }
 
-  // Pagination container
   .pagination-controls {
     margin-left: auto;
     margin-right: auto;
@@ -77,7 +99,6 @@
     justify-content: space-between;
     gap: 20px;
 
-    // Style for pagination button
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -116,6 +137,7 @@
     .filter {
       min-height: auto;
       width: 90%;
+      padding: 10px;
     }
 
     .posts-display {
