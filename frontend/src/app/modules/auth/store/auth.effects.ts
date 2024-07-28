@@ -122,6 +122,22 @@ export class AuthEffects {
     )
   );
 
+  loadUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.loadUser),
+      switchMap(() => {
+        return this.authService.autoLogin().pipe(
+          map((user) => {
+            return AuthActions.loadUserSuccess({ user: { ...user } });
+          }),
+          catchError((err) =>
+            of(AuthActions.loadUserFailure({ error: err.message }))
+          )
+        );
+      })
+    )
+  );
+
   isValidUser(response: any): response is IUser {
     return (
       response &&

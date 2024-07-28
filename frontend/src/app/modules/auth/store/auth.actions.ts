@@ -19,6 +19,10 @@ const REGISTER_FAILURE_TYPE = '[Auth] Register Failure';
 
 const CLEAR_ERROR_TYPE = '[Auth] Clear Error';
 
+const LOAD_USER_TYPE = '[Auth] Load User';
+const LOAD_USER_SUCCESS_TYPE = '[Auth] Load User Success';
+const LOAD_USER_FAILURE_TYPE = '[Auth] Load User Failure';
+
 export const login = createAction(
   LOGIN_TYPE,
   props<{ loginData: LoginData }>()
@@ -62,3 +66,15 @@ export const registerFailure = createAction(
 );
 
 export const clearError = createAction(CLEAR_ERROR_TYPE);
+
+export const loadUser = createAction(LOAD_USER_TYPE);
+
+export const loadUserSuccess = createAction(
+  LOAD_USER_SUCCESS_TYPE,
+  props<{ user: IUser }>()
+);
+
+export const loadUserFailure = createAction(
+  LOAD_USER_FAILURE_TYPE,
+  props<{ error: string }>()
+);
