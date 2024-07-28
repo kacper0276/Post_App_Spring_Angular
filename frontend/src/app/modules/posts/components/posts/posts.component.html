@@ -4,11 +4,14 @@
   <h1>{{ "recent-posts" | translate }}:</h1>
   <div class="pagination-controls">
     <button (click)="prevPage()" [disabled]="currentPage === 0">
-      Poprzednia
+      {{ "previous-page" | translate }}
     </button>
-    <span>Strona {{ currentPage + 1 }} z {{ totalPages }}</span>
+    <span
+      >{{ "page" | translate }} {{ currentPage + 1 }} {{ "of" | translate }}
+      {{ totalPages }}</span
+    >
     <button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">
-      Następna
+      {{ "next-page" | translate }}
     </button>
   </div>
   <div class="filter">
