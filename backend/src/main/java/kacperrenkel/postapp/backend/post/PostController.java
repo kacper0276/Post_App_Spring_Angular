@@ -1,5 +1,6 @@
 package kacperrenkel.postapp.backend.post;
 
+import kacperrenkel.postapp.backend.comment.Comment;
 import kacperrenkel.postapp.backend.entity.PaginatedResponse;
 import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
@@ -40,6 +41,11 @@ public class PostController {
     @GetMapping(path = "/users/username/{username}")
     public ResponseEntity<List<PostDTO>> getPostsByUsername(@PathVariable String username) {
         return ResponseEntity.ok(postService.getPostsByUsername(username));
+    }
+
+    @GetMapping(path = "/comments/{postId}")
+    public ResponseEntity<List<Comment>> getPostsByComment(@PathVariable Integer postId) {
+        return ResponseEntity.ok(postService.getCommentsInPost(postId));
     }
 
     @PostMapping(path = "/add", consumes = { "multipart/form-data" })

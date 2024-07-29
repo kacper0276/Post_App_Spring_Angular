@@ -18,10 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
 @Service
@@ -61,6 +58,12 @@ public class PostService {
         postRepository.findByUserId(userId).forEach(post -> posts.add(mapper.postToPostDto(post)));
 
         return posts;
+    }
+
+    public List<Comment> getCommentsInPost(int postId){
+        return postRepository.findById(postId)
+                .map(Post::getComments)
+                .orElse(Collections.emptyList());
     }
 
     public Post savePostWithImage(Post post, MultipartFile imageFile) {
