@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IPost } from '../models/post.model';
 import { ServerResponse } from '../models/server-response.model';
 import { PaginatedResponse } from '../models/paginatedResponse.model';
+import { IComment } from '../models/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,10 @@ export class PostService {
     return this.http.get<PaginatedResponse<IPost>>(`${this.apiUrl}/posts/`, {
       params,
     });
+  }
+
+  public getCommentsInPost(postId: number): Observable<IComment[]> {
+    return this.http.get<IComment[]>(`${this.apiUrl}/posts/comments/${postId}`);
   }
 
   public getSinglePost(id: number): Observable<IPost> {
