@@ -21,7 +21,6 @@ public class MessageController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Message sendMessage(Message message, SimpMessageHeaderAccessor headerAccessor) {
-        System.out.println("Received message: " + message);
         message.setTime(new Date());
         return messageService.saveMessage(message);
     }
