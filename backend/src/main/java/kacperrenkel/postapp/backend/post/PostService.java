@@ -60,12 +60,6 @@ public class PostService {
         return posts;
     }
 
-    public List<Comment> getCommentsInPost(int postId){
-        return postRepository.findById(postId)
-                .map(Post::getComments)
-                .orElse(Collections.emptyList());
-    }
-
     public Post savePostWithImage(Post post, MultipartFile imageFile) {
         if (imageFile != null && !imageFile.isEmpty()) {
             String originalFileName = imageFile.getOriginalFilename();
