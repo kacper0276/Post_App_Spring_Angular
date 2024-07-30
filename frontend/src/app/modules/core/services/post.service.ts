@@ -32,10 +32,6 @@ export class PostService {
     });
   }
 
-  public getCommentsInPost(postId: number): Observable<IComment[]> {
-    return this.http.get<IComment[]>(`${this.apiUrl}/posts/comments/${postId}`);
-  }
-
   public getSinglePost(id: number): Observable<IPost> {
     return this.http.get<IPost>(`${this.apiUrl}/posts/${id}`);
   }

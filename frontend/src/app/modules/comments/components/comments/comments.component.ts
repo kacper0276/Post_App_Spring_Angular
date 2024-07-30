@@ -7,6 +7,7 @@ import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { PostService } from '../../../core/services/post.service';
 import { IComment } from '../../../core/models/comment.model';
+import { CommentService } from '../../../core/services/comment.service';
 
 @Component({
   selector: 'app-comments',
@@ -27,6 +28,7 @@ export class CommentsComponent implements OnInit {
   constructor(
     private formService: FormService,
     private postService: PostService,
+    private commentService: CommentService,
     private store: Store<AppState>
   ) {}
 
@@ -39,13 +41,20 @@ export class CommentsComponent implements OnInit {
     });
   }
 
+  fetchComments(): void {
+    this.commentService.getCommentsInPost(this.postId).subscribe((res) => {
+      this.comments = res;
+    });
+  }
+
   onAddComment(): void {
     const { comment } = this.addCommentForm.getRawValue();
 
     this.postService
       .addComment(comment, this.username, this.postId)
       .subscribe((val) => {
-        console.log(val);
+        this.addCommentForm.reset();
+        this.fetchComments();
       });
   }
 }
