@@ -8,8 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, NavbarComponent, SpinnerComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
+    SpinnerComponent,
+  ],
   imports: [SharedModule, RouterLink, RouterLinkActive, HttpClientModule],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, SpinnerComponent],
 })
 export class CoreModule {}
