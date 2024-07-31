@@ -27,6 +27,7 @@ import {
 import { AuthService } from './modules/core/services/auth.service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createCredentialsInterceptor } from './modules/core/interceptors/create-credentials.interceptor';
+import { spinnerInterceptor } from './modules/core/interceptors/spinner.interceptor';
 
 registerLocaleData(localePl);
 
@@ -61,7 +62,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: 'pl' },
-    provideHttpClient(withInterceptors([createCredentialsInterceptor])),
+    provideHttpClient(
+      withInterceptors([createCredentialsInterceptor, spinnerInterceptor])
+    ),
     AuthService,
   ],
   bootstrap: [AppComponent],
