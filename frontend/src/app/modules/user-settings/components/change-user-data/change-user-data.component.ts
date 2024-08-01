@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
+import { UserProfileService } from '../../../core/services/user-profile.service';
 
 @Component({
   selector: 'app-change-user-data',
@@ -19,12 +20,9 @@ export class ChangeUserDataComponent implements OnInit {
   selectedFile: File | null = null;
   fileName = '';
 
-  get controls() {
-    return this.changeUserDataForm.controls;
-  }
-
   constructor(
     private formService: FormService,
+    private userProfileService: UserProfileService,
     titleService: Title,
     private store: Store<AppState>
   ) {
@@ -41,28 +39,26 @@ export class ChangeUserDataComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0] as File;
-
-    if (this.selectedFile) {
-      this.fileName = this.selectedFile.name;
-    }
+  get controls() {
+    return this.changeUserDataForm.controls;
   }
 
-  uploadImage() {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('image', this.selectedFile);
-
-      console.log(this.selectedFile);
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      this.selectedFile = input.files[0];
     }
   }
 
   onChangeData() {
-    if (this.selectedFile) {
-      this.uploadImage();
-    }
+    if (!this.selectedFile) return;
 
     console.log(this.changeUserDataForm);
+
+    const { email, password, username } = this.changeUserDataForm.getRawValue();
+
+    this.userProfileService
+      .changeUserData(email, username, password, this.selectedFile)
+      .subscribe();
   }
 }
