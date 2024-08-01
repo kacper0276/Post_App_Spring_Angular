@@ -18,6 +18,12 @@ public class CommentController {
         return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
     }
 
+    @PostMapping(path = "/add")
+    public ResponseEntity<Response> addComment(@RequestParam String username, @RequestParam int postId, @RequestBody String comment) {
+        commentService.addComment(username, postId, comment);
+        return ResponseEntity.ok(new Response("Dodano komentarz"));
+    }
+
     @DeleteMapping(path = "/delete/{commentId}")
     public ResponseEntity<Response> deleteComment(@PathVariable int commentId) {
         commentService.deleteComment(commentId);

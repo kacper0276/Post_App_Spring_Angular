@@ -2,6 +2,7 @@ package kacperrenkel.postapp.backend.comment;
 
 import kacperrenkel.postapp.backend.post.Post;
 import kacperrenkel.postapp.backend.post.PostRepository;
+import kacperrenkel.postapp.backend.user.User;
 import kacperrenkel.postapp.backend.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,26 @@ public class CommentService {
     public List<CommentDTO> getCommentsByPostId(int postId) {
         List<CommentDTO> comments = new ArrayList<>();
 
-        commentRepository.findByPostId(postId).forEach(comment -> {
+        for (Comment comment : commentRepository.findByPostId(postId)) {
             comments.add(commentMapper.commentToCommentDto(comment));
-        });
+        }
 
         return comments;
+    }
+
+    public void addComment(final String username, final int postId, final String commentContent) {
+        Post post = postRepository.findById(postId).orElse(null);
+        User user = userService.getByUsername(username);
+
+        Comment comment = new Comment();
+        comment.setUser(user);
+        comment.setContent(commentContent);
+        comment.setPost(post);
+
+        assert post != null;
+        post.getComments().add(comment);
+        commentRepository.save(comment);
+        postRepository.save(post);
     }
 
     public void deleteComment(int commentId) {
