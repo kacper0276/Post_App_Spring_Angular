@@ -23,6 +23,10 @@ const LOAD_USER_TYPE = '[Auth] Load User';
 const LOAD_USER_SUCCESS_TYPE = '[Auth] Load User Success';
 const LOAD_USER_FAILURE_TYPE = '[Auth] Load User Failure';
 
+const REFRESH_TOKEN = '[Auth] Refresh Token';
+const REFRESH_TOKEN_SUCCESS = '[Auth] Refresh Token Success';
+const REFRESH_TOKEN_FAILURE = '[Auth] Refresh Token Failure';
+
 export const login = createAction(
   LOGIN_TYPE,
   props<{ loginData: LoginData }>()
@@ -35,6 +39,18 @@ export const loginSuccess = createAction(
 
 export const loginFailure = createAction(
   LOGIN_FAILURE_TYPE,
+  props<{ error: string }>()
+);
+
+export const refreshToken = createAction(REFRESH_TOKEN);
+
+export const refreshTokenSuccess = createAction(
+  REFRESH_TOKEN_SUCCESS,
+  props<{ user: IUser }>()
+);
+
+export const refreshTokenFailure = createAction(
+  REFRESH_TOKEN_FAILURE,
   props<{ error: string }>()
 );
 
