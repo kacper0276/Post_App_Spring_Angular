@@ -101,6 +101,55 @@ public class UserService {
         return ResponseEntity.ok(new LoginResponse(false));
     }
 
+    public ResponseEntity<?> refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String refreshToken = null;
+            if (request.getCookies() != null) {
+                for (Cookie cookie : Arrays.stream(request.getCookies()).toList()) {
+                    if (cookie.getName().equals("refresh")) {
+                        refreshToken = cookie.getValue();
+                        break;
+                    }
+                }
+            }
+
+            jwtService.validateToken(refreshToken);
+
+            if (refreshToken == null) {
+                return ResponseEntity.status(401).body(new LoginResponse(false));
+            }
+
+            String username = jwtService.extractUsername(refreshToken);
+            User user = userRepository.findByUsernameAndActivatedIsTrue(username).orElse(null);
+
+            if (user == null) {
+                return ResponseEntity.status(401).body(new LoginResponse(false));
+            }
+
+            String newAccessToken = generateToken(user, expirationTime);
+            String newRefreshToken = generateToken(user, expirationTimeRefresh);
+
+            Cookie newAccessCookie = cookieService.generateCookie("Authorization", newAccessToken, expirationTime);
+            Cookie newRefreshCookie = cookieService.generateCookie("refresh", newRefreshToken, expirationTimeRefresh);
+
+            response.addCookie(newAccessCookie);
+            response.addCookie(newRefreshCookie);
+
+            return ResponseEntity.ok(
+                    UserDTO.builder()
+                            .email(user.getEmail())
+                            .username(user.getUsername())
+                            .role(user.getRole())
+                            .image(user.getImage())
+                            .likes(user.getLikes())
+                            .build()
+            );
+        } catch (Exception e) {
+            log.error("Error refreshing token", e);
+            return ResponseEntity.status(500).body(new LoginResponse(false));
+        }
+    }
+
     public ResponseEntity<?> loginByToken(HttpServletRequest request, HttpServletResponse response) {
         try {
             validateToken(request, response);

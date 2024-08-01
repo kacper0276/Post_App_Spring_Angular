@@ -26,6 +26,11 @@ public class UserController {
         return userService.loginUser(user, response);
     }
 
+    @PostMapping("/refresh-token")
+    public ResponseEntity<?> refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        return userService.refreshToken(request, response);
+    }
+
     @GetMapping(path = "/auto-login")
     public ResponseEntity<?> autoLogin(HttpServletRequest request, HttpServletResponse response) {
         return userService.loginByToken(request, response);

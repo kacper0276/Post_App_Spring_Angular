@@ -138,6 +138,37 @@ export class AuthEffects {
     )
   );
 
+  refreshToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.refreshToken),
+      switchMap(() =>
+        this.authService.refreshToken().pipe(
+          map((response) => {
+            if (this.isValidUser(response)) {
+              const user = response as IUser;
+              this.toastr.success(
+                '',
+                this.translate.instant('token-refreshed'),
+                { timeOut: 2000 }
+              );
+              return AuthActions.refreshTokenSuccess({ user: { ...user } });
+            } else {
+              this.toastr.error(
+                '',
+                this.translate.instant('an-error-occurred'),
+                { timeOut: 2000 }
+              );
+              throw new Error('Błąd przy odświeżaniu tokena!');
+            }
+          }),
+          catchError((err) =>
+            of(AuthActions.refreshTokenFailure({ error: err.message }))
+          )
+        )
+      )
+    )
+  );
+
   isValidUser(response: any): response is IUser {
     return (
       response &&
