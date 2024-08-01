@@ -8,7 +8,7 @@ import {
   LoginData,
   RegisterData,
 } from '../models/auth.model';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,20 @@ export class AuthService {
 
   login(body: LoginData): Observable<IUser> {
     return this.http.post<IUser>(`${this.apiURL}/users/login`, body);
+  }
+
+  refreshToken(): Observable<IUser> {
+    return this.http
+      .post<IUser>(
+        `${this.apiURL}/users/refresh-token`,
+        {},
+        { withCredentials: true }
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
   }
 
   logout(): Observable<AuthResponse> {
