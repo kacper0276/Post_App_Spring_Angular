@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../models/auth.model';
@@ -16,5 +16,24 @@ export class UserProfileService {
     return this.httpClient.get<IUser>(
       `${this.apiUrl}/users/get-user-by-username/${username}`
     );
+  }
+
+  changeUserData(
+    email: string,
+    username: string,
+    password: string,
+    profileImage: File
+  ) {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('username', username);
+    formData.append('password', password);
+    formData.append('image', profileImage, profileImage.name);
+
+    return this.httpClient.post(`${this.apiUrl}/users/update-data`, formData, {
+      headers: new HttpHeaders({
+        enctype: 'multipart/form-data',
+      }),
+    });
   }
 }
