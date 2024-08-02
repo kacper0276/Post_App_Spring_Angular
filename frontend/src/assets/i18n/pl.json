@@ -11,6 +11,10 @@
   "user-profile": "Profil użytkownika",
   "log-out": "Wyloguj się",
 
+  "days-ago": "dni temu",
+  "hours-ago": "godzin temu",
+  "minutes-ago": "minut temu",
+
   "recent-posts": "Najnowsze posty",
   "sort-by": "Sortuj według",
   "sort": "Sortuj",

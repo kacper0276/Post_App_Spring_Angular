@@ -11,6 +11,10 @@
   "user-profile": "User profile",
   "log-out": "Log out",
 
+  "days-ago": "days ago",
+  "hours-ago": "hours ago",
+  "minutes-ago": "minutes ago",
+
   "recent-posts": "Recent posts",
   "sort-by": "Sort by",
   "sort": "Sort",
@@ -26,7 +30,7 @@
   "ascending": "Ascending",
   "descending": "Descending",
   "find-by-post-name": "Find by post name",
-  "posts-on-page":"Posts on page",
+  "posts-on-page": "Posts on page",
   "previous-page": "Previous page",
   "next-page": "Next page",
   "page": "Page",
