@@ -23,7 +23,7 @@ export class PostDetailsComponent implements OnInit {
       next: (val: IUser | null) => {
         val != null ? (this.username = val.username) : (this.username = '');
 
-        if (val?.likes.includes(String(this.post.id))) {
+        if (val?.likes?.includes(String(this.post.id))) {
           this.userGiveLike = true;
         }
       },
