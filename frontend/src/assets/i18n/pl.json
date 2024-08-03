@@ -82,5 +82,7 @@
   "to-add-a-comment-you-need-to-be-logged-in": "Aby dodać komentarz, musisz być zalogowany",
 
   "show-less": "Pokaż mniej",
-  "show-more": "Pokaż więcej"
+  "show-more": "Pokaż więcej",
+
+  "succesfully-changed-data": "Dane zmienione pomyślnie"
 }
