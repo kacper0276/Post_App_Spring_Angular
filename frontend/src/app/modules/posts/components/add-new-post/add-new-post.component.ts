@@ -23,7 +23,7 @@ export class AddNewPostComponent implements OnInit {
   constructor(
     private formService: FormService,
     private store: Store<AppState>,
-    private postSerivce: PostService
+    private postService: PostService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class AddNewPostComponent implements OnInit {
     const { title, content, author } = this.addPostForm.value;
 
     if (title && content && author) {
-      this.postSerivce
+      this.postService
         .uploadPostWithImage(title, content, author, this.selectedFile)
         .subscribe({
           next: (response) => {

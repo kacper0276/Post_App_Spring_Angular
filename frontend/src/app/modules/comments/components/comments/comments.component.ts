@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { AddComment } from '../../../core/models/forms.model';
@@ -20,6 +20,7 @@ export class CommentsComponent implements OnInit {
   username!: string;
   @Input() comments!: IComment[];
   @Input() postId!: number;
+  @Output() fetchNewData = new EventEmitter<void>();
 
   get controls() {
     return this.addCommentForm.controls;
@@ -55,6 +56,7 @@ export class CommentsComponent implements OnInit {
       .subscribe((val) => {
         this.addCommentForm.reset();
         this.fetchComments();
+        this.fetchNewData.emit();
       });
   }
 }

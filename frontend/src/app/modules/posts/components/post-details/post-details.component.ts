@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPost } from '../../../core/models/post.model';
 import { AppState } from '../../../../../store/app.reducer';
 import { Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import { IUser } from '../../../core/models/auth.model';
 })
 export class PostDetailsComponent implements OnInit {
   @Input() post!: IPost;
+  @Output() fetchNewPostData = new EventEmitter<void>();
   showComments: boolean = false;
   userGiveLike: boolean = false;
   username = '';
@@ -28,6 +29,10 @@ export class PostDetailsComponent implements OnInit {
         }
       },
     });
+  }
+
+  fetchNewData() {
+    this.fetchNewPostData.emit();
   }
 
   showCommentFunction(): void {

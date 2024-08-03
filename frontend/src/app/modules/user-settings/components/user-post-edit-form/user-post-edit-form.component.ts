@@ -60,8 +60,6 @@ export class UserPostEditFormComponent implements OnInit {
 
     this.postService
       .changePostData(id, author, content, title, this.selectedFile)
-      .subscribe({
-        next: (res) => console.log(res),
-      });
+      .subscribe();
   }
 }

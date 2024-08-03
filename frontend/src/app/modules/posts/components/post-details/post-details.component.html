@@ -26,5 +26,6 @@
     *ngIf="showComments"
     [comments]="post.comments"
     [postId]="post.id"
+    (fetchNewData)="fetchNewData()"
   />
 </div>

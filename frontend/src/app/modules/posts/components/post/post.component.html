@@ -41,6 +41,7 @@
     *ngIf="showMoreDetailsPost"
     appClickOutside
     (clickOutside)="onOutsideClick()"
+    (fetchNewPostData)="fetchPostsFun()"
     [post]="post"
   />
   <app-comments
@@ -48,5 +49,6 @@
     [comments]="post.comments"
     [postId]="post.id"
     (click)="$event.stopPropagation()"
+    (fetchNewData)="fetchPostsFun()"
   />
 </div>
