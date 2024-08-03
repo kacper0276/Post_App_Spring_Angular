@@ -42,7 +42,7 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostsByUsername(username));
     }
 
-    @PostMapping(path = "/add", consumes = { "multipart/form-data" })
+    @PostMapping(path = "/add", consumes = {"multipart/form-data"})
     public ResponseEntity<Post> addPostWithImage(
             @RequestParam("title") String title,
             @RequestParam("content") String content,
@@ -55,8 +55,26 @@ public class PostController {
         post.setAuthor(author);
         post.setCreated(new Date());
 
-        Post savedPost = postService.savePostWithImage(post, image);
+        Post savedPost = postService.savePost(post, image);
         return ResponseEntity.ok(savedPost);
+    }
+
+    @PatchMapping(path = "/edit", consumes = {"multipart/form-data"})
+    public ResponseEntity<Post> editPostWithImage(
+            @RequestParam("id") int id,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("author") String author,
+            @RequestParam(value = "image", required = false) MultipartFile image
+    ) {
+        Post post = new Post();
+        post.setId(id);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setAuthor(author);
+
+        Post editedPost = postService.editPostData(post, image);
+        return ResponseEntity.ok(editedPost);
     }
 
     @PatchMapping(path = "/add-like")

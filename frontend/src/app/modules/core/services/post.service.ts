@@ -65,6 +65,30 @@ export class PostService {
     });
   }
 
+  public changePostData(
+    id: number,
+    author: string,
+    content: string,
+    title: string,
+    image: File | null
+  ) {
+    const formData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('author', author);
+
+    if (image) {
+      formData.append('image', image, image.name);
+    }
+
+    return this.http.patch(`${this.apiUrl}/posts/edit`, formData, {
+      headers: new HttpHeaders({
+        enctype: 'multipart/form-data',
+      }),
+    });
+  }
+
   public addLike(username: string, postId: number): Observable<ServerResponse> {
     const params = new HttpParams()
       .append('username', username)

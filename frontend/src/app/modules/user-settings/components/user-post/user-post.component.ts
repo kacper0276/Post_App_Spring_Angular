@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { test } from '../../../core/models/test.model';
+import { IPost } from '../../../core/models/post.model';
 
 @Component({
   selector: 'app-user-post',
@@ -8,7 +8,7 @@ import { test } from '../../../core/models/test.model';
   styleUrl: './user-post.component.scss',
 })
 export class UserPostComponent {
-  @Input() post!: test;
+  @Input() post!: IPost;
 
   constructor(private router: Router) {}
 

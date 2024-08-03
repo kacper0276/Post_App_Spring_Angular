@@ -1,10 +1,13 @@
 <div class="post-container" (click)="navigateToPostEditForm()">
   <div class="title-container">
-    <strong>{{ post.name }}</strong>
+    <p>{{ "title" | translate }}:</p>
+    <strong>{{ post.title }}</strong>
   </div>
-  <div class="image-container"></div>
+  <div class="image-container">
+    <img src="../../../../../assets/posts-images/{{ post.image }}" alt="" />
+  </div>
   <div class="stat-container">
-    <p>{{ "likes-count" | translate }}: {{ post.like }}</p>
+    <p>{{ "likes-count" | translate }}: {{ post.likes }}</p>
     <p>{{ "comments-count" | translate }}: {{ post.comments.length }}</p>
   </div>
 </div>
