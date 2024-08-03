@@ -1,3 +1,6 @@
 <div class="main-container">
   <app-user-post *ngFor="let post of posts" [post]="post"></app-user-post>
+  <div *ngIf="posts.length === 0">
+    <p>{{ "user-has-no-posts" | translate }}</p>
+  </div>
 </div>
