@@ -58,11 +58,15 @@ export class PostComponent implements OnInit {
   onAddLike(): void {
     if (this.username != '') {
       this.postService.addLike(this.username, this.post.id).subscribe(() => {
-        this.fetchPosts.emit();
+        this.fetchPostsFun();
         this.store.dispatch(AuthActions.loadUser());
         this.checkUserLike();
       });
     }
+  }
+
+  fetchPostsFun() {
+    this.fetchPosts.emit();
   }
 
   showCommentFunction(): void {
