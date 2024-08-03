@@ -1,20 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { IMessage } from '../../../core/models/message.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { IUser } from '../../../core/models/auth.model';
 import { ChatService } from '../../../core/services/chat.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   messages: IMessage[] = [];
   username!: string;
   private _messageWithUser: string | null = null;
+  private subscriptions: Subscription = new Subscription();
 
   newMessage: IMessage = {
     text: '',
@@ -40,26 +42,30 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.select(selectAuthUser).subscribe((val: IUser | null) => {
-      if (val?.username) {
-        this.username = val.username;
-        if (this._messageWithUser) {
-          this.loadMessages();
-        }
+    this.subscriptions.add(
+      this.store.select(selectAuthUser).subscribe((val: IUser | null) => {
+        if (val?.username) {
+          this.username = val.username;
+          if (this._messageWithUser) {
+            this.loadMessages();
+          }
 
-        this.chatService.getMessages().subscribe((messages: IMessage[]) => {
-          this.messages = messages;
-          this.sortMessages();
-        });
-      }
-    });
+          this.chatService.getMessages().subscribe((messages: IMessage[]) => {
+            this.messages = messages;
+            this.sortMessages();
+          });
+        }
+      })
+    );
 
     this.chatService.connect();
 
-    this.chatService.getMessages().subscribe((messages: IMessage[]) => {
-      this.messages = messages;
-      this.sortMessages();
-    });
+    this.subscriptions.add(
+      this.chatService.getMessages().subscribe((messages: IMessage[]) => {
+        this.messages = messages;
+        this.sortMessages();
+      })
+    );
   }
 
   private loadMessages(): void {
@@ -90,5 +96,10 @@ export class ChatComponent implements OnInit {
     this.messages.sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+    this.chatService.disconnect();
   }
 }
