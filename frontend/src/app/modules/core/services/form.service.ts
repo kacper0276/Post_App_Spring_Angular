@@ -136,14 +136,7 @@ export class FormService {
         validators: [Validators.minLength(10)],
         nonNullable: true,
       }),
-      img: new FormControl('', {
-        nonNullable: true,
-      }),
       title: new FormControl('', {
-        validators: [Validators.minLength(5)],
-        nonNullable: true,
-      }),
-      userId: new FormControl(0, {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
@@ -156,18 +149,11 @@ export class FormService {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
-      img: new FormControl('', {
-        nonNullable: true,
-      }),
       author: new FormControl('', {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),
       content: new FormControl('', {
-        validators: [Validators.minLength(5)],
-        nonNullable: true,
-      }),
-      userId: new FormControl(0, {
         validators: [Validators.minLength(5)],
         nonNullable: true,
       }),

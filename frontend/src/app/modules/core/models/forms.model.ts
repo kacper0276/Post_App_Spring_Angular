@@ -25,9 +25,7 @@ export interface ChangeUserDataForm {
 export interface AddPostForm {
   title: FormControl<string>;
   author: FormControl<string>;
-  img: FormControl<string>;
   content: FormControl<string>;
-  userId: FormControl<number>;
 }
 
 export interface EditPostForm extends AddPostForm {
