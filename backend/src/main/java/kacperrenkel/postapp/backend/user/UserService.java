@@ -313,4 +313,14 @@ public class UserService {
 
         return userRepository.save(existingUser);
     }
+
+    public List<UserDTO> getAllUsers() {
+        List<UserDTO> users = new ArrayList<>();
+
+        for (User user : userRepository.findAll()) {
+            users.add(mapper.userToUserDTO(user));
+        }
+
+        return users;
+    }
 }
