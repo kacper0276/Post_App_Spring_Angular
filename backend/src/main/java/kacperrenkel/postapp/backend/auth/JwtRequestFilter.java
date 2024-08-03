@@ -36,6 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         return path.contains("/posts/users/username") ||
                 path.equals("/posts/") ||
                 (path.contains("/users") && !path.contains("edit-user-data")) ||
+                (path.contains("/users") && !path.contains("get-all-users")) ||
                 path.contains("/comments");
     }
 
