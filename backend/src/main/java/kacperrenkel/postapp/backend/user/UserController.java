@@ -7,6 +7,7 @@ import kacperrenkel.postapp.backend.util.Response;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,6 +30,36 @@ public class UserController {
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         return userService.refreshToken(request, response);
+    }
+
+    @PatchMapping(path = "/edit-user-data")
+    public ResponseEntity<?> editUserData(@RequestParam(required = false) int id,
+                                          @RequestParam(required = false) String email, @RequestParam(required = false) String username,
+                                          @RequestParam(required = false) String password, @RequestParam(required = false) MultipartFile image) {
+        try {
+            if (username == null || username.isEmpty()) {
+                return ResponseEntity.status(400).body(new Response("Username is required"));
+            }
+
+            User user = new User();
+            user.setUsername(username);
+            if (email != null && !email.isEmpty()) {
+                user.setEmail(email);
+            }
+            if (password != null && !password.isEmpty()) {
+                user.setPassword(password);
+            }
+
+            user.setId(id);
+
+            User updatedUser = userService.updateUser(user, image);
+            return ResponseEntity.ok(updatedUser);
+
+        } catch (ObjectNotExistInDBException e) {
+            return ResponseEntity.status(404).body(new Response("User not found"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new Response("Error updating user"));
+        }
     }
 
     @GetMapping(path = "/auto-login")

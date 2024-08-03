@@ -19,6 +19,7 @@ export class ChangeUserDataComponent implements OnInit {
 
   selectedFile: File | null = null;
   fileName = '';
+  id = 0;
 
   constructor(
     private formService: FormService,
@@ -32,6 +33,7 @@ export class ChangeUserDataComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(selectAuthUser).subscribe({
       next: (val: any) => {
+        this.id = val.id;
         this.controls['username'].setValue(val.username);
         this.controls['email'].setValue(val.email);
         this.controls['password'].setValue('');
@@ -51,14 +53,16 @@ export class ChangeUserDataComponent implements OnInit {
   }
 
   onChangeData() {
-    if (!this.selectedFile) return;
-
-    console.log(this.changeUserDataForm);
-
     const { email, password, username } = this.changeUserDataForm.getRawValue();
 
     this.userProfileService
-      .changeUserData(email, username, password, this.selectedFile)
-      .subscribe();
+      .changeUserData(
+        this.id.toString(),
+        email,
+        username,
+        password,
+        this.selectedFile
+      )
+      .subscribe((res) => console.log(res));
   }
 }

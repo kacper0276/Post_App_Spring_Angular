@@ -1,4 +1,5 @@
 export interface IUser {
+  id: number;
   username: string;
   email: string;
   role: string;
@@ -8,6 +9,7 @@ export interface IUser {
 
 export class User implements IUser {
   constructor(
+    public id: number,
     public username: string,
     public email: string,
     public role: string,

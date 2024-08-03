@@ -52,6 +52,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "users/auto-login", "users/logged-in", "users/activate", "posts/", "users/get-user-by-username/*", "posts/users/username/*", "users/logout").permitAll()
                         .requestMatchers("comments/*").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "posts/add-like").authenticated()
+                        .requestMatchers("users/edit-user-data").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

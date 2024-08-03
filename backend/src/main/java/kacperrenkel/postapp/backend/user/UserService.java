@@ -17,10 +17,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.Cookie;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +36,9 @@ public class UserService {
     private final CookieService cookieService;
     private final JwtService jwtService;
     private final UserMapper mapper = UserMapper.INSTANCE;
+
+    @Value("${frontend.assets.path}")
+    private String frontendAssetsPath;
 
     @Value("${security.jwt.expiration-time}")
     private int expirationTime;
@@ -86,6 +93,7 @@ public class UserService {
                 response.addCookie(refresh);
                 return ResponseEntity.ok(
                         UserDTO.builder()
+                                .id(loginUser.getId())
                                 .email(loginUser.getEmail())
                                 .username(loginUser.getUsername())
                                 .role(loginUser.getRole())
@@ -137,6 +145,7 @@ public class UserService {
 
             return ResponseEntity.ok(
                     UserDTO.builder()
+                            .id(user.getId())
                             .email(user.getEmail())
                             .username(user.getUsername())
                             .role(user.getRole())
@@ -165,6 +174,7 @@ public class UserService {
             if (user != null) {
                 return ResponseEntity.ok(
                         UserDTO.builder()
+                                .id(user.getId())
                                 .username(user.getUsername())
                                 .email(user.getEmail())
                                 .role(user.getRole())
@@ -243,5 +253,55 @@ public class UserService {
                 });
 
         return users;
+    }
+
+    public User updateUser(User user, MultipartFile imageFile) {
+        User existingUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new ObjectNotExistInDBException("User does not exist"));
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String originalFileName = imageFile.getOriginalFilename();
+            String fileExtension = "";
+            if (originalFileName != null && originalFileName.contains(".")) {
+                fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+            }
+            String uniqueFileName = UUID.randomUUID() + fileExtension;
+
+            String uploadDir = frontendAssetsPath + "/profiles-image/";
+            Path uploadPath = Paths.get(uploadDir);
+
+            try {
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+                Path filePath = uploadPath.resolve(uniqueFileName);
+                Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                existingUser.setImage(uniqueFileName);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to store file", e);
+            }
+        }
+
+        if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+            existingUser.setEmail(user.getEmail());
+        }
+
+        if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+            existingUser.setUsername(user.getUsername());
+        }
+
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
+        if (user.getRole() != null) {
+            existingUser.setRole(user.getRole());
+        }
+
+        if (user.getLikes() != null && !user.getLikes().isEmpty()) {
+            existingUser.setLikes(user.getLikes());
+        }
+
+        return userRepository.save(existingUser);
     }
 }

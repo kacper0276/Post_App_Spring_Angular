@@ -19,21 +19,30 @@ export class UserProfileService {
   }
 
   changeUserData(
+    id: string,
     email: string,
     username: string,
     password: string,
-    profileImage: File
+    profileImage: File | null
   ) {
     const formData = new FormData();
+    formData.append('id', id);
     formData.append('email', email);
     formData.append('username', username);
     formData.append('password', password);
-    formData.append('image', profileImage, profileImage.name);
 
-    return this.httpClient.post(`${this.apiUrl}/users/update-data`, formData, {
-      headers: new HttpHeaders({
-        enctype: 'multipart/form-data',
-      }),
-    });
+    if (profileImage) {
+      formData.append('image', profileImage, profileImage.name);
+    }
+
+    return this.httpClient.patch(
+      `${this.apiUrl}/users/edit-user-data`,
+      formData,
+      {
+        headers: new HttpHeaders({
+          enctype: 'multipart/form-data',
+        }),
+      }
+    );
   }
 }
