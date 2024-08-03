@@ -3,6 +3,7 @@ package kacperrenkel.postapp.backend.post;
 import kacperrenkel.postapp.backend.comment.Comment;
 import kacperrenkel.postapp.backend.comment.CommentRepository;
 import kacperrenkel.postapp.backend.entity.PaginatedResponse;
+import kacperrenkel.postapp.backend.exceptions.ObjectNotExistInDBException;
 import kacperrenkel.postapp.backend.user.User;
 import kacperrenkel.postapp.backend.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -60,7 +61,7 @@ public class PostService {
         return posts;
     }
 
-    public Post savePostWithImage(Post post, MultipartFile imageFile) {
+    public Post savePost(Post post, MultipartFile imageFile) {
         if (imageFile != null && !imageFile.isEmpty()) {
             String originalFileName = imageFile.getOriginalFilename();
             String fileExtension = "";
@@ -86,6 +87,52 @@ public class PostService {
             }
         }
         return postRepository.save(post);
+    }
+
+    public Post editPostData(Post post, MultipartFile imageFile) {
+        Post existingPost = postRepository.findById(post.getId()).orElseThrow(() -> new ObjectNotExistInDBException("User does not exist"));
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String originalFileName = imageFile.getOriginalFilename();
+            String fileExtension = "";
+            if (originalFileName != null && originalFileName.contains(".")) {
+                fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+            }
+            String uniqueFileName = UUID.randomUUID() + fileExtension;
+
+            String uploadDir = frontendAssetsPath + "/posts-images/";
+            Path uploadPath = Paths.get(uploadDir);
+
+            try {
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                String existingImage = existingPost.getImage();
+                if (existingImage != null && !existingImage.isEmpty()) {
+                    Path existingImagePath = uploadPath.resolve(existingImage);
+                    if (Files.exists(existingImagePath)) {
+                        Files.delete(existingImagePath);
+                    }
+                }
+
+                Path filePath = uploadPath.resolve(uniqueFileName);
+                Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                existingPost.setImage(uniqueFileName);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to store file", e);
+            }
+        }
+
+        if (post.getTitle() != null && !post.getTitle().isEmpty()) {
+            existingPost.setTitle(post.getTitle());
+        }
+
+        if (post.getContent() != null && !post.getContent().isEmpty()) {
+            existingPost.setContent(post.getContent());
+        }
+
+        return postRepository.save(existingPost);
     }
 
     public List<PostDTO> getPostsByUsername(String username){
