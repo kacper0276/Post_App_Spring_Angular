@@ -84,5 +84,7 @@
   "show-less": "Show less",
   "show-more": "Show more",
 
-  "succesfully-changed-data": "Succesfully changed data"
+  "succesfully-changed-data": "Succesfully changed data",
+
+  "user-has-no-posts": "User has no posts"
 }

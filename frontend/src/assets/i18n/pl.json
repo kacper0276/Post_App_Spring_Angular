@@ -84,5 +84,7 @@
   "show-less": "Pokaż mniej",
   "show-more": "Pokaż więcej",
 
-  "succesfully-changed-data": "Dane zmienione pomyślnie"
+  "succesfully-changed-data": "Dane zmienione pomyślnie",
+
+  "user-has-no-posts": "Użytkownik nie posiada postów"
 }
