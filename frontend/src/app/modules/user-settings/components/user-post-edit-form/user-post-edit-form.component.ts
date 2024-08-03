@@ -5,6 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { EditPostForm } from '../../../core/models/forms.model';
 import { IPost } from '../../../core/models/post.model';
 import { PostService } from '../../../core/services/post.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-post-edit-form',
@@ -21,7 +23,9 @@ export class UserPostEditFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private formService: FormService,
-    private postService: PostService
+    private postService: PostService,
+    private toastrService: ToastrService,
+    private translateService: TranslateService
   ) {}
 
   get controls() {
@@ -61,7 +65,14 @@ export class UserPostEditFormComponent implements OnInit {
     this.postService
       .changePostData(id, author, content, title, this.selectedFile)
       .subscribe({
-        next: (res) => console.log(res),
+        next: () =>
+          this.toastrService.success(
+            this.translateService.instant('succesfully-changed-data')
+          ),
+        error: () =>
+          this.toastrService.error(
+            this.translateService.instant('an-error-occurred')
+          ),
       });
   }
 }
