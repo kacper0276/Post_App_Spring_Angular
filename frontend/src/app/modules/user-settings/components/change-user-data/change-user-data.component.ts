@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../../store/app.reducer';
 import { selectAuthUser } from '../../../auth/store/auth.selectors';
 import { UserProfileService } from '../../../core/services/user-profile.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-user-data',
@@ -25,7 +26,8 @@ export class ChangeUserDataComponent implements OnInit {
     private formService: FormService,
     private userProfileService: UserProfileService,
     titleService: Title,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private toastrService: ToastrService
   ) {
     titleService.setTitle('Zmień swoje dane');
   }
@@ -63,6 +65,9 @@ export class ChangeUserDataComponent implements OnInit {
         password,
         this.selectedFile
       )
-      .subscribe((res) => console.log(res));
+      .subscribe({
+        next: () => this.toastrService.success('succesfully-changed-data'),
+        error: () => this.toastrService.error('an-error-occurred'),
+      });
   }
 }
