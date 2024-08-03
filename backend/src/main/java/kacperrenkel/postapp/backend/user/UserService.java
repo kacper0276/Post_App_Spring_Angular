@@ -274,6 +274,15 @@ public class UserService {
                 if (!Files.exists(uploadPath)) {
                     Files.createDirectories(uploadPath);
                 }
+
+                String existingImage = existingUser.getImage();
+                if (existingImage != null && !existingImage.isEmpty()) {
+                    Path existingImagePath = uploadPath.resolve(existingImage);
+                    if (Files.exists(existingImagePath)) {
+                        Files.delete(existingImagePath);
+                    }
+                }
+
                 Path filePath = uploadPath.resolve(uniqueFileName);
                 Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
                 existingUser.setImage(uniqueFileName);
