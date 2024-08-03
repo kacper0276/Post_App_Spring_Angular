@@ -23,9 +23,15 @@ input {
 
     .file {
       opacity: 0;
-      width: 0.1px;
-      height: 0.1px;
+      width: 200px;
+      height: 50px;
       position: absolute;
+      z-index: 2;
+      cursor: pointer;
+
+      &:hover ~ .label-file {
+        transform: scale(1.2);
+      }
     }
 
     .label-file {
@@ -48,10 +54,6 @@ input {
       font-weight: bold;
       cursor: pointer;
       transition: transform 0.2s ease-out;
-    }
-
-    .label-file:hover {
-      transform: scale(1.2);
     }
 
     .input {
