@@ -86,5 +86,6 @@
 
   "succesfully-changed-data": "Succesfully changed data",
 
-  "user-has-no-posts": "User has no posts"
+  "user-has-no-posts": "User has no posts",
+  "no-file-selected": "No file selected"
 }
