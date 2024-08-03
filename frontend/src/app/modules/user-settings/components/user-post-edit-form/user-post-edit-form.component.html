@@ -12,12 +12,12 @@
       <div class="input-data">
         <input type="text" [value]="controls.id.value" disabled />
         <div class="underline"></div>
-        <label for="">ID</label>
+        <label>ID</label>
       </div>
       <div class="input-data">
         <input type="text" [value]="controls.author.value" disabled />
         <div class="underline"></div>
-        <label for="">{{ "author" | translate }}</label>
+        <label>{{ "author" | translate }}</label>
       </div>
     </div>
     <div class="form-row">
@@ -28,7 +28,7 @@
           [formControl]="controls.title"
         />
         <div class="underline"></div>
-        <label for="">{{ "post-name" | translate }}</label>
+        <label>{{ "post-name" | translate }}</label>
       </div>
       <div class="input-data file-upload">
         <input type="file" id="fileInput" (change)="onFileSelected($event)" />
@@ -51,12 +51,12 @@
         ></textarea>
         <br />
         <div class="underline"></div>
-        <label for="">{{ "post-description" | translate }}</label>
+        <label>{{ "post-description" | translate }}</label>
         <br />
         <div class="form-row submit-btn">
           <div class="input-data">
             <div class="inner"></div>
-            <button>{{ "edit-post-data" | translate }}</button>
+            <button type="submit">{{ "edit-post-data" | translate }}</button>
           </div>
         </div>
       </div>

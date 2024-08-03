@@ -56,6 +56,12 @@ export class UserPostEditFormComponent implements OnInit {
   }
 
   onChangePostData(): void {
-    console.log(this.editPostForm);
+    const { author, content, id, title } = this.editPostForm.getRawValue();
+
+    this.postService
+      .changePostData(id, author, content, title, this.selectedFile)
+      .subscribe({
+        next: (res) => console.log(res),
+      });
   }
 }

@@ -172,6 +172,7 @@ form .form-row {
   height: 45px !important;
   width: 25% !important;
   cursor: pointer;
+  border-radius: 15px;
 
   .inner {
     height: 100%;
@@ -195,6 +196,8 @@ form .form-row {
   button {
     background: none;
     border: none;
+    width: 100%;
+    height: 100%;
     color: #fff;
     font-size: 17px;
     font-weight: 500;
