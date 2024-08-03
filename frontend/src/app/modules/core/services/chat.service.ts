@@ -20,6 +20,11 @@ export class ChatService {
   constructor(private http: HttpClient) {}
 
   connect() {
+    if (this.stompClient && this.stompClient.connected) {
+      console.warn('WebSocket client already connected');
+      return;
+    }
+
     const socket = new SockJS('http://localhost:8080/api/v1/ws');
     this.stompClient = Stomp.over(socket);
 
@@ -70,5 +75,11 @@ export class ChatService {
     return this.http.get<IMessage[]>(`${this.apiURL}/message/lastMessages`, {
       params,
     });
+  }
+
+  disconnect(): void {
+    if (this.stompClient) {
+      this.stompClient.deactivate();
+    }
   }
 }
