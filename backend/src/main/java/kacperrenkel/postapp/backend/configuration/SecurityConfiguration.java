@@ -53,6 +53,7 @@ public class SecurityConfiguration {
                         .requestMatchers("comments/*").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "posts/add-like").authenticated()
                         .requestMatchers("users/edit-user-data").authenticated()
+                        .requestMatchers("users/get-all-users").hasRole("ADMINISTRATOR")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
