@@ -30,14 +30,15 @@
         <div class="underline"></div>
         <label for="">{{ "post-name" | translate }}</label>
       </div>
-      <div class="input-data">
-        <input
-          type="text"
-          [value]="controls.img.value"
-          [formControl]="controls.img"
-        />
+      <div class="input-data file-upload">
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" />
         <div class="underline"></div>
-        <label for="">{{ "photo" | translate }}</label>
+        <label for="fileInput">
+          {{ "photo" | translate }}
+        </label>
+        <div class="file-name">
+          {{ fileName || ("no-file-selected" | translate) }}
+        </div>
       </div>
     </div>
     <div class="form-row">
